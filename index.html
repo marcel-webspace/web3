@@ -602,7 +602,7 @@
                     </div>
                     <div class="flex gap-6 text-sm text-neutral-500 justify-center md:justify-end">
                         <a href="impressum.html" class="hover:text-indigo-400 transition-colors">Impressum</a>
-                        <a href="#" class="hover:text-indigo-400 transition-colors">Datenschutz</a>
+                        <a href="datenschutz.html" class="hover:text-indigo-400 transition-colors">Datenschutz</a>
                         <a href="agb.html" class="hover:text-indigo-400 transition-colors">AGB</a>
                     </div>
                 </div>
@@ -616,7 +616,7 @@
             <p class="mb-2"><strong class="text-white">Datenschutz-Einstellungen</strong></p>
             <p>Wir nutzen Cookies und externe Dienste (wie Video-Player), um das Nutzererlebnis zu verbessern. Einige sind essenziell, andere helfen uns, Inhalte zu optimieren.</p>
             <div class="mt-2 flex gap-4 text-xs">
-                <a href="#" class="underline hover:text-indigo-400">Datenschutzerklärung</a>
+                <a href="datenschutz.html" class="underline hover:text-indigo-400">Datenschutzerklärung</a>
                 <a href="impressum.html" class="underline hover:text-indigo-400">Impressum</a>
             </div>
         </div>
@@ -788,6 +788,12 @@
                     passwordScreen.style.display = 'none';
                     siteWrapper.style.display = 'block';
                     // Trigger reflow/animation if needed or simple appear
+                    
+                    // Show cookie banner if needed
+                    if (!localStorage.getItem('cookieConsent')) {
+                        document.getElementById('cookie-banner').classList.remove('hidden');
+                        document.getElementById('cookie-banner').classList.add('flex');
+                    }
                 }, 300); // fade out duration
             } else {
                 // Fail
@@ -861,36 +867,6 @@
                 }
             }
         }
-        
-        // Also check cookies after successful login
-        const originalCheckPassword = checkPassword;
-        checkPassword = function() {
-            // Call original logic (duplicated here for scope access or just inline logic above)
-            const input = document.getElementById('password-input');
-            const errorMsg = document.getElementById('error-msg');
-            const passwordScreen = document.getElementById('password-screen');
-            const siteWrapper = document.getElementById('site-wrapper');
-            
-            if (input.value === "12345") {
-                sessionStorage.setItem('authenticated', 'true');
-                passwordScreen.style.opacity = '0';
-                setTimeout(() => {
-                    passwordScreen.style.display = 'none';
-                    siteWrapper.style.display = 'block';
-                    // Show cookie banner if needed
-                    if (!localStorage.getItem('cookieConsent')) {
-                        document.getElementById('cookie-banner').classList.remove('hidden');
-                        document.getElementById('cookie-banner').classList.add('flex');
-                    }
-                }, 300);
-            } else {
-                errorMsg.style.opacity = '1';
-                input.classList.add('shake-animation');
-                setTimeout(() => {
-                    input.classList.remove('shake-animation');
-                }, 500);
-            }
-        };
 
         function acceptCookies(type) {
             localStorage.setItem('cookieConsent', type);
