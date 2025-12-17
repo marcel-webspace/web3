@@ -6,6 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reinwarth media | Dein Partner für Video & Schnitt</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- TAILWIND CONFIG: Premium Industrial CI -->
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                // Basis: Ein sehr dunkles, technisches Blau-Grau (Slate)
+                base: {
+                    DEFAULT: '#0f172a', // Slate 950
+                    900: '#0f172a',
+                    800: '#1e293b', // Slate 800 (für Karten)
+                    700: '#334155', // Slate 700 (für Ränder)
+                },
+                // Textfarben
+                light: {
+                    DEFAULT: '#f8fafc', // Slate 50 (Reinweiß ist oft zu hart)
+                    dim: '#94a3b8', // Slate 400 (Gedämpfter Text)
+                },
+                // Akzent: "Craftsman Gold" / Bernstein
+                accent: {
+                    DEFAULT: '#f59e0b', // Amber 500
+                    hover: '#d97706', // Amber 600
+                    glow: '#f59e0b',
+                    light: '#fcd34d', // Amber 300
+                }
+              },
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                serif: ['Playfair Display', 'serif'],
+              }
+            }
+          }
+        }
+    </script>
+
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <!-- Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -15,14 +51,100 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Optionale Serif Schrift für Zitate -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <!-- Font für Zahlen -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         /* --- GLOBAL & ANIMATIONS --- */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #020617; /* Slate-950/Black blend */
-            color: #e2e8f0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: #0f172a; /* Base Slate */
+            color: #f8fafc; /* Light Text */
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* NEU: Diagonaler Drift für Icons (Schräg nach oben) */
+        @keyframes diagonal-drift {
+            0% {
+                transform: translate(0, 0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.05; /* Sehr dezent (weniger präsent) */
+            }
+            90% {
+                opacity: 0.05;
+            }
+            100% {
+                transform: translate(100px, -150px); /* Bewegung nach rechts oben */
+                opacity: 0;
+            }
+        }
+
+        /* Flash Animation für seltenes Aufleuchten */
+        @keyframes icon-flash-subtle {
+            0%, 90%, 100% { 
+                color: #334155; 
+                filter: none;
+            }
+            95% { 
+                color: #f59e0b; /* Gold */
+                filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.3));
+            }
+        }
+
+        .ambient-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0; 
+            background: #0f172a; /* Fallback */
+            overflow: hidden;
+        }
+
+        /* Container für die Icons */
+        .social-pattern {
+            position: absolute;
+            inset: -20%; /* Puffer für Bewegung */
+            overflow: hidden;
+        }
+
+        .social-icon {
+            position: absolute;
+            color: #334155;
+            opacity: 0;
+            /* Kombination aus Bewegung und seltenem Aufleuchten */
+            animation: diagonal-drift linear infinite, icon-flash-subtle linear infinite;
+            will-change: transform, opacity;
+        }
+
+        .ambient-light::before, .ambient-light::after {
+            content: '';
+            position: absolute;
+            width: 90vw;
+            height: 90vh;
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+
+        /* Bernstein-Glow (Akzent) oben links - Stärker */
+        .ambient-light::before {
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0) 60%);
+            top: -30%;
+            left: -20%;
+            animation: subtle-drift 15s infinite ease-in-out;
+        }
+
+        /* Kühles Slate-Glow (Basis) unten rechts - Stärker */
+        .ambient-light::after {
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(15, 23, 42, 0) 60%);
+            bottom: -30%;
+            right: -20%;
+            animation: subtle-drift-reverse 20s infinite ease-in-out;
         }
 
         /* Smooth Fade In Up */
@@ -50,14 +172,14 @@
             -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
 
-        /* Pulsierender Text Gradient */
+        /* Pulsierender Text Gradient (Weiß zu Gold) */
         @keyframes pulse-gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
         .text-gradient-pulse {
-            background: linear-gradient(to right, #ffffff, #94a3b8, #ffffff);
+            background: linear-gradient(to right, #f8fafc, #fcd34d, #f8fafc);
             background-size: 200% auto;
             background-clip: text;
             -webkit-background-clip: text;
@@ -76,30 +198,29 @@
         .faq-icon { transition: transform 0.3s ease; }
         .faq-item.active .faq-icon { transform: rotate(180deg); }
         .faq-item.active {
-            border-color: rgba(99, 102, 241, 0.4);
-            background-color: rgba(30, 27, 75, 0.3);
-            box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.1);
+            border-color: rgba(245, 158, 11, 0.5); /* Amber Border */
+            background-color: rgba(30, 41, 59, 0.8); /* Slate 800 */
+            box-shadow: 0 0 20px -5px rgba(245, 158, 11, 0.15);
         }
 
-        /* Seriöser WhatsApp Gradient (Loop rechts nach links) */
+        /* Seriöser WhatsApp Gradient */
         @keyframes gradient-slide-left {
             0% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
         .whatsapp-gradient {
-            /* Dunkles, edles Grün */
-            background: linear-gradient(270deg, #064e3b, #107a57, #064e3b);
+            background: linear-gradient(270deg, #064e3b, #059669, #064e3b);
             background-size: 200% 100%;
             animation: gradient-slide-left 4s linear infinite;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .whatsapp-gradient:hover {
-            filter: brightness(1.1); /* Leichtes Aufhellen beim Hover */
+            filter: brightness(1.2);
         }
 
-        /* Gold Animation Text */
+        /* Gold Animation Text (Amber Style) */
         .gold-animate {
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            background: linear-gradient(to right, #fbbf24, #fffbeb, #d97706, #fffbeb, #fbbf24);
             background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
@@ -110,8 +231,8 @@
         
         /* Email Pulse */
         @keyframes pulse-glow-text {
-            0%, 100% { text-shadow: 0 0 4px rgba(163, 163, 163, 0.1); opacity: 0.7; }
-            50% { text-shadow: 0 0 12px rgba(163, 163, 163, 0.6); opacity: 1; }
+            0%, 100% { text-shadow: 0 0 4px rgba(245, 158, 11, 0.1); opacity: 0.7; }
+            50% { text-shadow: 0 0 12px rgba(245, 158, 11, 0.4); opacity: 1; }
         }
         .animate-email-pulse { animation: pulse-glow-text 3s infinite ease-in-out; }
 
@@ -131,7 +252,7 @@
         /* Loading Spinner */
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.1);
-            border-left-color: #6366f1;
+            border-left-color: #f59e0b; /* Amber */
             border-radius: 50%;
             width: 24px;
             height: 24px;
@@ -148,219 +269,546 @@
             animation: shrinkWidth 5s linear forwards;
         }
 
-        /* Password Shake Animation */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        /* Collage Animation Styles */
+        @keyframes float-collage {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
         }
-        .shake-animation {
-            animation: shake 0.5s;
-            border-color: #ef4444 !important; /* Red border on error */
+        .animate-float-collage {
+            animation: float-collage 6s ease-in-out infinite;
+        }
+        
+        /* Hover Effect für Collage Items */
+        .collage-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: grayscale(0.6) brightness(0.8);
+        }
+        .collage-container:hover .collage-item {
+            filter: grayscale(1) brightness(0.5) blur(1px); /* Alle dimmen beim Hover */
+        }
+        .collage-container:hover .collage-item:hover {
+            filter: grayscale(0) brightness(1.1) blur(0); /* Einzelnes Highlighten */
+            transform: scale(1.1) translateY(-10px) rotate(0deg) !important; /* !important to override inline rotation */
+            z-index: 50;
+            box-shadow: 0 10px 30px -5px rgba(245, 158, 11, 0.3);
+            border-color: #f59e0b;
         }
     </style>
 </head>
 
-<body class="antialiased bg-black text-slate-200">
+<body class="antialiased bg-base-900 text-light overflow-hidden"> <!-- Added overflow-hidden initially -->
 
-    <!-- === PASSWORD PROTECTION OVERLAY === -->
-    <div id="password-screen" class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center px-4">
-        <div class="text-center max-w-md w-full">
-            <div class="mb-8">
-                <span class="text-3xl font-semibold tracking-tight text-white">Reinwarth</span>
-                <span class="text-3xl font-semibold tracking-tight text-indigo-500 ml-1">media</span>
-            </div>
-            <p class="text-neutral-400 mb-6 text-sm">Bitte gib den Zugangscode ein, um die Seite zu betreten.</p>
-            
-            <div class="relative">
-                <input type="password" id="password-input" 
-                    class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-4 text-center text-white text-lg tracking-widest focus:outline-none focus:border-indigo-500 transition-colors placeholder-neutral-700" 
-                    placeholder="CODE EINGEBEN">
-                <button onclick="checkPassword()" 
-                    class="mt-4 w-full bg-indigo-500 hover:bg-indigo-400 text-white font-medium py-3 rounded-xl transition-all shadow-lg shadow-indigo-500/20">
-                    Zugang freischalten
-                </button>
-            </div>
-            <p id="error-msg" class="text-red-500 text-sm mt-4 opacity-0 transition-opacity">Falscher Code. Bitte versuche es erneut.</p>
-        </div>
+    <!-- Ambient Background Layer (Fixed) -->
+    <div class="ambient-light">
+        <!-- NEU: Container für dynamische Social Media Icons -->
+        <div class="social-pattern" id="social-pattern"></div>
     </div>
 
-    <!-- === HAUPTSEITE (Wrapper initially hidden) === -->
-    <div id="site-wrapper" style="display: none;">
+    <!-- === PASSWORD PROTECTION OVERLAY === -->
+    <div id="password-screen" class="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-base-900/95 backdrop-blur-xl transition-all duration-700">
+        <div class="w-full max-w-md p-8 m-4 bg-base-800 rounded-2xl border border-base-700 shadow-[0_0_50px_-10px_rgba(245,158,11,0.15)] text-center relative overflow-hidden">
+             <!-- Deko Glow im Overlay -->
+             <div class="absolute -top-20 -left-20 w-40 h-40 bg-accent/20 blur-3xl rounded-full pointer-events-none"></div>
+             
+             <div class="mb-8 relative z-10">
+                <div class="flex items-baseline justify-center leading-none mb-2">
+                    <span class="text-3xl font-semibold tracking-tight text-light">Reinwarth</span>
+                    <span class="text-3xl font-semibold tracking-tight text-accent ml-1">media</span>
+                </div>
+                <p class="text-light-dim text-xs uppercase tracking-widest">Protected Area</p>
+            </div>
+            
+            <p class="text-light-dim mb-6 text-sm relative z-10">Dieser Bereich ist passwortgeschützt. Bitte authentifizieren.</p>
+            
+            <form id="password-form" class="space-y-4 relative z-10" onsubmit="checkPassword(event)">
+                <div class="relative group">
+                    <input type="password" id="password-input" class="w-full bg-base-900 border border-base-700 rounded-xl px-4 py-4 text-light text-center tracking-[0.5em] focus:outline-none focus:border-accent transition-colors placeholder-base-700 font-bold text-lg" placeholder="•••••" autofocus>
+                    <!-- Error Shake Animation Container -->
+                </div>
+                <div id="password-error" class="text-red-500 text-xs font-medium h-4 opacity-0 transition-opacity duration-300">Falsches Passwort. Bitte erneut versuchen.</div>
+                
+                <button type="submit" class="w-full bg-accent hover:bg-accent-hover text-base-900 font-bold py-3.5 rounded-xl transition-all shadow-lg hover:shadow-accent/20 flex items-center justify-center gap-2 group">
+                    <span>Zugang entsperren</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+            </form>
+        </div>
+        <p class="text-base-700 text-xs mt-8">© 2026 Reinwarth media</p>
+    </div>
+
+    <!-- === HAUPTSEITE (Main Content) - Initially Hidden === -->
+    <div id="main-content" class="transition-all duration-1000 ease-in-out relative z-10 opacity-0 pointer-events-none filter blur-sm transform scale-95">
         
         <!-- Navigation -->
         <nav class="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-colors duration-300" id="navbar">
-            <div id="navbar-bg" class="absolute inset-0 bg-black/95 backdrop-blur-md opacity-0 transition-opacity duration-500 -z-10"></div>
+            <div id="navbar-bg" class="absolute inset-0 bg-base-900/80 backdrop-blur-md transition-opacity duration-500 -z-10"></div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="flex items-center justify-between h-20 lg:h-24">
-                    <!-- LOGO LINK ZUR STARTSEITE -->
-                    <a href="Reinwarth_Media_Website.html" class="flex items-center group select-none py-2">
+                    <a href="/" class="flex items-center group select-none py-2">
                         <div class="flex items-baseline leading-none">
-                            <span class="text-2xl font-semibold tracking-tight text-white">Reinwarth</span>
-                            <span class="text-2xl font-semibold tracking-tight text-indigo-500 ml-1">media</span>
+                            <span class="text-2xl font-semibold tracking-tight text-light">Reinwarth</span>
+                            <span class="text-2xl font-semibold tracking-tight text-accent ml-1">media</span>
                         </div>
                     </a>
-                    <!-- Desktop Menu -->
                     <div class="hidden lg:flex items-center gap-8">
-                        <a href="#services" class="text-sm font-medium transition-colors text-white/80 hover:text-indigo-400">Zusammenarbeit</a>
-                        <a href="#equipment" class="text-sm font-medium transition-colors text-white/80 hover:text-indigo-400">Über mich</a>
-                        <a href="#how-it-works" class="text-sm font-medium transition-colors text-white/80 hover:text-indigo-400">Ablauf</a>
-                        <a href="#stats" class="text-sm font-medium transition-colors text-white/80 hover:text-indigo-400">Fakten</a>
-                        <a href="#testimonials" class="text-sm font-medium transition-colors text-white/80 hover:text-indigo-400">Kunden</a>
-                        <a href="#faq" class="text-sm font-medium transition-colors text-white/80 hover:text-indigo-400">FAQ</a>
+                        <a href="#services" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Zusammenarbeit</a>
+                        <a href="#equipment" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Über mich</a>
+                        <a href="#how-it-works" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Ablauf</a>
+                        <a href="#stats" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Fakten</a>
+                        <a href="#testimonials" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Kunden</a>
+                        <a href="#faq" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">FAQ</a>
                     </div>
                     <div class="flex items-center gap-3">
-                        <!-- Trigger für Booking Overlay -->
-                        <button onclick="openBooking()" class="hidden sm:inline-block transition-all hover:shadow-lg hover:-translate-y-0.5 hover:bg-indigo-300 hover:shadow-indigo-400/20 text-sm font-medium text-black bg-indigo-400 rounded-lg py-2.5 px-5">
+                        <button onclick="openBooking()" class="hidden sm:inline-block transition-all hover:shadow-lg hover:-translate-y-0.5 hover:shadow-accent/20 text-sm font-bold text-base-900 bg-accent hover:bg-accent-hover rounded-lg py-2.5 px-5">
                             Termin vereinbaren
                         </button>
-                        <button class="lg:hidden p-2 text-white" id="mobileMenuBtn">
+                        <button class="lg:hidden p-2 text-light" id="mobileMenuBtn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                         </button>
                     </div>
                 </div>
             </div>
             <!-- Mobile Menu -->
-            <div class="lg:hidden fixed inset-0 bg-black/95 backdrop-blur-xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-8" id="mobileMenu">
-                <a href="#services" class="text-xl font-medium text-white hover:text-indigo-400 transition-colors mobile-link">Zusammenarbeit</a>
-                <a href="#equipment" class="text-xl font-medium text-white hover:text-indigo-400 transition-colors mobile-link">Über mich</a>
-                <a href="#how-it-works" class="text-xl font-medium text-white hover:text-indigo-400 transition-colors mobile-link">Ablauf</a>
-                <a href="#stats" class="text-xl font-medium text-white hover:text-indigo-400 transition-colors mobile-link">Fakten</a>
-                <a href="#testimonials" class="text-xl font-medium text-white hover:text-indigo-400 transition-colors mobile-link">Kundenstimmen</a>
-                <a href="#faq" class="text-xl font-medium text-white hover:text-indigo-400 transition-colors mobile-link">FAQ</a>
-                <!-- Mobile Trigger für Booking -->
-                <button onclick="openBooking(); closeMenu();" class="text-xl font-medium text-white hover:text-indigo-400 transition-colors mobile-link">Termin vereinbaren</button>
-                <button id="closeMobileMenu" class="absolute top-6 right-6 text-neutral-400 p-2 hover:text-white transition-colors">
+            <div class="lg:hidden fixed inset-0 bg-base-900/95 backdrop-blur-xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-8" id="mobileMenu">
+                <a href="#services" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Zusammenarbeit</a>
+                <a href="#equipment" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Über mich</a>
+                <a href="#how-it-works" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Ablauf</a>
+                <a href="#stats" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Fakten</a>
+                <a href="#testimonials" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Kundenstimmen</a>
+                <a href="#faq" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">FAQ</a>
+                <button onclick="openBooking(); closeMenu();" class="text-xl font-medium text-accent hover:text-accent-hover transition-colors mobile-link">Termin vereinbaren</button>
+                <button id="closeMobileMenu" class="absolute top-6 right-6 text-light-dim p-2 hover:text-light transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </div>
         </nav>
 
-        <!-- Hero Section -->
-        <section class="relative lg:pt-40 lg:pb-32 pt-32 pb-20 overflow-hidden bg-gradient-to-b from-neutral-950 via-black to-neutral-950">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-indigo-900/20 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+        <!-- Hero Section (Transparent BG to show effect) -->
+        <section class="relative lg:pt-40 lg:pb-32 pt-32 pb-20 overflow-hidden">
+            <!-- Zusätzlicher lokaler Glow für Fokus -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-accent/5 blur-[120px] rounded-full -z-10 pointer-events-none">
+            </div>
+
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     <div class="space-y-8 animate-fade-in-up order-2 lg:order-1 text-center lg:text-left">
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-100 tracking-tight leading-[1.1]">
-                            <span class="block text-indigo-400 mb-3 text-2xl sm:text-3xl font-medium">Keine Agentur. Kein Bullshit.</span>
-                            Dein persönlicher Partner für Sichtbarkeit.
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-light tracking-tight leading-tight">
+                            Ich helfe lokalen Unternehmen
+                            <span class="text-light-dim font-medium">(z. B. KFZ-, Garten- & Handwerksbetrieben)</span>,
+                            mit authentischem Video-Content sichtbar zu bleiben und Vertrauen aufzubauen
+                            <span class="text-accent whitespace-nowrap">– ohne Agentur, ohne Umwege.</span>
                         </h1>
-                        <p class="text-lg sm:text-xl text-neutral-400 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                            Keine langen Wartezeiten, keine wechselnden Ansprechpartner. Ich übernehme Strategie, Dreh & Schnitt persönlich. <span class="text-white font-semibold">100% Fokus auf dein Ergebnis.</span>
+                        <p class="text-lg sm:text-xl text-light-dim leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Keine langen Wartezeiten, keine wechselnden Ansprechpartner. Ich übernehme Strategie, Dreh
+                            & Schnitt persönlich.
+                            <span class="text-light font-semibold">100% Fokus auf dein Ergebnis.</span>
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-                            <button onclick="openBooking()" class="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-indigo-500 hover:bg-indigo-400 text-white hover:shadow-indigo-500/30">
+                            <button onclick="openBooking()" class="inline-flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-accent hover:bg-accent-hover text-base-900 hover:shadow-accent/30">
                                Jetzt Termin vereinbaren
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
                             </button>
-                            <a href="#how-it-works" class="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 rounded-xl transition-all hover:bg-white/10 text-neutral-300 border border-neutral-800 hover:border-neutral-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                            <a href="#how-it-works" class="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 rounded-xl transition-all hover:bg-white/5 text-light-dim border border-base-700 hover:border-accent/50 hover:text-light">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                </svg>
                                 So funktioniert's
                             </a>
                         </div>
+
+                        <!-- NEU: Animierter Aufrufe Counter & Collage -->
+                        <div class="mt-8 pt-8 border-t border-base-800/50 w-full">
+                            <div class="flex flex-col items-center lg:items-start gap-6">
+
+                                <!-- Counter -->
+                                <div class="flex flex-col items-center lg:items-start gap-1">
+                                    <div class="flex items-baseline gap-2">
+                                        <span id="view-counter" class="text-3xl sm:text-4xl font-bold font-oswald tracking-tight text-gradient-pulse">10.000.000</span>
+                                        <span class="text-accent text-xl font-bold">+</span>
+                                    </div>
+                                    <p class="text-sm text-light-dim max-w-sm text-center lg:text-left">
+                                        Aufrufe über alle Social Media Kanäle & eigene Projekte generiert.
+                                    </p>
+                                </div>
+
+                                <!-- NEU: Animated Collage / Floating Stack (16:9 & Größer) - Mit Platzhalterbildern -->
+                                <div class="collage-container relative h-32 w-full max-w-md animate-float-collage">
+                                    <!-- Bilder Stapel: Wir nutzen absolute positioning und leichte Rotation für den Fächer-Effekt -->
+                                    <div class="flex justify-center lg:justify-start items-end h-full pl-4">
+                                        <!-- Bild 1 -->
+                                        <div class="collage-item relative w-40 h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-24 z-10 transform -rotate-6 hover:rotate-0 origin-bottom-left transition-transform duration-300">
+                                            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="w-full h-full object-cover" alt="Projekt 1">
+                                        </div>
+                                        <!-- Bild 2 -->
+                                        <div class="collage-item relative w-40 h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-24 z-20 transform -rotate-3 hover:rotate-0 origin-bottom-left transition-transform duration-300">
+                                            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="w-full h-full object-cover" alt="Projekt 2">
+                                        </div>
+                                        <!-- Bild 3 -->
+                                        <div class="collage-item relative w-40 h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-24 z-30 transform rotate-0 hover:scale-110 origin-bottom transition-transform duration-300">
+                                            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="w-full h-full object-cover" alt="Projekt 3">
+                                        </div>
+                                        <!-- Bild 4 -->
+                                        <div class="collage-item relative w-40 h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-24 z-20 transform rotate-3 hover:rotate-0 origin-bottom-right transition-transform duration-300">
+                                            <img src="https://images.unsplash.com/photo-1535016120720-40c6874c3b1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="w-full h-full object-cover" alt="Projekt 4">
+                                        </div>
+                                        <!-- Bild 5 -->
+                                        <div class="collage-item relative w-40 h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden z-10 transform rotate-6 hover:rotate-0 origin-bottom-right transition-transform duration-300">
+                                            <img src="https://images.unsplash.com/photo-1585863266205-d5b76c12c7d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="w-full h-full object-cover" alt="Projekt 5">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                     <div class="order-1 lg:order-2 relative group">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                        <div class="relative rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 shadow-2xl">
-                             <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%"><iframe allow="fullscreen" allowfullscreen="" height="100%" src="https://streamable.com/e/m26y89?loop=0" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe></div>
+                        <div class="absolute -inset-1 bg-gradient-to-r from-accent to-accent-light rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200">
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden border border-base-700 bg-base-800 shadow-2xl">
+                            <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%" class="">
+                                <iframe allow="fullscreen" allowfullscreen="" height="100%" src="https://streamable.com/e/m26y89?loop=0" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;" class=""></iframe></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Partner Slider -->
-        <section class="w-full bg-black border-y border-neutral-900 py-12 overflow-hidden relative">
+        <!-- Partner Slider (Transparent BG) -->
+        <section class="border-y border-base-800 overflow-hidden bg-transparent w-full pt-12 pb-12 relative backdrop-blur-sm">
+            <!-- ... existing partner slider content ... -->
             <div class="max-w-7xl mx-auto px-4 md:px-8 mb-8 text-center">
-                <p class="text-xs md:text-sm font-semibold text-neutral-500 uppercase tracking-[0.2em]">Kunden die mir vertrauen</p>
+                <p class="text-xs md:text-sm font-semibold text-light-dim uppercase tracking-[0.2em]">Kunden die mir
+                    vertrauen</p>
             </div>
             <div class="relative w-full mask-gradient">
                 <div class="animate-scroll">
+                    <!-- ... partner logos ... -->
                     <div class="flex items-center gap-12 md:gap-24 px-6">
-                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&q=80" alt="Partner"></div>
-                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" alt="Partner"></div>
-                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" alt="Partner"></div>
-                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" alt="Partner"></div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&amp;q=80" alt="Partner">
+                        </div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&amp;q=80" alt="Partner" class="">
+                        </div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&amp;q=80" alt="Partner">
+                        </div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&amp;q=80" alt="Partner">
+                        </div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png?w=800&amp;q=80" alt="Dein Logo" class="-translate-x-8">
+                        </div>
                     </div>
                     <div class="flex items-center gap-12 md:gap-24 px-6">
-                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&q=80" alt="Partner"></div>
-                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" alt="Partner"></div>
-                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" alt="Partner"></div>
-                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" alt="Partner"></div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&amp;q=80" alt="Partner">
+                        </div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&amp;q=80" alt="Partner">
+                        </div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&amp;q=80" alt="Partner">
+                        </div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&amp;q=80" alt="Partner">
+                        </div>
+                        <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png?w=800&amp;q=80" alt="Dein Logo">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SERVICES SECTION (NEU) -->
-        <section id="services" class="py-24 bg-neutral-950 relative border-b border-neutral-900">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- NEU: DEUTSCHLANDWEIT SECTION -->
+        <section id="location" class="py-24 bg-base-900/50 backdrop-blur-sm border-b border-base-800 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    
+                    <!-- Karte (Links) - Etwas kompakter -->
+                    <div class="relative h-[500px] w-full flex items-center justify-center p-4">
+                         <!-- Background Glow hinter der Karte -->
+                         <div class="absolute inset-0 bg-gradient-radial from-accent/10 to-transparent opacity-60 blur-3xl"></div>
+                         
+                         <!-- Deutschlandkarte SVG (Realistische Silhouette) -->
+                         <svg viewBox="0 0 600 800" class="w-full h-full drop-shadow-2xl" style="max-width: 420px;">
+                            <defs>
+                                <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0" />
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <!-- HOMEBASE: Düsseldorf -->
+                            <g transform="translate(300, 400)">
+                                <circle r="30" class="fill-accent/20 animate-ping" />
+                                <circle r="15" class="fill-accent/40 animate-pulse" />
+                                <circle r="6" class="fill-accent stroke-base-900 stroke-2" />
+                                <text x="15" y="5" class="fill-white text-lg font-bold font-oswald uppercase tracking-wider drop-shadow-md" style="font-size: 16px;">Düsseldorf</text>
+                            </g>
+
+                            <!-- SATELLITEN STÄDTE & ROUTEN -->
+
+                            <!-- 1. Köln (Süden) -->
+                            <g>
+                                <path d="M300,400 Q310,500 320,580" fill="none" stroke="url(#routeGradient)" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
+                                    <animate attributeName="stroke-dasharray" from="0, 1000" to="300, 0" dur="2.5s" fill="freeze" />
+                                </path>
+                                <circle cx="320" cy="580" r="4" class="fill-white animate-pulse" />
+                                <text x="330" y="585" class="fill-light/80 text-xs font-sans font-medium" style="font-size:13px">Köln</text>
+                            </g>
+
+                            <!-- 2. Duisburg (Norden) -->
+                            <g>
+                                <path d="M300,400 Q280,350 270,300" fill="none" stroke="url(#routeGradient)" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
+                                    <animate attributeName="stroke-dasharray" from="0, 1000" to="200, 0" dur="2s" fill="freeze" begin="0.2s" />
+                                </path>
+                                <circle cx="270" cy="300" r="4" class="fill-white animate-pulse" />
+                                <text x="200" y="305" class="fill-light/80 text-xs font-sans font-medium" style="font-size:13px">Duisburg</text>
+                            </g>
+
+                            <!-- 3. Essen (Nord-Ost) -->
+                            <g>
+                                <path d="M300,400 Q350,350 380,280" fill="none" stroke="url(#routeGradient)" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
+                                    <animate attributeName="stroke-dasharray" from="0, 1000" to="300, 0" dur="2.2s" fill="freeze" begin="0.4s" />
+                                </path>
+                                <circle cx="380" cy="280" r="4" class="fill-white animate-pulse" />
+                                <text x="395" y="285" class="fill-light/80 text-xs font-sans font-medium" style="font-size:13px">Essen</text>
+                            </g>
+
+                            <!-- 4. Dortmund (Weiter Nord-Ost) -->
+                            <g>
+                                <path d="M300,400 Q400,350 480,260" fill="none" stroke="url(#routeGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6">
+                                    <animate attributeName="stroke-dasharray" from="0, 1000" to="400, 0" dur="3s" fill="freeze" begin="0.6s" />
+                                </path>
+                                <circle cx="480" cy="260" r="3" class="fill-white/80" />
+                                <text x="495" y="265" class="fill-light/60 text-xs font-sans" style="font-size:12px">Dortmund</text>
+                            </g>
+
+                            <!-- 5. Wuppertal (Ost) -->
+                            <g>
+                                <path d="M300,400 Q350,420 390,430" fill="none" stroke="url(#routeGradient)" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
+                                    <animate attributeName="stroke-dasharray" from="0, 1000" to="200, 0" dur="1.8s" fill="freeze" begin="0.3s" />
+                                </path>
+                                <circle cx="390" cy="430" r="4" class="fill-white animate-pulse" />
+                                <text x="405" y="435" class="fill-light/80 text-xs font-sans font-medium" style="font-size:13px">Wuppertal</text>
+                            </g>
+
+                            <!-- 6. Mönchengladbach (West) -->
+                            <g>
+                                <path d="M300,400 Q200,420 150,450" fill="none" stroke="url(#routeGradient)" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
+                                    <animate attributeName="stroke-dasharray" from="0, 1000" to="200, 0" dur="2.1s" fill="freeze" begin="0.5s" />
+                                </path>
+                                <circle cx="150" cy="450" r="4" class="fill-white animate-pulse" />
+                                <text x="40" y="455" class="fill-light/80 text-xs font-sans font-medium" style="font-size:13px">Mönchengladbach</text>
+                            </g>
+
+                            <!-- 7. Krefeld (Nord-West) -->
+                            <g>
+                                <path d="M300,400 Q220,380 200,340" fill="none" stroke="url(#routeGradient)" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
+                                    <animate attributeName="stroke-dasharray" from="0, 1000" to="200, 0" dur="1.9s" fill="freeze" begin="0.7s" />
+                                </path>
+                                <circle cx="200" cy="340" r="4" class="fill-white animate-pulse" />
+                                <text x="145" y="345" class="fill-light/80 text-xs font-sans font-medium" style="font-size:13px">Krefeld</text>
+                            </g>
+                         </svg>
+                    </div>
+
+                    <!-- Text & Infos (Rechts) -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-accent/20 text-accent p-2 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </span>
+                            <span class="text-accent font-bold tracking-widest uppercase text-sm">Mobile Produktion</span>
+                        </div>
+                        
+                        <h2 class="text-3xl md:text-4xl font-bold text-light mb-6">
+                            Ich komme zu dir.
+                        </h2>
+                        
+                        <p class="text-light-dim text-lg mb-10 leading-relaxed">
+                            Egal wo dein Unternehmen sitzt – für das <span class="text-light font-bold">1 Monat, 1 Drehtag Paket</span>.
+                        </p>
+
+                        <!-- Pfeil-Prozess Darstellung -->
+                        <div class="flex flex-col gap-6 relative">
+                            <!-- Verbindungsline -->
+                            <div class="absolute left-[19px] top-8 bottom-8 w-0.5 bg-base-700 -z-10"></div>
+
+                            <div class="flex items-center gap-4 bg-base-800/50 p-4 rounded-xl border border-base-700/50 hover:border-accent/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-base-700 flex items-center justify-center shrink-0 text-accent border border-base-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-light font-bold">Anreise</h4>
+                                    <p class="text-sm text-light-dim">Ich reise mit eigenem PKW & Equipment an.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 bg-base-800/50 p-4 rounded-xl border border-base-700/50 hover:border-accent/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center shrink-0 text-base-900 border border-accent shadow-[0_0_15px_rgba(245,158,11,0.4)]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-light font-bold">Drehtag</h4>
+                                    <p class="text-sm text-light-dim">Voller Fokus auf deinen Content vor Ort.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Einsatzorte Badges -->
+                        <div class="mt-10 flex flex-wrap gap-3">
+                            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-base-800 border border-base-700 text-light text-sm hover:border-accent/50 transition-colors cursor-default">
+                                <span class="text-accent">✓</span> Auf die Baustelle
+                            </span>
+                            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-base-800 border border-base-700 text-light text-sm hover:border-accent/50 transition-colors cursor-default">
+                                <span class="text-accent">✓</span> Ins Büro
+                            </span>
+                            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-base-800 border border-base-700 text-light text-sm hover:border-accent/50 transition-colors cursor-default">
+                                <span class="text-accent">✓</span> In die Werkstatt
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-24 bg-transparent relative border-b border-base-800">
+            <div class="sm:px-6 lg:px-8 max-w-7xl mr-auto ml-auto pr-4 pl-4">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-indigo-400 font-medium text-sm uppercase tracking-wider">Was ich biete</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-6">Meine Unterstützung für dich</h2>
-                    <p class="text-neutral-400">Keine Agentur, sondern dein Partner auf Augenhöhe.</p>
+                    <!-- Geändert: Klarer Hinweis auf die Anzahl der Optionen -->
+                    <span class="text-accent font-medium text-sm uppercase tracking-wider">4 Dienstleistungsoptionen</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-light mt-2 mb-6">Meine Unterstützung für dich</h2>
+                    <p class="text-light-dim">Wähle das passende Modell für deinen Erfolg. Keine Agentur, sondern dein
+                        Partner auf Augenhöhe.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
-                    
-                    <!-- Service 1: 1-Drehtag -->
-                    <div class="group relative p-8 bg-neutral-900 border border-neutral-800 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+
+                    <!-- Service 1 -->
+                    <div class="group relative p-8 bg-base-800/80 backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">1 Monat, 1 Drehtag</h3>
-                        <p class="text-neutral-400 leading-relaxed mb-6">Das Rundum-sorglos-Paket. Ich produziere an nur einem Tag deinen kompletten Content (Reels, TikToks) für den ganzen Monat. Persönlich bei dir vor Ort.</p>
-                        <ul class="space-y-2 text-sm text-neutral-500">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Strategie & Skripte durch mich</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Dreh & Schnitt aus einer Hand</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Alles fertig für den Upload</li>
+                        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-light mb-3">1 Monat, 1 Drehtag</h3>
+                        <p class="text-light-dim leading-relaxed mb-6">Das Rundum-sorglos-Paket. Ich produziere an nur
+                            einem Tag deinen kompletten Content (Reels, TikToks) für den ganzen Monat. Persönlich bei
+                            dir vor Ort.</p>
+                        <ul class="space-y-2 text-sm text-light-dim">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Strategie &amp; Skripte durch mich</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Dreh &amp; Schnitt aus einer Hand</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Alles fertig für den Upload</li>
                         </ul>
                     </div>
 
-                    <!-- Service 2: Individueller Videoschnitt -->
-                    <div class="group relative p-8 bg-neutral-900 border border-neutral-800 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                    <!-- Service 2 -->
+                    <div class="group relative p-8 bg-base-800/80 backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Individueller Videoschnitt</h3>
-                        <p class="text-neutral-400 leading-relaxed mb-6">Du hast bereits Material? Lade dein ungeschnittenes Videomaterial einfach über die Cloud hoch. Ich sichte und schneide es professionell für dich.</p>
-                        <ul class="space-y-2 text-sm text-neutral-500">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Flexibler Cloud-Upload</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Persönliche Sichtung & Schnitt</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Faire Preise nach Aufwand</li>
+                        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="12" y1="18" x2="12" y2="12"></line>
+                                <line x1="9" y1="15" x2="15" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-light mb-3">Individueller Videoschnitt</h3>
+                        <p class="text-light-dim leading-relaxed mb-6">Du hast bereits Material? Lade dein
+                            ungeschnittenes Videomaterial einfach über die Cloud hoch. Ich sichte und schneide es
+                            professionell für dich.</p>
+                        <ul class="space-y-2 text-sm text-light-dim">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Flexibler Cloud-Upload</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Persönliche Sichtung &amp; Schnitt</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Faire Preise nach Aufwand</li>
                         </ul>
                     </div>
 
-                    <!-- Service 3: Ads & VSLs -->
-                    <div class="group relative p-8 bg-neutral-900 border border-neutral-800 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <!-- Service 3 -->
+                    <div class="group relative p-8 bg-base-800/80 backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Ads & VSLs</h3>
-                        <p class="text-neutral-400 leading-relaxed mb-6">Performance-starke Werbeanzeigen und Video Sales Letters (VSLs). Ich schneide deine Ads so, dass sie nicht nur gut aussehen, sondern auch konvertieren.</p>
-                        <ul class="space-y-2 text-sm text-neutral-500">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Schnitt für hohe Conversion</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Dynamische Untertitel & Hooks</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Schnelle Umsetzung</li>
+                        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                </polygon>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-light mb-3">Ads &amp; VSLs</h3>
+                        <p class="text-light-dim leading-relaxed mb-6">Performance-starke Werbeanzeigen und Video Sales
+                            Letters (VSLs). Ich schneide deine Ads so, dass sie nicht nur gut aussehen, sondern auch
+                            konvertieren.</p>
+                        <ul class="space-y-2 text-sm text-light-dim">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Schnitt für hohe Conversion</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Dynamische Untertitel &amp; Hooks</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Schnelle Umsetzung</li>
                         </ul>
                     </div>
 
-                    <!-- Service 4: KI & Motion Design -->
-                    <div class="group relative p-8 bg-neutral-900 border border-neutral-800 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path><path d="M8.5 8.5v.01"></path><path d="M16 16v.01"></path><path d="M12 12v.01"></path><path d="M8.5 16v.01"></path><path d="M16 8.5v.01"></path></svg>
+                    <!-- Service 4 -->
+                    <div class="group relative p-8 bg-base-800/80 backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">KI-Videos & Motion Design</h3>
-                        <p class="text-neutral-400 leading-relaxed mb-6">Moderne KI-Erklärfilme kombiniert mit Motion Design. Schnell produziert und visuell beeindruckend. Ideal, wenn es mal keine Realdreh-Aufnahmen sein sollen.</p>
-                        <ul class="space-y-2 text-sm text-neutral-500">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> KI-generierte Visuals</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Professionelles Motion Design</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Produktion in wenigen Tagen</li>
+                        <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+                                <path d="M8.5 8.5v.01"></path>
+                                <path d="M16 16v.01"></path>
+                                <path d="M12 12v.01"></path>
+                                <path d="M8.5 16v.01"></path>
+                                <path d="M16 8.5v.01"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-light mb-3">KI-Videos &amp; Motion Design</h3>
+                        <p class="text-light-dim leading-relaxed mb-6">Moderne KI-Erklärfilme kombiniert mit Motion
+                            Design. Schnell produziert und visuell beeindruckend. Ideal, wenn es mal keine
+                            Realdreh-Aufnahmen sein sollen.</p>
+                        <ul class="space-y-2 text-sm text-light-dim">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> KI-generierte Visuals</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Professionelles Motion Design</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Produktion in wenigen Tagen</li>
                         </ul>
                     </div>
 
@@ -368,74 +816,192 @@
             </div>
         </section>
 
-        <!-- NEU: Equipment & Erfahrung Section -->
-        <section id="equipment" class="py-24 bg-black relative border-b border-neutral-900">
+        <!-- VERGLEICH SECTION (NEU) -->
+        <section id="comparison" class="py-24 bg-transparent relative border-b border-base-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-light mb-4">Warum Social Media über Leben und Tod
+                        entscheidet</h2>
+                    <p class="text-light-dim">Der harte Unterschied zwischen "Hoffen" und "Wachsen".</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
+
+                    <!-- Karte LINKS: Ohne Social Media (Negativ) -->
+                    <div class="relative bg-base-800/30 backdrop-blur-sm border border-red-900/30 rounded-2xl p-8 md:p-10 transition-all duration-500 hover:border-red-900/50 group">
+                        <div class="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-40 transition-opacity">
+                            <!-- Grosses X im Hintergrund -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-red-400 mb-2 uppercase tracking-widest text-sm">Der
+                            "Klassische" Weg</h3>
+                        <div class="text-4xl font-bold text-light-dim mb-8 flex items-baseline gap-2 opacity-60">
+                            0 <span class="text-lg font-normal">Sichtbarkeit</span>
+                        </div>
+
+                        <ul class="space-y-5">
+                            <li class="flex items-start gap-4 text-light-dim">
+                                <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded bg-red-900/20 text-red-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 6 6 18"></path>
+                                        <path d="m6 6 12 12"></path>
+                                    </svg>
+                                </div>
+                                <span><strong>Unsichtbar</strong> für Neukunden im Netz</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-light-dim">
+                                <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded bg-red-900/20 text-red-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 6 6 18"></path>
+                                        <path d="m6 6 12 12"></path>
+                                    </svg>
+                                </div>
+                                <span>Abhängig von <strong>Zufall &amp; Mundpropaganda</strong></span>
+                            </li>
+                            <li class="flex items-start gap-4 text-light-dim">
+                                <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded bg-red-900/20 text-red-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 6 6 18"></path>
+                                        <path d="m6 6 12 12"></path>
+                                    </svg>
+                                </div>
+                                <span>Keine Möglichkeit zu <strong>skalieren</strong></span>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- Karte RECHTS: Mit Social Media (Positiv/Gold) -->
+                    <div class="relative bg-base-800 border border-accent rounded-2xl p-8 md:p-10 shadow-[0_0_50px_-15px_rgba(245,158,11,0.1)] transform md:scale-105 z-10">
+                        <div class="absolute -top-4 -right-4 bg-accent text-base-900 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Die Lösung
+                        </div>
+                        <h3 class="text-xl font-bold text-accent mb-2 uppercase tracking-widest text-sm">Mit Reinwarth
+                            Media</h3>
+                        <div class="text-4xl md:text-5xl font-bold text-light mb-1 flex items-baseline gap-2">
+                            +100.000 <span class="text-lg font-normal text-light-dim">Aufrufe mgl.</span>
+                        </div>
+                        <p class="text-xs text-accent mb-8 uppercase tracking-wide font-medium opacity-80">Organisch
+                            &amp; Regional über Video</p>
+
+                        <ul class="space-y-5">
+                            <li class="flex items-start gap-4 text-light">
+                                <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded-full bg-accent text-base-900 shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span><strong>Online Markenaufbau:</strong> Täglich sichtbar bei deiner Zielgruppe.</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-light">
+                                <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded-full bg-accent text-base-900 shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span><strong>Vertrauensvorschuss:</strong> Kunden kennen dich schon vor dem ersten Anruf.</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-light">
+                                <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded-full bg-accent text-base-900 shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <span><strong>Modern &amp; Attraktiv:</strong> Wirkt auch auf neue Mitarbeiter anziehend.</span>
+                            </li>
+
+                        </ul>
+
+                        <div class="mt-8 pt-6 border-t border-base-700/50 text-center">
+                            <button onclick="openBooking()" class="w-full bg-accent hover:bg-accent-hover text-base-900 font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-accent/40 hover:-translate-y-1 text-lg">
+                                Jetzt anfragen
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipment Section (Transparent BG) -->
+        <section id="equipment" class="py-24 bg-transparent relative border-b border-base-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    
-                    <!-- Text -->
                     <div class="space-y-6">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white">
-                            Profi-Technik & <span class="text-indigo-400">Echte YouTube-Erfahrung</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-light">
+                            Profi-Technik &amp; <span class="text-accent">Echte YouTube-Erfahrung</span>
                         </h2>
-                        
-                        <div class="space-y-4 text-neutral-400 leading-relaxed text-lg">
+                        <div class="space-y-4 text-light-dim leading-relaxed text-lg">
                             <p>
-                                Ich arbeite mit modernstem, Social-Media-gerechtem Equipment, das perfekt auf das 9:16 Hochformat für TikTok und Reels abgestimmt ist. Beim Schnitt vertraue ich auf den Industriestandard <strong>Adobe Premiere Pro</strong> und bilde mich ständig zu den neuesten <strong>KI-Video-Tools</strong> weiter, um effizienter zu sein.
+                                Ich arbeite mit modernstem, Social-Media-gerechtem Equipment, das perfekt auf das 9:16
+                                Hochformat für TikTok und Reels abgestimmt ist. Beim Schnitt vertraue ich auf den
+                                Industriestandard <strong>Adobe Premiere Pro</strong> und bilde mich ständig zu den
+                                neuesten <strong>KI-Video-Tools</strong> weiter, um effizienter zu sein.
                             </p>
-                            <p>
-                                Mein Hintergrund: Ich komme aus <strong>Düsseldorf</strong> und habe meine eigenen YouTube-Projekte auf über <strong>500.000 Abonnenten</strong> und <strong>30 Millionen Aufrufe</strong> skaliert. Genau dieses Praxiswissen setze ich jetzt für Ihren Unternehmenserfolg ein.
+                            <p class="">
+                                Mein Hintergrund: Ich komme aus <strong>Düsseldorf</strong> und habe meine eigenen
+                                YouTube-Projekte auf über <strong>500.000 Abonnenten</strong> und
+                                <strong class="">30 Millionen Aufrufe</strong> skaliert. Genau dieses Praxiswissen setze
+                                ich jetzt für Ihren Unternehmenserfolg ein.
                             </p>
-                            <p>
-                                Zusätzlich biete ich professionelle <strong>Drohnenaufnahmen</strong> (DJI) an – ideal für beeindruckende Vorher-Nachher-Vergleiche, zum Beispiel im Garten- und Landschaftsbau.
+                            <p class="">
+                                Zusätzlich biete ich professionelle <strong>Drohnenaufnahmen</strong> (DJI) an – ideal
+                                für beeindruckende Vorher-Nachher-Vergleiche, zum Beispiel im Garten- und
+                                Landschaftsbau.
                             </p>
                         </div>
                     </div>
-
-                    <!-- Image Placeholder -->
-                    <div class="relative h-[400px] w-full bg-neutral-900 rounded-2xl border border-neutral-800 flex items-center justify-center overflow-hidden group">
-                        <!-- Fallback/Placeholder visual -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-neutral-800 to-black opacity-50"></div>
-                        
-                        <!-- Placeholder Icon/Text -->
-                        <div class="relative text-center p-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-neutral-600 mb-4"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                            <span class="text-neutral-500 font-medium">Platzhalter für dein Bild<br>(Equipment / Portrait)</span>
+                    <div class="relative h-[400px] w-full bg-base-800/80 backdrop-blur-md rounded-2xl border border-base-700 flex items-center justify-center overflow-hidden group">
+                        <div class="bg-center opacity-100 mix-blend-normal bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30fcc885-b796-48cb-bbc0-ec427de5bed4_1600w.png?w=800&amp;q=80)] bg-cover absolute top-0 right-0 bottom-0 left-0 scale-100">
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Stats Section (Aktualisiert) -->
-        <section id="stats" class="bg-black/50 py-16 w-full border-b border-neutral-900">
+        <!-- Stats Section -->
+        <section id="stats" class="bg-base-900/30 backdrop-blur-sm py-16 w-full border-b border-base-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                     <div class="text-center group">
-                        <div class="w-12 h-12 group-hover:bg-indigo-900/30 rounded-xl flex items-center justify-center mx-auto mb-4 transition-colors bg-neutral-900 border border-neutral-800 group-hover:border-indigo-500/30">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-400 group-hover:text-indigo-400"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        <div class="w-12 h-12 group-hover:bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4 transition-colors bg-base-800 border border-base-700 group-hover:border-accent/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-light-dim group-hover:text-accent">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
                         </div>
                         <p class="text-3xl font-bold tracking-tight text-gradient-pulse mb-1">2 - 6h</p>
-                        <p class="text-sm text-neutral-500">Zeitaufwand für dich</p>
+                        <p class="text-sm text-light-dim">Zeitaufwand für dich</p>
                     </div>
                     <div class="text-center group">
-                        <div class="w-12 h-12 group-hover:bg-indigo-900/30 rounded-xl flex items-center justify-center mx-auto mb-4 transition-colors bg-neutral-900 border border-neutral-800 group-hover:border-indigo-500/30">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-400 group-hover:text-indigo-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <div class="w-12 h-12 group-hover:bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4 transition-colors bg-base-800 border border-base-700 group-hover:border-accent/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-light-dim group-hover:text-accent">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
                         </div>
                         <p class="text-3xl font-bold tracking-tight text-gradient-pulse mb-1">15</p>
-                        <p class="text-sm text-neutral-500">Videos pro Monat</p>
+                        <p class="text-sm text-light-dim">Videos pro Monat</p>
                     </div>
                     <div class="text-center group">
-                        <div class="w-12 h-12 group-hover:bg-indigo-900/30 rounded-xl flex items-center justify-center mx-auto mb-4 transition-colors bg-neutral-900 border border-neutral-800 group-hover:border-indigo-500/30">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-400 group-hover:text-indigo-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <div class="w-12 h-12 group-hover:bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4 transition-colors bg-base-800 border border-base-700 group-hover:border-accent/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-light-dim group-hover:text-accent">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
                         </div>
                         <p class="text-3xl font-bold tracking-tight text-gradient-pulse mb-1">1</p>
-                        <p class="text-sm text-neutral-500">Fester Ansprechpartner</p>
+                        <p class="text-sm text-light-dim">Fester Ansprechpartner</p>
                     </div>
                     <div class="text-center group">
-                        <div class="w-12 h-12 group-hover:bg-indigo-900/30 rounded-xl flex items-center justify-center mx-auto mb-4 transition-colors bg-neutral-900 border border-neutral-800 group-hover:border-indigo-500/30">
-                            <!-- NEU: Kalender Check Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-400 group-hover:text-indigo-400">
+                        <div class="w-12 h-12 group-hover:bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4 transition-colors bg-base-800 border border-base-700 group-hover:border-accent/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-light-dim group-hover:text-accent">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                 <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -444,56 +1010,67 @@
                             </svg>
                         </div>
                         <p class="text-3xl font-bold tracking-tight text-gradient-pulse mb-1">7 Tage</p>
-                        <p class="text-sm text-neutral-500">Lieferzeit</p>
+                        <p class="text-sm text-light-dim">Lieferzeit</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Der Ablauf / Das 1-Drehtag-Prinzip -->
-        <section id="how-it-works" class="py-24 bg-neutral-950 relative overflow-hidden">
-            <div class="absolute right-0 top-1/3 w-96 h-96 bg-indigo-900/10 blur-[100px] rounded-full -z-10"></div>
+        <!-- Ablauf Section -->
+        <section id="how-it-works" class="py-24 bg-transparent relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-20">
-                    <span class="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-full mb-6 bg-indigo-950/50 text-indigo-300 border border-indigo-500/20">
+                    <span class="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-full mb-6 bg-base-800 text-accent border border-accent/20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         EFFIZIENZ
                     </span>
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">Das <span class="text-indigo-400">1-Drehtag-Prinzip</span></h2>
-                    <p class="text-lg text-neutral-400">Ich habe den Prozess so optimiert, dass wir Content für einen ganzen Monat an nur einem Tag produzieren.</p>
+
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-light mb-6">Das
+                        <span class="text-accent">1-Drehtag-Prinzip</span></h2>
+                    <p class="text-lg text-light-dim">Ich habe den Prozess so optimiert, dass wir Content für einen
+                        ganzen Monat an nur einem Tag produzieren.</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Cards with Amber Glow on Hover -->
                     <div class="relative group h-full">
-                        <div class="h-full bg-neutral-900/50 backdrop-blur-sm rounded-2xl p-8 border border-neutral-800 hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/10">
-                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-indigo-500 to-indigo-700 shadow-lg shadow-indigo-500/20 text-white font-bold text-xl">1</div>
-                            <h3 class="text-xl font-semibold text-white mb-3">Konzept & Ideen</h3>
-                            <p class="text-neutral-400 leading-relaxed text-sm">Ich analysiere deine Zielgruppe und erstelle Skripte und Hooks, die funktionieren. Du musst nichts vorbereiten.</p>
+                        <div class="h-full bg-base-800/80 backdrop-blur-md rounded-2xl p-8 border border-base-700 hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/10">
+                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-base-800 to-base-900 border border-accent/20 text-accent font-bold text-xl">
+                                1</div>
+                            <h3 class="text-xl font-semibold text-light mb-3">Konzept &amp; Ideen</h3>
+                            <p class="text-light-dim leading-relaxed text-sm">Ich analysiere deine Zielgruppe und
+                                erstelle Skripte und Hooks, die funktionieren. Du musst nichts vorbereiten.</p>
                         </div>
                     </div>
                     <div class="relative group h-full">
-                        <div class="h-full bg-neutral-900/50 backdrop-blur-sm rounded-2xl p-8 border border-neutral-800 hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/10">
-                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg shadow-blue-500/20 text-white font-bold text-xl">2</div>
-                            <h3 class="text-xl font-semibold text-white mb-3">Drehtag (4h)</h3>
-                            <p class="text-neutral-400 leading-relaxed text-sm">Ich komme zu dir. Mit modernstem Equipment drehe ich effizient alle Videos für den kommenden Monat ab.</p>
+                        <div class="h-full bg-base-800/80 backdrop-blur-md rounded-2xl p-8 border border-base-700 hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/10">
+                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-base-800 to-base-900 border border-accent/20 text-accent font-bold text-xl">
+                                2</div>
+                            <h3 class="text-xl font-semibold text-light mb-3">Drehtag (4h)</h3>
+                            <p class="text-light-dim leading-relaxed text-sm">Ich komme zu dir. Mit modernstem Equipment
+                                drehe ich effizient alle Videos für den kommenden Monat ab.</p>
                         </div>
                     </div>
                     <div class="relative group h-full">
-                        <div class="h-full bg-neutral-900/50 backdrop-blur-sm rounded-2xl p-8 border border-neutral-800 hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/10">
-                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-purple-500 to-purple-700 shadow-lg shadow-purple-500/20 text-white font-bold text-xl">3</div>
-                            <h3 class="text-xl font-semibold text-white mb-3">Schnitt & Bearbeitung</h3>
-                            <p class="text-neutral-400 leading-relaxed text-sm">Schnitt, Color-Grading, Sound-Design und Untertitel. Ich mache deine Videos zu echten Hinguckern.</p>
+                        <div class="h-full bg-base-800/80 backdrop-blur-md rounded-2xl p-8 border border-base-700 hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/10">
+                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-base-800 to-base-900 border border-accent/20 text-accent font-bold text-xl">
+                                3</div>
+                            <h3 class="text-xl font-semibold text-light mb-3">Schnitt &amp; Bearbeitung</h3>
+                            <p class="text-light-dim leading-relaxed text-sm">Schnitt, Color-Grading, Sound-Design und
+                                Untertitel. Ich mache deine Videos zu echten Hinguckern.</p>
                         </div>
                     </div>
                     <div class="relative group h-full">
-                        <div class="h-full bg-neutral-900/50 backdrop-blur-sm rounded-2xl p-8 border border-neutral-800 hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/10">
-                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-cyan-500 to-cyan-700 shadow-lg shadow-cyan-500/20 text-white font-bold text-xl">4</div>
-                            <h3 class="text-xl font-semibold text-white mb-3">Upload & Erfolg</h3>
-                            <p class="text-neutral-400 leading-relaxed text-sm">Ich lade die Videos optimiert hoch. Du gewinnst Reichweite und Kunden, während du dich ums Geschäft kümmerst.</p>
+                        <div class="h-full bg-base-800/80 backdrop-blur-md rounded-2xl p-8 border border-base-700 hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/10">
+                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br from-base-800 to-base-900 border border-accent/20 text-accent font-bold text-xl">
+                                4</div>
+                            <h3 class="text-xl font-semibold text-light mb-3">Upload &amp; Erfolg</h3>
+                            <p class="text-light-dim leading-relaxed text-sm">Ich lade die Videos optimiert hoch. Du
+                                gewinnst Reichweite und Kunden, während du dich ums Geschäft kümmerst.</p>
                         </div>
                     </div>
                 </div>
                 <div class="mt-16 text-center">
-                    <button onclick="openBooking()" class="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1 group bg-white text-black hover:bg-neutral-200">
+                    <button onclick="openBooking()" class="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-accent/20 hover:-translate-y-1 group bg-light text-base-900 hover:bg-accent">
                         Kostenloses Erstgespräch
                         <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:translate-x-1 transition-transform" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
                     </button>
@@ -502,83 +1079,91 @@
         </section>
 
         <!-- Testimonials -->
-        <section id="testimonials" class="py-24 bg-black relative">
+        <section id="testimonials" class="py-24 bg-transparent relative">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
                 <h2 class="text-4xl md:text-6xl font-serif italic mb-12 gold-animate py-2">
                     Das sagen die Kunden
                 </h2>
                 <div class="relative mb-12">
-                    <span class="text-8xl text-neutral-800 absolute -top-12 left-0 md:-left-12 opacity-30 font-serif">“</span>
-                    <p class="text-neutral-200 text-xl md:text-2xl leading-relaxed font-light italic relative z-10">
-                        „Das, was wir gedreht haben, war so gut, dass ich mittlerweile auf der Straße erkannt werde. Die Zusammenarbeit ist absolut professionell.“
+                    <span class="text-8xl text-base-800 absolute -top-12 left-0 md:-left-12 opacity-50 font-serif">“</span>
+                    <p class="text-light/90 text-xl md:text-2xl leading-relaxed font-light italic relative z-10">
+                        „Das, was wir gedreht haben, war so gut, dass ich mittlerweile auf der Straße erkannt werde. Die
+                        Zusammenarbeit ist absolut professionell.“
                     </p>
                     <div class="mt-8 flex flex-col items-center justify-center">
-                        <div class="w-16 h-0.5 bg-indigo-500 mb-4"></div>
-                        <p class="text-white font-bold tracking-wide uppercase">David Petermann</p>
-                        <p class="text-neutral-500 text-sm">KFZ Gutachter</p>
+                        <div class="w-16 h-0.5 bg-accent mb-4"></div>
+                        <p class="text-light font-bold tracking-wide uppercase">David Petermann</p>
+                        <p class="text-light-dim text-sm">KFZ Gutachter</p>
                     </div>
                 </div>
-                <div class="relative rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl bg-neutral-900 mx-auto max-w-2xl">
+                <div class="relative rounded-2xl overflow-hidden border border-base-800 shadow-2xl bg-base-900 mx-auto max-w-2xl">
                     <div class="aspect-video w-full">
-                        <iframe src="https://streamable.com/e/je5r06?loop=0" class="w-full h-full object-cover" frameborder="0" allow="fullscreen; autoplay" allowfullscreen></iframe>
+                        <iframe src="https://streamable.com/e/je5r06?loop=0" class="w-full h-full object-cover" frameborder="0" allow="fullscreen; autoplay" allowfullscreen=""></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq" class="py-24 bg-neutral-950 border-t border-neutral-900">
+        <section id="faq" class="py-24 bg-base-900/50 backdrop-blur-sm border-t border-base-800">
             <div class="max-w-3xl mx-auto px-4 sm:px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Häufig gestellte Fragen</h2>
-                    <div class="h-1 w-24 bg-indigo-500 mx-auto rounded-full"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-light mb-4">Häufig gestellte Fragen</h2>
+                    <div class="h-1 w-24 bg-accent mx-auto rounded-full"></div>
                 </div>
                 <div class="space-y-4">
-                    <div class="faq-item border border-neutral-800 rounded-2xl bg-neutral-900/50 overflow-hidden cursor-pointer">
+                    <div class="faq-item border border-base-800 rounded-2xl bg-base-800/80 backdrop-blur-md overflow-hidden cursor-pointer">
                         <button class="w-full text-left px-6 py-5 flex justify-between items-center group focus:outline-none">
-                            <span class="text-neutral-200 font-medium text-lg pr-4">Wie viel kostet eine Videoproduktion?</span>
-                            <div class="w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-indigo-500/20 transition-colors">
-                                <svg class="faq-icon w-5 h-5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <span class="text-light font-medium text-lg pr-4">Wie viel kostet eine Videoproduktion?</span>
+                            <div class="w-8 h-8 rounded-full bg-base-900 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
+                                <svg class="faq-icon w-5 h-5 text-light-dim" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </div>
                         </button>
                         <div class="faq-content">
-                            <div class="px-6 pb-6 text-neutral-400 leading-relaxed border-t border-neutral-800/50 pt-4 mt-2">
-                                Jedes Projekt ist einzigartig. Ich biete Pakete für Starter an, aber auch maßgeschneiderte Lösungen. Im kostenlosen Erstgespräch finden wir das passende Paket für dein Budget.
+                            <div class="px-6 pb-6 text-light-dim leading-relaxed border-t border-base-800/50 pt-4 mt-2">
+                                Jedes Projekt ist einzigartig. Ich biete Pakete für Starter an, aber auch
+                                maßgeschneiderte Lösungen. Im kostenlosen Erstgespräch finden wir das passende Paket für
+                                dein Budget.
                             </div>
                         </div>
                     </div>
-                    <div class="faq-item border border-neutral-800 rounded-2xl bg-neutral-900/50 overflow-hidden cursor-pointer">
+                    <!-- Weitere FAQ Items analog -->
+                    <div class="faq-item border border-base-800 rounded-2xl bg-base-800/80 backdrop-blur-md overflow-hidden cursor-pointer">
                         <button class="w-full text-left px-6 py-5 flex justify-between items-center group focus:outline-none">
-                            <span class="text-neutral-200 font-medium text-lg pr-4">Muss ich ein eigenes Skript schreiben?</span>
-                            <div class="w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-indigo-500/20 transition-colors">
-                                <svg class="faq-icon w-5 h-5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <span class="text-light font-medium text-lg pr-4">Muss ich ein eigenes Skript schreiben?</span>
+                            <div class="w-8 h-8 rounded-full bg-base-900 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
+                                <svg class="faq-icon w-5 h-5 text-light-dim" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </div>
                         </button>
                         <div class="faq-content">
-                            <div class="px-6 pb-6 text-neutral-400 leading-relaxed border-t border-neutral-800/50 pt-4 mt-2">
-                                Nein! Das übernehme ich komplett. Ich analysiere Trends in deiner Nische und schreibe Skripte, die Zuschauer binden.
+                            <div class="px-6 pb-6 text-light-dim leading-relaxed border-t border-base-800/50 pt-4 mt-2">
+                                Nein! Das übernehme ich komplett. Ich analysiere Trends in deiner Nische und schreibe
+                                Skripte, die Zuschauer binden.
                             </div>
                         </div>
                     </div>
-                    <div class="faq-item border border-neutral-800 rounded-2xl bg-neutral-900/50 overflow-hidden cursor-pointer">
+                    <div class="faq-item border border-base-800 rounded-2xl bg-base-800/80 backdrop-blur-md overflow-hidden cursor-pointer">
                         <button class="w-full text-left px-6 py-5 flex justify-between items-center group focus:outline-none">
-                            <span class="text-neutral-200 font-medium text-lg pr-4">Wie lange dauert es bis zum fertigen Video?</span>
-                            <div class="w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-indigo-500/20 transition-colors">
-                                <svg class="faq-icon w-5 h-5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <span class="text-light font-medium text-lg pr-4">Wie lange dauert es bis zum fertigen Video?</span>
+                            <div class="w-8 h-8 rounded-full bg-base-900 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
+                                <svg class="faq-icon w-5 h-5 text-light-dim" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </div>
                         </button>
                         <div class="faq-content">
-                            <div class="px-6 pb-6 text-neutral-400 leading-relaxed border-t border-neutral-800/50 pt-4 mt-2">
-                                Vom Drehtag bis zu den fertigen Videos vergehen in der Regel maximal 7 Werktage. Ich arbeite schnell, damit du schnell Ergebnisse siehst.
+                            <div class="px-6 pb-6 text-light-dim leading-relaxed border-t border-base-800/50 pt-4 mt-2">
+                                Vom Drehtag bis zu den fertigen Videos vergehen in der Regel maximal 7 Werktage. Ich
+                                arbeite schnell, damit du schnell Ergebnisse siehst.
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="contact" class="mt-16 text-center border-t border-neutral-900 pt-12">
-                    <p class="text-neutral-300 mb-8 font-medium text-lg">Noch Fragen offen?</p>
-                    <a href="https://wa.me/+4915679614591" target="_blank" rel="noopener noreferrer" 
-                       class="whatsapp-gradient inline-flex items-center justify-center gap-3 font-bold px-8 py-4 rounded-xl text-white transition-transform hover:-translate-y-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+                <div id="contact" class="mt-16 text-center border-t border-base-800 pt-12">
+                    <p class="text-light-dim mb-8 font-medium text-lg">Noch Fragen offen?</p>
+                    <a href="https://wa.me/+4915679614591" target="_blank" rel="noopener noreferrer" class="whatsapp-gradient inline-flex items-center justify-center gap-3 font-bold px-8 py-4 rounded-xl text-light transition-transform hover:-translate-y-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z">
+                            </path>
+                        </svg>
                         Schreib mir auf WhatsApp
                     </a>
                 </div>
@@ -586,24 +1171,39 @@
         </section>
 
         <!-- Footer -->
-        <footer class="border-t py-12 bg-black border-neutral-900">
+        <footer class="border-t py-12 bg-base-900 border-base-800">
+            <!-- Footer Content bleibt gleich -->
             <div class="max-w-6xl mx-auto px-6">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
                     <div class="flex flex-col gap-2 items-center md:items-start">
-                        <span class="font-bold text-white text-xl">Reinwarth media</span>
-                        <p class="text-xs text-neutral-500">Premium Videoproduktion & Social Media</p>
-                        <p class="text-xs text-neutral-600 mt-2">© 2026 Alle Rechte vorbehalten.</p>
+                        <span class="font-bold text-light text-xl">Reinwarth media</span>
+                        <p class="text-xs text-light-dim">Premium Videoproduktion &amp; Social Media</p>
+                        <p class="text-xs text-light-dim/80 mt-2">© 2026 Alle Rechte vorbehalten.</p>
                     </div>
                     <div class="flex flex-col items-center justify-center">
-                        <span class="text-xs text-neutral-500 font-medium uppercase tracking-wider mb-2">E-Mail Kontakt</span>
-                        <a href="mailto:Mail@marcel-reinwarth.de" class="text-neutral-300 font-medium text-lg animate-email-pulse hover:text-white transition-colors">
+                        <span class="text-xs text-light-dim font-medium uppercase tracking-wider mb-2">E-Mail Kontakt</span>
+                        <a href="mailto:Mail@marcel-reinwarth.de" class="text-accent font-medium text-lg animate-email-pulse hover:text-light transition-colors">
                             Mail@marcel-reinwarth.de
                         </a>
+
+                        <!-- NEU: Social Media Icons -->
+                        <div class="flex gap-6 mt-6 justify-center">
+                            <a href="https://www.instagram.com/reinwarthmedia/" target="_blank" rel="noopener noreferrer" class="text-light-dim hover:text-accent transition-colors transform hover:scale-110 duration-300" title="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" data-icon="mdi:instagram" class="iconify text-2xl iconify--mdi"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3"></path></svg>
+                            </a>
+                            <a href="https://www.tiktok.com/@highschoolbrainrot" target="_blank" rel="noopener noreferrer" class="text-light-dim hover:text-accent transition-colors transform hover:scale-110 duration-300" title="TikTok">
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" data-icon="ic:baseline-tiktok" class="iconify text-2xl iconify--ic"><path fill="currentColor" d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48"></path></svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UCwX1IkCcjEhB_ELw0xU89dg" target="_blank" rel="noopener noreferrer" class="text-light-dim hover:text-accent transition-colors transform hover:scale-110 duration-300" title="YouTube">
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" data-icon="mdi:youtube" class="iconify text-2xl iconify--mdi"><path fill="currentColor" d="m10 15l5.19-3L10 9zm11.56-7.83c.13.47.22 1.1.28 1.9c.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83c-.25.9-.83 1.48-1.73 1.73c-.47.13-1.33.22-2.65.28c-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44c-.9-.25-1.48-.83-1.73-1.73c-.13-.47-.22-1.1-.28-1.9c-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83c.25-.9.83-1.48 1.73-1.73c.47-.13 1.33-.22 2.65-.28c1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44c.9.25 1.48.83 1.73 1.73"></path></svg>
+                            </a>
+                        </div>
+
                     </div>
-                    <div class="flex gap-6 text-sm text-neutral-500 justify-center md:justify-end">
-                        <a href="impressum.html" class="hover:text-indigo-400 transition-colors">Impressum</a>
-                        <a href="datenschutz.html" class="hover:text-indigo-400 transition-colors">Datenschutz</a>
-                        <a href="agb.html" class="hover:text-indigo-400 transition-colors">AGB</a>
+                    <div class="flex gap-6 text-sm text-light-dim justify-center md:justify-end">
+                        <a href="impressum.html" class="hover:text-accent transition-colors">Impressum</a>
+                        <a href="#" class="hover:text-accent transition-colors">Datenschutz</a>
+                        <a href="agb.html" class="hover:text-accent transition-colors">AGB</a>
                     </div>
                 </div>
             </div>
@@ -611,101 +1211,102 @@
     </div>
 
     <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-neutral-900 border-t border-neutral-800 p-6 z-[60] hidden flex-col md:flex-row items-center justify-between gap-4 shadow-2xl">
-        <div class="text-sm text-neutral-400 max-w-2xl">
-            <p class="mb-2"><strong class="text-white">Datenschutz-Einstellungen</strong></p>
-            <p>Wir nutzen Cookies und externe Dienste (wie Video-Player), um das Nutzererlebnis zu verbessern. Einige sind essenziell, andere helfen uns, Inhalte zu optimieren.</p>
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-base-900 border-t border-base-800 p-6 z-[60] hidden flex-col md:flex-row items-center justify-between gap-4 shadow-2xl">
+        <div class="text-sm text-light-dim max-w-2xl">
+            <p class="mb-2"><strong class="text-light">Datenschutz-Einstellungen</strong></p>
+            <p>Wir nutzen Cookies und externe Dienste (wie Video-Player), um das Nutzererlebnis zu verbessern. Einige
+                sind essenziell, andere helfen uns, Inhalte zu optimieren.</p>
             <div class="mt-2 flex gap-4 text-xs">
-                <a href="datenschutz.html" class="underline hover:text-indigo-400">Datenschutzerklärung</a>
-                <a href="impressum.html" class="underline hover:text-indigo-400">Impressum</a>
+                <a href="#" class="underline hover:text-accent">Datenschutzerklärung</a>
+                <a href="impressum.html" class="underline hover:text-accent">Impressum</a>
             </div>
         </div>
         <div class="flex gap-3 shrink-0">
-            <button onclick="acceptCookies('essential')" class="px-4 py-2 rounded-lg border border-neutral-700 text-neutral-300 text-sm font-medium hover:bg-neutral-800 transition-colors">Nur Essenzielle</button>
-            <button onclick="acceptCookies('all')" class="px-4 py-2 rounded-lg bg-indigo-500 text-white text-sm font-medium hover:bg-indigo-400 transition-colors shadow-lg shadow-indigo-500/20">Alles akzeptieren</button>
+            <button onclick="acceptCookies('essential')" class="px-4 py-2 rounded-lg border border-base-800 text-light-dim text-sm font-medium hover:bg-base-800 transition-colors">Nur Essenzielle</button>
+            <button onclick="acceptCookies('all')" class="px-4 py-2 rounded-lg bg-accent text-base-900 text-sm font-bold hover:bg-accent-hover transition-colors shadow-lg shadow-accent/20">Alles akzeptieren</button>
         </div>
     </div>
 
     <!-- === FULLSCREEN BOOKING OVERLAY (Neue "Seite") === -->
-    <div id="booking-overlay" class="fixed inset-0 z-[100] bg-black hidden flex flex-col items-center justify-center overflow-y-auto">
+    <div id="booking-overlay" class="fixed inset-0 z-[100] bg-base-900 hidden flex flex-col items-center justify-center overflow-y-auto">
         <!-- Close Button -->
-        <button onclick="closeBooking()" class="absolute top-6 right-6 p-2 rounded-full bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800 transition-all z-50">
+        <button onclick="closeBooking()" class="absolute top-6 right-6 p-2 rounded-full bg-base-800 text-light-dim hover:text-light hover:bg-base-700 transition-all z-50">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
 
         <div class="w-full max-w-lg px-6 py-12 relative">
-            
+
             <!-- Wrapper für Formular & Progress (wird ausgeblendet) -->
             <div id="form-container" class="transition-opacity duration-500">
                 <!-- Progress Bar -->
                 <div class="mb-12">
-                    <div class="flex justify-between text-xs text-neutral-500 mb-2 uppercase tracking-wider font-medium">
+                    <div class="flex justify-between text-xs text-light-dim mb-2 uppercase tracking-wider font-medium">
                         <span>Schritt <span id="current-step-text">1</span> von 4</span>
                         <span id="step-name">Über dich</span>
                     </div>
-                    <div class="h-1 bg-neutral-900 rounded-full overflow-hidden">
-                        <div id="progress-bar" class="h-full bg-indigo-500 transition-all duration-500 w-1/4"></div>
+                    <div class="h-1 bg-base-800 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-accent transition-all duration-500 w-1/4"></div>
                     </div>
                 </div>
 
                 <form id="booking-form" onsubmit="event.preventDefault();">
-                    
+
                     <!-- STEP 1: Basic Info -->
                     <div class="step-content active" id="step-1">
-                        <h2 class="text-3xl font-bold text-white mb-2">Lass uns starten.</h2>
-                        <p class="text-neutral-400 mb-8">Wie dürfen wir dich ansprechen?</p>
-                        
+                        <h2 class="text-3xl font-bold text-light mb-2">Lass uns starten.</h2>
+                        <p class="text-light-dim mb-8">Wie dürfen wir dich ansprechen?</p>
+
                         <div class="space-y-5">
                             <div>
-                                <label class="block text-sm font-medium text-neutral-400 mb-2">Dein Name</label>
-                                <input type="text" id="input-name" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder-neutral-600" placeholder="Max Mustermann">
+                                <label class="block text-sm font-medium text-light-dim mb-2">Dein Name</label>
+                                <input type="text" id="input-name" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="Max Mustermann">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-neutral-400 mb-2">E-Mail Adresse</label>
-                                <input type="email" id="input-email" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder-neutral-600" placeholder="max@beispiel.de">
+                                <label class="block text-sm font-medium text-light-dim mb-2">E-Mail Adresse</label>
+                                <input type="email" id="input-email" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="max@beispiel.de">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-neutral-400 mb-2">Telefonnummer <span class="text-neutral-600">(Optional)</span></label>
-                                <input type="tel" id="input-phone" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder-neutral-600" placeholder="+49 151 ...">
+                                <label class="block text-sm font-medium text-light-dim mb-2">Telefonnummer <span class="text-light-dim/70">(Optional)</span></label>
+                                <input type="tel" id="input-phone" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="+49 151 ...">
                             </div>
                         </div>
-                        
+
                         <div class="mt-10 flex justify-end">
-                            <button onclick="nextStep(2)" class="bg-white text-black px-8 py-3 rounded-xl font-medium hover:bg-neutral-200 transition-colors">Weiter</button>
+                            <button onclick="nextStep(2)" class="bg-light text-base-900 px-8 py-3 rounded-xl font-bold hover:bg-accent transition-colors">Weiter</button>
                         </div>
                     </div>
 
                     <!-- STEP 2: Company Info -->
                     <div class="step-content" id="step-2">
-                        <h2 class="text-3xl font-bold text-white mb-2">Dein Business.</h2>
-                        <p class="text-neutral-400 mb-8">Erzähl uns kurz von deinem Unternehmen.</p>
-                        
+                        <h2 class="text-3xl font-bold text-light mb-2">Dein Business.</h2>
+                        <p class="text-light-dim mb-8">Erzähl uns kurz von deinem Unternehmen.</p>
+
                         <div class="space-y-5">
                             <div>
-                                <label class="block text-sm font-medium text-neutral-400 mb-2">Unternehmen <span class="text-neutral-600">(Optional)</span></label>
-                                <input type="text" id="input-company" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder-neutral-600" placeholder="Firma GmbH">
+                                <label class="block text-sm font-medium text-light-dim mb-2">Unternehmen <span class="text-light-dim/70">(Optional)</span></label>
+                                <input type="text" id="input-company" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="Firma GmbH">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-neutral-400 mb-2">Website <span class="text-neutral-600">(Optional)</span></label>
-                                <input type="url" id="input-website" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder-neutral-600" placeholder="www.deineseite.de">
+                                <label class="block text-sm font-medium text-light-dim mb-2">Website <span class="text-light-dim/70">(Optional)</span></label>
+                                <input type="url" id="input-website" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="www.deineseite.de">
                             </div>
                         </div>
-                        
+
                         <div class="mt-10 flex justify-between items-center">
-                            <button onclick="nextStep(1)" class="text-neutral-500 hover:text-white transition-colors">Zurück</button>
-                            <button onclick="nextStep(3)" class="bg-white text-black px-8 py-3 rounded-xl font-medium hover:bg-neutral-200 transition-colors">Weiter</button>
+                            <button onclick="nextStep(1)" class="text-light-dim hover:text-light transition-colors">Zurück</button>
+                            <button onclick="nextStep(3)" class="bg-light text-base-900 px-8 py-3 rounded-xl font-bold hover:bg-accent transition-colors">Weiter</button>
                         </div>
                     </div>
 
                     <!-- STEP 3: Project Details -->
                     <div class="step-content" id="step-3">
-                        <h2 class="text-3xl font-bold text-white mb-2">Das Projekt.</h2>
-                        <p class="text-neutral-400 mb-8">Worum geht es genau?</p>
-                        
+                        <h2 class="text-3xl font-bold text-light mb-2">Das Projekt.</h2>
+                        <p class="text-light-dim mb-8">Worum geht es genau?</p>
+
                         <div class="space-y-5">
                             <div>
-                                <label class="block text-sm font-medium text-neutral-400 mb-2">Projekttyp</label>
-                                <select id="input-type" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors appearance-none">
+                                <label class="block text-sm font-medium text-light-dim mb-2">Projekttyp</label>
+                                <select id="input-type" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors appearance-none">
                                     <option value="Social Media Content">Social Media Content (TikTok/Reels)</option>
                                     <option value="Imagefilm">Imagefilm</option>
                                     <option value="Werbeanzeige">Werbeanzeige (Ads)</option>
@@ -713,36 +1314,36 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-neutral-400 mb-2">Wunsch-Deadline <span class="text-neutral-600">(Optional)</span></label>
-                                <input type="text" id="input-deadline" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder-neutral-600" placeholder="z.B. Ende nächsten Monats">
+                                <label class="block text-sm font-medium text-light-dim mb-2">Wunsch-Deadline <span class="text-light-dim/70">(Optional)</span></label>
+                                <input type="text" id="input-deadline" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="z.B. Ende nächsten Monats">
                             </div>
                         </div>
-                        
+
                         <div class="mt-10 flex justify-between items-center">
-                            <button onclick="nextStep(2)" class="text-neutral-500 hover:text-white transition-colors">Zurück</button>
-                            <button onclick="nextStep(4)" class="bg-white text-black px-8 py-3 rounded-xl font-medium hover:bg-neutral-200 transition-colors">Weiter</button>
+                            <button onclick="nextStep(2)" class="text-light-dim hover:text-light transition-colors">Zurück</button>
+                            <button onclick="nextStep(4)" class="bg-light text-base-900 px-8 py-3 rounded-xl font-bold hover:bg-accent transition-colors">Weiter</button>
                         </div>
                     </div>
 
                     <!-- STEP 4: Summary / Send -->
                     <div class="step-content" id="step-4">
-                        <h2 class="text-3xl font-bold text-white mb-2">Fast geschafft.</h2>
-                        <p class="text-neutral-400 mb-8">Noch eine kurze Nachricht dazu?</p>
-                        
+                        <h2 class="text-3xl font-bold text-light mb-2">Fast geschafft.</h2>
+                        <p class="text-light-dim mb-8">Noch eine kurze Nachricht dazu?</p>
+
                         <div class="space-y-5">
                             <div>
-                                <label class="block text-sm font-medium text-neutral-400 mb-2">Nachricht / Details <span class="text-neutral-600">(Optional)</span></label>
-                                <textarea id="input-message" rows="4" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder-neutral-600" placeholder="Erzähl mir kurz was über deine Ziele..."></textarea>
+                                <label class="block text-sm font-medium text-light-dim mb-2">Nachricht / Details <span class="text-light-dim/70">(Optional)</span></label>
+                                <textarea id="input-message" rows="4" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="Erzähl mir kurz was über deine Ziele..."></textarea>
                             </div>
-                            
-                            <div class="bg-neutral-900/50 p-4 rounded-xl border border-neutral-800 text-xs text-neutral-500 mt-6">
+
+                            <div class="bg-base-800 p-4 rounded-xl border border-base-700 text-xs text-light-dim mt-6">
                                 Deine Daten werden sicher übertragen und nur für die Kontaktaufnahme genutzt.
                             </div>
                         </div>
-                        
+
                         <div class="mt-10 flex justify-between items-center">
-                            <button onclick="nextStep(3)" class="text-neutral-500 hover:text-white transition-colors">Zurück</button>
-                            <button id="send-button" onclick="sendToGoogleSheets()" class="bg-white hover:bg-neutral-200 text-black px-8 py-3 rounded-xl font-bold transition-all shadow-lg flex items-center gap-2">
+                            <button onclick="nextStep(3)" class="text-light-dim hover:text-light transition-colors">Zurück</button>
+                            <button id="send-button" onclick="sendToGoogleSheets()" class="bg-accent hover:bg-accent-hover text-base-900 px-8 py-3 rounded-xl font-bold transition-all shadow-lg flex items-center gap-2">
                                 <span>Absenden</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                             </button>
@@ -751,17 +1352,20 @@
                 </form>
             </div>
 
-            <!-- SUCCESS MESSAGE (Hidden by default, fades in) -->
+            <!-- SUCCESS MESSAGE -->
             <div id="success-message" class="hidden opacity-0 transition-opacity duration-500 absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="w-20 h-20 bg-accent/20 text-accent rounded-full flex items-center justify-center mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                 </div>
-                <h2 class="text-3xl font-bold text-white mb-4">Vielen Dank, Marcel meldet sich bald bei dir</h2>
-                <p class="text-neutral-400 max-w-md mx-auto mb-8">Du wirst in wenigen Sekunden zur Startseite weitergeleitet.</p>
-                <div class="w-full bg-neutral-800 rounded-full h-1.5 mt-4 max-w-xs mx-auto overflow-hidden">
-                    <div class="bg-green-500 h-1.5 rounded-full animate-timer w-full"></div>
+                <h2 class="text-3xl font-bold text-light mb-4">Vielen Dank, Marcel meldet sich bald bei dir</h2>
+                <p class="text-light-dim max-w-md mx-auto mb-8">Du wirst in wenigen Sekunden zur Startseite
+                    weitergeleitet.</p>
+                <div class="w-full bg-base-800 rounded-full h-1.5 mt-4 max-w-xs mx-auto overflow-hidden">
+                    <div class="bg-accent h-1.5 rounded-full animate-timer w-full"></div>
                 </div>
-                <button onclick="closeBooking()" class="mt-8 bg-white text-black px-8 py-3 rounded-xl font-medium hover:bg-neutral-200 transition-colors">Jetzt schließen</button>
+                <button onclick="closeBooking()" class="mt-8 bg-light text-base-900 px-8 py-3 rounded-xl font-bold hover:bg-accent transition-colors">Jetzt schließen</button>
             </div>
 
         </div>
@@ -774,52 +1378,40 @@
         // ------------------------------------------
 
         // --- PASSWORD PROTECTION LOGIC ---
-        function checkPassword() {
+        function checkPassword(e) {
+            e.preventDefault();
             const input = document.getElementById('password-input');
-            const errorMsg = document.getElementById('error-msg');
-            const passwordScreen = document.getElementById('password-screen');
-            const siteWrapper = document.getElementById('site-wrapper');
+            const pass = input.value;
+            const errorMsg = document.getElementById('password-error');
+            const screen = document.getElementById('password-screen');
+            const content = document.getElementById('main-content');
             
-            if (input.value === "12345") {
-                // Success
-                sessionStorage.setItem('authenticated', 'true');
-                passwordScreen.style.opacity = '0';
+            if (pass === '12345') {
+                // Success: Hide password screen, show content
+                screen.classList.add('opacity-0', 'pointer-events-none');
+                
+                // Show content with nice fade in
+                content.classList.remove('opacity-0', 'pointer-events-none', 'filter', 'blur-sm', 'transform', 'scale-95');
+                
+                // Allow scrolling again
+                document.body.classList.remove('overflow-hidden');
+                
+                // Remove password screen from DOM after transition to save resources
                 setTimeout(() => {
-                    passwordScreen.style.display = 'none';
-                    siteWrapper.style.display = 'block';
-                    // Trigger reflow/animation if needed or simple appear
-                    
-                    // Show cookie banner if needed
-                    if (!localStorage.getItem('cookieConsent')) {
-                        document.getElementById('cookie-banner').classList.remove('hidden');
-                        document.getElementById('cookie-banner').classList.add('flex');
-                    }
-                }, 300); // fade out duration
+                    screen.style.display = 'none';
+                }, 700); 
             } else {
-                // Fail
-                errorMsg.style.opacity = '1';
-                input.classList.add('shake-animation');
+                // Error Animation
+                errorMsg.classList.remove('opacity-0');
+                input.classList.add('border-red-500', 'text-red-500');
+                
+                // Simple shake effect via CSS class (if defined) or just reset after timeout
                 setTimeout(() => {
-                    input.classList.remove('shake-animation');
-                }, 500);
+                    errorMsg.classList.add('opacity-0');
+                    input.classList.remove('border-red-500', 'text-red-500');
+                }, 2000);
             }
         }
-        
-        // Check session on load
-        window.addEventListener('DOMContentLoaded', () => {
-            if (sessionStorage.getItem('authenticated') === 'true') {
-                document.getElementById('password-screen').style.display = 'none';
-                document.getElementById('site-wrapper').style.display = 'block';
-            }
-        });
-        
-        // Listen for Enter key on password input
-        document.getElementById('password-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
-        });
-
 
         // --- Navbar Transparency Logic ---
         const navbar = document.getElementById('navbar');
@@ -859,12 +1451,9 @@
 
         // --- Cookie Banner Logic ---
         function checkCookies() {
-            // Only show banner if already authenticated (to avoid overlap on password screen)
-            if (sessionStorage.getItem('authenticated') === 'true') {
-                if (!localStorage.getItem('cookieConsent')) {
-                    document.getElementById('cookie-banner').classList.remove('hidden');
-                    document.getElementById('cookie-banner').classList.add('flex');
-                }
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookie-banner').classList.remove('hidden');
+                document.getElementById('cookie-banner').classList.add('flex');
             }
         }
 
@@ -963,12 +1552,12 @@
 
                 // 4. Success Sequence
                 
-                // A) Konfetti zuerst
+                // A) Konfetti zuerst (Farben angepasst)
                 confetti({
                     particleCount: 150,
                     spread: 70,
                     origin: { y: 0.6 },
-                    colors: ['#6366f1', '#a855f7', '#ec4899', '#ffffff']
+                    colors: ['#f59e0b', '#f8fafc', '#334155'] // CI Colors
                 });
 
                 // B) Formular ausblenden (Fade Out)
@@ -1023,6 +1612,90 @@
                 }
             });
         });
+
+        // --- NEU: Social Media Background Generator (Refined) ---
+        function initSocialBackground() {
+            const container = document.getElementById('social-pattern');
+            // Icons für Iconify
+            const icons = ['mdi:instagram', 'ic:baseline-tiktok', 'mdi:youtube'];
+            // Anzahl erhöht für mehr Dichte ("ein wenig mehr")
+            const count = 45; 
+            
+            for (let i = 0; i < count; i++) {
+                const iconName = icons[Math.floor(Math.random() * icons.length)];
+                const el = document.createElement('span');
+                el.className = 'iconify social-icon';
+                el.setAttribute('data-icon', iconName);
+                
+                // Zufällige horizontale Position
+                el.style.left = `${Math.random() * 100}%`;
+                // Zufällige vertikale Startposition (damit nicht alle gleichzeitig unten starten)
+                el.style.top = `${Math.random() * 100}%`;
+                
+                // Zufällige Größe (dezent)
+                const size = 1.5 + Math.random() * 2.5; 
+                el.style.fontSize = `${size}rem`;
+                
+                // Zufällige Geschwindigkeit für Drift
+                const duration = 20 + Math.random() * 40; // 20s bis 60s
+                el.style.animationDuration = `${duration}s, ${duration/2}s`; // Drift und Flash haben unterschiedliche Timer
+                
+                // Zufälliger Delay
+                const delay = -1 * (Math.random() * 40); 
+                el.style.animationDelay = `${delay}s, ${delay}s`;
+                
+                container.appendChild(el);
+            }
+        }
+        
+        // Initialisieren
+        initSocialBackground();
+
+        // --- NEU: Live View Counter Animation ---
+        function animateCounter() {
+            const el = document.getElementById('view-counter');
+            if(!el) return;
+
+            let current = 10000000;
+            const target = 50000000;
+            const duration = 8000; // 8 Sekunden
+            const fps = 60;
+            const totalFrames = (duration / 1000) * fps;
+            const increment = (target - current) / totalFrames;
+            
+            let frame = 0;
+
+            const interval = setInterval(() => {
+                frame++;
+                current += increment;
+                
+                if (frame >= totalFrames) {
+                    clearInterval(interval);
+                    current = target;
+                    el.innerText = Math.floor(current).toLocaleString('de-DE');
+                    startSlowGrowth(current);
+                } else {
+                    el.innerText = Math.floor(current).toLocaleString('de-DE');
+                }
+            }, 1000 / fps);
+        }
+
+        function startSlowGrowth(startValue) {
+            const el = document.getElementById('view-counter');
+            let current = startValue;
+            
+            // Zufälliges Wachstum simulieren (Live-Feeling)
+            setInterval(() => {
+                // Füge zufällig 5 bis 50 Views hinzu alle paar Sekunden
+                const add = Math.floor(Math.random() * 50) + 5;
+                current += add;
+                el.innerText = Math.floor(current).toLocaleString('de-DE');
+            }, 2500); 
+        }
+
+        // Starte Counter wenn DOM geladen ist
+        document.addEventListener('DOMContentLoaded', animateCounter);
+
     </script>
 </body>
 </html>
