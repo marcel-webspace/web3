@@ -39,10 +39,25 @@
         }
     </script>
 
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-    <!-- Konfetti Bibliothek -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
+    <!-- Konfetti Bibliothek - loaded on demand -->
+    <script>
+        // Lazy load confetti only when needed
+        function loadConfetti() {
+            if (window.confetti) return Promise.resolve();
+            return new Promise((resolve) => {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js';
+                script.onload = resolve;
+                document.head.appendChild(script);
+            });
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    <link rel="preconnect" href="https://hoirqrkdgbmvpwutwuwj.supabase.co">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://code.iconify.design">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <!-- Hauptschriftart Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -489,23 +504,23 @@
                                     <div class="flex justify-center lg:justify-start items-end h-full pl-4">
                                         <!-- Bild 1 -->
                                         <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-16 md:-mr-24 z-10 transform -rotate-6 hover:rotate-0 origin-bottom-left transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f1936c64-7b86-4296-b9cf-9d234a7b28e7_800w.png" class="w-full h-full object-cover bg-center" alt="Projekt 1">
+                                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f1936c64-7b86-4296-b9cf-9d234a7b28e7_800w.png" class="w-full h-full object-cover bg-center" alt="Projekt 1">
                                         </div>
                                         <!-- Bild 2 -->
                                         <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-16 md:-mr-24 z-20 transform -rotate-3 hover:rotate-0 origin-bottom-left transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/02ecb8db-5bca-4a84-9714-93664cc7a638_800w.png" class="w-full h-full object-cover bg-center" alt="Projekt 2">
+                                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/02ecb8db-5bca-4a84-9714-93664cc7a638_800w.png" class="w-full h-full object-cover bg-center" alt="Projekt 2">
                                         </div>
                                         <!-- Bild 3 -->
                                         <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-16 md:-mr-24 z-30 transform rotate-0 hover:scale-110 origin-bottom transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e3f24e2a-7254-42dc-9321-cc49d8118d4d_800w.png" class="bg-center w-full h-full object-cover" alt="Projekt 3">
+                                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e3f24e2a-7254-42dc-9321-cc49d8118d4d_800w.png" class="bg-center w-full h-full object-cover" alt="Projekt 3">
                                         </div>
                                         <!-- Bild 4 -->
                                         <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-16 md:-mr-24 z-20 transform rotate-3 hover:rotate-0 origin-bottom-right transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d8c9d92f-eab7-43be-a587-4ea30a895cda_800w.png" class="bg-center w-full h-full object-cover" alt="Projekt 4">
+                                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d8c9d92f-eab7-43be-a587-4ea30a895cda_800w.png" class="bg-center w-full h-full object-cover" alt="Projekt 4">
                                         </div>
                                         <!-- Bild 5 -->
                                         <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden z-10 transform rotate-6 hover:rotate-0 origin-bottom-right transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4b7ede95-bacb-4d78-8edd-e606f4182791_800w.png" class="bg-center w-full h-full object-cover" alt="Projekt 5">
+                                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4b7ede95-bacb-4d78-8edd-e606f4182791_800w.png" class="bg-center w-full h-full object-cover" alt="Projekt 5">
                                         </div>
                                     </div>
                                 </div>
@@ -519,7 +534,7 @@
                         </div>
                         <div class="relative rounded-2xl overflow-hidden border border-base-700 bg-base-800 shadow-2xl">
                              <!-- VIDEO -->
-                             <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%" class=""><iframe allow="fullscreen" allowfullscreen="" height="100%" src="https://www.youtube-nocookie.com/embed/AgFPrlNRjGg?si=b4HbP1IO_aU1wGCX" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute; left:0px; top:0px; overflow:hidden; width:100%; height:100%;" class=""></iframe></div>
+                             <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%" class=""><div class="yt-lite" data-id="AgFPrlNRjGg?si=b4HbP1IO_aU1wGCX" style="position:absolute;left:0;top:0;width:100%;height:100%;cursor:pointer;background:#000 url(https://i.ytimg.com/vi/AgFPrlNRjGg?si=b4HbP1IO_aU1wGCX/hqdefault.jpg) center/cover" onclick="this.innerHTML='<iframe src=\x22https://www.youtube-nocookie.com/embed/AgFPrlNRjGg?si=b4HbP1IO_aU1wGCX?autoplay=1\x22 style=\x22position:absolute;top:0;left:0;width:100%;height:100%;border:0\x22 allow=\x22autoplay;fullscreen\x22 allowfullscreen></iframe>'"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;background:red;border-radius:14px;display:flex;align-items:center;justify-content:center"><div style="border:solid white;border-width:0 0 12px 20px;margin-left:4px"></div></div></div></div>
                         </div>
                     </div>
                 </div>
@@ -538,36 +553,36 @@
                     <!-- ... partner logos ... -->
                     <div class="flex items-center gap-12 md:gap-24 px-6">
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&amp;q=80" alt="Partner" class="">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&amp;q=80" alt="Partner" class="">
                         </div>
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&amp;q=80" alt="Partner" class="">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&amp;q=80" alt="Partner" class="">
                         </div>
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&amp;q=80" alt="Partner" class="scale-90">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&amp;q=80" alt="Partner" class="scale-90">
                         </div>
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&amp;q=80" alt="Partner" class="-translate-x-8">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&amp;q=80" alt="Partner" class="-translate-x-8">
                         </div>
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" alt="Dein Logo" class="-translate-x-8 object-cover bg-center">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" alt="Dein Logo" class="-translate-x-8 object-cover bg-center">
                         </div>
                     </div>
                     <div class="flex items-center gap-12 md:gap-24 px-6">
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&amp;q=80" alt="Partner">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&amp;q=80" alt="Partner">
                         </div>
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&amp;q=80" alt="Partner">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&amp;q=80" alt="Partner">
                         </div>
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&amp;q=80" alt="Partner">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&amp;q=80" alt="Partner">
                         </div>
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&amp;q=80" alt="Partner">
+                            <img loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&amp;q=80" alt="Partner">
                         </div>
                         <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src="logo%20long%20white.png" alt="Dein Logo">
+                            <img loading="lazy" src="logo%20long%20white.png" alt="Dein Logo">
                         </div>
                     </div>
                 </div>
@@ -1566,12 +1581,14 @@
 
                 // 4. Success Sequence
                 
-                // A) Konfetti zuerst (Farben angepasst)
-                confetti({
-                    particleCount: 150,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#f59e0b', '#f8fafc', '#334155'] // CI Colors
+                // A) Konfetti zuerst (Farben angepasst) - lazy loaded
+                loadConfetti().then(() => {
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#f59e0b', '#f8fafc', '#334155'] // CI Colors
+                    });
                 });
 
                 // B) Formular ausblenden (Fade Out)
@@ -1633,7 +1650,7 @@
             // Icons für Iconify
             const icons = ['mdi:instagram', 'ic:baseline-tiktok', 'mdi:youtube'];
             // Anzahl erhöht für mehr Dichte ("ein wenig mehr")
-            const count = 45; 
+            const count = 12; 
             
             for (let i = 0; i < count; i++) {
                 const iconName = icons[Math.floor(Math.random() * icons.length)];
@@ -1673,7 +1690,7 @@
             let current = 10000000;
             const target = 50000000;
             const duration = 8000; // 8 Sekunden
-            const fps = 60;
+            const fps = 30;
             const totalFrames = (duration / 1000) * fps;
             const increment = (target - current) / totalFrames;
             
@@ -1704,7 +1721,7 @@
                 const add = Math.floor(Math.random() * 50) + 5;
                 current += add;
                 el.innerText = Math.floor(current).toLocaleString('de-DE');
-            }, 2500); 
+            }, 5000); 
         }
 
         // Starte Counter wenn DOM geladen ist
@@ -1712,4 +1729,39 @@
 
     </script>
 
-</body></html>
+</body></html><style>
+/* PERFORMANCE OPTIMIZATIONS - Added without changing design */
+
+/* Disable heavy backdrop-blur on mobile for smoother scrolling */
+@media (max-width: 768px) {
+    .backdrop-blur-sm, .backdrop-blur-md {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}
+
+/* Reduce paint on social icons */
+.social-icon {
+    will-change: auto !important;
+    contain: layout style paint;
+}
+
+/* Optimize animations on scroll */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* GPU acceleration for smooth scroll */
+#main-content {
+    transform: translateZ(0);
+}
+
+/* Contain paint for sections */
+section {
+    contain: layout style;
+}
+</style>
