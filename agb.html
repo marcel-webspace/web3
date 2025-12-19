@@ -4,39 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGB | Reinwarth media</title>
+    <title>AGB | Reinwarth Media</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- TAILWIND KONFIGURATION (Identisch zur Startseite) -->
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                base: {
+                    DEFAULT: '#0f172a', 
+                    900: '#0f172a',
+                    800: '#1e293b', 
+                    700: '#334155', 
+                },
+                light: {
+                    DEFAULT: '#f8fafc', 
+                    dim: '#94a3b8', 
+                },
+                accent: {
+                    DEFAULT: '#f59e0b', 
+                    hover: '#d97706', 
+                    glow: '#f59e0b',
+                    light: '#fcd34d', 
+                }
+              },
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                serif: ['Playfair Display', 'serif'],
+              }
+            }
+          }
+        }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #020617;
-            color: #e2e8f0;
+            background-color: #0f172a; /* CI Base Color */
+            color: #f8fafc; /* CI Light Text */
         }
-        h2 { margin-top: 2.5rem; }
+        /* Standardabstände für Fließtext */
+        p, ul { margin-bottom: 1.25rem; line-height: 1.7; }
+        ul { list-style-type: disc; padding-left: 1.5rem; color: #94a3b8; }
+        li { margin-bottom: 0.5rem; }
     </style>
 </head>
 
-<body class="antialiased bg-black text-slate-200 flex flex-col min-h-screen">
+<body class="antialiased bg-base-900 text-light flex flex-col min-h-screen">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/95 backdrop-blur-md">
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-base-800 bg-base-900/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
-                <a href="Reinwarth_Media_Website.html" class="flex items-center group select-none py-2">
+                <a href="index.html" class="flex items-center group select-none py-2">
                     <div class="flex items-baseline leading-none">
-                        <span class="text-2xl font-semibold tracking-tight text-white">Reinwarth</span>
-                        <span class="text-2xl font-semibold tracking-tight text-indigo-500 ml-1">media</span>
+                        <span class="text-2xl font-semibold tracking-tight text-light">Reinwarth</span>
+                        <span class="text-2xl font-semibold tracking-tight text-accent ml-1">Media</span>
                     </div>
                 </a>
 
                 <!-- Zurück Button -->
-                <a href="Reinwarth_Media_Website.html" class="inline-flex items-center gap-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium text-light-dim hover:text-accent transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform"><path d="m15 18-6-6 6-6"/></svg>
                     Zurück zur Startseite
                 </a>
             </div>
@@ -47,87 +84,275 @@
     <main class="flex-grow pt-32 pb-24 px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
             
-            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Allgemeine Geschäftsbedingungen (AGB)</h1>
-            <p class="text-neutral-500 text-sm mb-12">Stand: Januar 2026</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-light mb-12 font-serif">Allgemeine Geschäftsbedingungen (AGB)</h1>
             
-            <div class="space-y-6 text-neutral-300 leading-relaxed">
+            <div class="space-y-12">
+                <!-- §1 Geltungsbereich -->
+                <section>
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 1 Geltungsbereich</h2>
+                    <p class="text-light-dim">
+                        (1) Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge über Videoproduktionen, Social-Media-Betreuung und damit verbundene Dienstleistungen zwischen Reinwarth Media (nachfolgend „Auftragnehmer") und dem Kunden (nachfolgend „Auftraggeber").
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Abweichende, entgegenstehende oder ergänzende Allgemeine Geschäftsbedingungen des Auftraggebers werden, selbst bei Kenntnis, nicht Vertragsbestandteil, es sei denn, ihrer Geltung wird ausdrücklich schriftlich zugestimmt.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Diese AGB gelten ausschließlich gegenüber Unternehmern im Sinne des § 14 BGB. Der Auftraggeber bestätigt mit Vertragsschluss, dass er in Ausübung seiner gewerblichen oder selbstständigen beruflichen Tätigkeit handelt.
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 1 Geltungsbereich</h2>
-                <p>
-                    (1) Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen Marcel Reinwarth (nachfolgend "Auftragnehmer") und seinen Kunden (nachfolgend "Auftraggeber") über die Erstellung von Videos, Social Media Content, Schnittarbeiten und Beratungsleistungen.
-                    <br>(2) Abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, der Auftragnehmer stimmt ihrer Geltung ausdrücklich schriftlich zu.
-                </p>
+                <!-- §2 Vertragsgegenstand -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 2 Vertragsgegenstand & Leistungsumfang</h2>
+                    <p class="text-light-dim">
+                        (1) Gegenstand des Vertrages ist die Erstellung von Videoproduktionen (z. B. Imagefilme, Social Media Clips, Drohnenaufnahmen) sowie optional die Betreuung von Social-Media-Kanälen gemäß dem individuellen Angebot.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Der genaue Leistungsumfang ergibt sich aus dem jeweiligen Angebot oder der Auftragsbestätigung. Nachträgliche Änderungswünsche des Auftraggebers, die über den vereinbarten Umfang hinausgehen, werden gesondert berechnet.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Der Auftragnehmer ist berechtigt, zur Erfüllung der vertraglich geschuldeten Leistungen Dritte (Erfüllungsgehilfen) heranzuziehen.
+                    </p>
+                    <p class="text-light-dim">
+                        (4) Sofern nicht anders vereinbart, umfasst die Leistung die Lieferung des finalen Videos in den Formaten MP4 (H.264) in Full-HD-Auflösung (1920×1080). Abweichende Formate, Auflösungen oder Seitenverhältnisse werden im Angebot gesondert ausgewiesen.
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 2 Vertragsschluss</h2>
-                <p>
-                    (1) Die Angebote des Auftragnehmers sind freibleibend und unverbindlich.
-                    <br>(2) Ein Vertrag kommt zustande, sobald der Auftraggeber ein Angebot des Auftragnehmers annimmt (per E-Mail oder Unterschrift) oder der Auftragnehmer mit der Ausführung der Leistung beginnt.
-                </p>
+                <!-- §3 Vergütung & Zahlungsbedingungen -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 3 Vergütung & Zahlungsbedingungen</h2>
+                    <p class="text-light-dim">
+                        (1) Es gelten die im Angebot vereinbarten Preise. Alle Preise verstehen sich in Euro. Sofern nicht anders angegeben, handelt es sich um Nettopreise zzgl. der gesetzlichen Umsatzsteuer (falls zutreffend, siehe Kleinunternehmerregelung im Impressum).
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Soweit nicht anders vereinbart, gilt folgende Zahlungsregelung: <strong>50 % der Auftragssumme sind als Anzahlung vor dem vereinbarten Drehtag fällig</strong>. Die restlichen 50 % sind innerhalb von 14 Tagen nach Abnahme des finalen Werks ohne Abzug zu zahlen.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Der Auftragnehmer behält sich das Recht vor, die Leistungserbringung bis zum Eingang der Anzahlung zurückzuhalten. Die Übergabe des finalen Werks erfolgt erst nach vollständigem Zahlungseingang.
+                    </p>
+                    <p class="text-light-dim">
+                        (4) Reisekosten (Fahrtkosten, Übernachtung) und Spesen werden, sofern nicht als Pauschale im Angebot enthalten, gesondert nach Aufwand abgerechnet. Fahrtkosten werden mit 0,30 € pro Kilometer berechnet, sofern im Angebot keine abweichende Regelung getroffen wurde.
+                    </p>
+                    <p class="text-light-dim">
+                        (5) Bei Zahlungsverzug ist der Auftragnehmer berechtigt, Verzugszinsen in Höhe von 9 Prozentpunkten über dem Basiszinssatz zu verlangen. Die Geltendmachung eines weitergehenden Verzugsschadens bleibt vorbehalten.
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 3 Leistungen und Mitwirkungspflichten</h2>
-                <p>
-                    (1) Der Umfang der Leistungen ergibt sich aus dem jeweiligen Angebot (z.B. "1 Monat 1 Drehtag", "Individueller Schnitt").
-                    <br>(2) Der Auftraggeber ist verpflichtet, dem Auftragnehmer alle für die Durchführung des Auftrags notwendigen Unterlagen, Informationen und Materialien (z.B. Logos, CI-Guides, Rohmaterial) rechtzeitig und unentgeltlich zur Verfügung zu stellen.
-                    <br>(3) Verzögert sich die Durchführung des Auftrags durch fehlende Mitwirkung des Auftraggebers, so kann der Auftragnehmer eine angemessene Erhöhung der Vergütung verlangen oder vom Vertrag zurücktreten.
-                </p>
+                <!-- §4 Mitwirkungspflichten -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 4 Mitwirkungspflichten des Auftraggebers</h2>
+                    <p class="text-light-dim">
+                        (1) Der Auftraggeber unterstützt den Auftragnehmer bei der Erfüllung der vertraglich geschuldeten Leistungen. Dazu gehört insbesondere:
+                    </p>
+                    <ul>
+                        <li>die rechtzeitige Bereitstellung von Informationen, Briefings und Freigaben;</li>
+                        <li>die Sicherstellung des Zugangs zu Drehorten inkl. erforderlicher Genehmigungen;</li>
+                        <li>die Bereitstellung benötigter Requisiten, Produkte oder Materialien;</li>
+                        <li>die Benennung eines verantwortlichen Ansprechpartners.</li>
+                    </ul>
+                    <p class="text-light-dim">
+                        (2) Der Auftraggeber stellt sicher, dass er über alle erforderlichen Rechte an den von ihm bereitgestellten Materialien (z. B. Logos, Musik, Bilder) verfügt und dass der Einsatz keine Rechte Dritter verletzt.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Kommt der Auftraggeber seinen Mitwirkungspflichten nicht nach und entstehen dem Auftragnehmer hierdurch Verzögerungen oder Mehraufwand, so kann der Auftragnehmer die hierdurch entstandenen Mehrkosten in Rechnung stellen. Die vereinbarten Liefertermine verschieben sich entsprechend.
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 4 Künstlerische Freiheit</h2>
-                <p>
-                    (1) Im Rahmen des Auftrags besteht Gestaltungsfreiheit. Reklamationen hinsichtlich der künstlerischen Gestaltung sind ausgeschlossen. Wünscht der Auftraggeber während oder nach der Produktion Änderungen, so hat er die Mehrkosten zu tragen.
-                </p>
+                <!-- §5 Termine & Stornierung -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 5 Termine, Stornierung & Verschiebung</h2>
+                    <p class="text-light-dim">
+                        (1) Vereinbarte Termine für Drehtage sind verbindlich. Änderungen bedürfen der schriftlichen Zustimmung beider Parteien.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Bei Stornierung oder Verschiebung durch den Auftraggeber gelten folgende Regelungen:
+                    </p>
+                    <ul>
+                        <li><strong>Bis 14 Tage vor dem Termin:</strong> kostenfreie Stornierung oder Verschiebung möglich;</li>
+                        <li><strong>7–13 Tage vor dem Termin:</strong> 25 % der vereinbarten Auftragssumme;</li>
+                        <li><strong>3–6 Tage vor dem Termin:</strong> 50 % der vereinbarten Auftragssumme;</li>
+                        <li><strong>Weniger als 3 Tage vor dem Termin oder bei Nichterscheinen:</strong> 100 % der vereinbarten Auftragssumme.</li>
+                    </ul>
+                    <p class="text-light-dim">
+                        (3) Bereits entstandene Aufwendungen (z. B. Anreise, gebuchte Locations, Equipment-Miete) werden zusätzlich zu den Stornogebühren in Rechnung gestellt.
+                    </p>
+                    <p class="text-light-dim">
+                        (4) Bei einmaliger Verschiebung mit ausreichender Vorlaufzeit (mind. 7 Tage) entstehen keine Stornokosten, sofern ein neuer Termin innerhalb von 30 Tagen vereinbart wird.
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 5 Abnahme und Korrekturschleifen</h2>
-                <p>
-                    (1) Nach Fertigstellung der Leistung erhält der Auftraggeber das Werk zur Abnahme (in der Regel als digitaler Link).
-                    <br>(2) Im Preis enthalten sind, sofern nicht anders vereinbart, zwei Korrekturschleifen. Änderungswünsche müssen gesammelt und schriftlich (z.B. per E-Mail oder Feedback-Tool) mitgeteilt werden.
-                    <br>(3) Die Abnahme gilt als erfolgt, wenn der Auftraggeber das Werk nutzt, veröffentlicht oder nicht innerhalb von 7 Tagen nach Übermittlung wesentliche Mängel rügt.
-                </p>
+                <!-- §6 Höhere Gewalt -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 6 Höhere Gewalt & unvorhersehbare Umstände</h2>
+                    <p class="text-light-dim">
+                        (1) Beide Parteien sind von ihren Leistungspflichten befreit, soweit und solange die Leistung durch höhere Gewalt verhindert wird. Als höhere Gewalt gelten alle unvorhersehbaren Ereignisse sowie solche Ereignisse, die auch durch die zumutbare Sorgfalt nicht abgewendet werden können, insbesondere Naturkatastrophen, Pandemien, behördliche Anordnungen oder Krieg.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Bei Außendrehs, die aufgrund von extremen Wetterbedingungen (z. B. starker Regen, Sturm, Gewitter) nicht durchgeführt werden können, wird in beiderseitigem Einvernehmen ein Ersatztermin vereinbart. In diesem Fall entstehen keine zusätzlichen Kosten für den Auftraggeber, sofern der Ersatztermin innerhalb von 30 Tagen stattfindet.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Erkrankt der Auftragnehmer am vereinbarten Drehtag, wird unverzüglich ein Ersatztermin angeboten. Stornogebühren fallen in diesem Fall nicht an.
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 6 Nutzungsrechte</h2>
-                <p>
-                    (1) Der Auftragnehmer räumt dem Auftraggeber mit vollständiger Bezahlung der Vergütung das einfache, zeitlich und räumlich unbeschränkte Nutzungsrecht an den erstellten finalen Videos für den vereinbarten Zweck ein.
-                    <br>(2) Rohmaterial (Footage), offene Projektdateien und Konzepte verbleiben beim Auftragnehmer, sofern keine gesonderte Vereinbarung über ein "Buy-out" getroffen wurde.
-                    <br>(3) Der Auftragnehmer hat das Recht, die erstellten Werke zu Zwecken der Eigenwerbung (z.B. auf der eigenen Website, Portfolio, Social Media) zu nutzen, sofern nichts anderes vereinbart wurde.
-                </p>
+                <!-- §7 Abnahme -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 7 Abnahme & Korrekturschleifen</h2>
+                    <p class="text-light-dim">
+                        (1) Nach Fertigstellung der Produktion stellt der Auftragnehmer dem Auftraggeber das Ergebnis zur Prüfung zur Verfügung. Die Bereitstellung erfolgt in der Regel über einen Download-Link oder eine Cloud-Plattform.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Im Angebot ist, sofern nicht anders vereinbart, <strong>eine (1) Korrekturschleife</strong> enthalten. Diese umfasst Anpassungen wie:
+                    </p>
+                    <ul>
+                        <li>Schnittänderungen (Reihenfolge, Timing);</li>
+                        <li>Farbkorrekturen und Belichtungsanpassungen;</li>
+                        <li>Textänderungen (Bauchbinden, Titel);</li>
+                        <li>Musikanpassungen (sofern im Umfang enthalten).</li>
+                    </ul>
+                    <p class="text-light-dim">
+                        (3) Grundlegende Änderungen am Konzept, Neudreh von Szenen oder wesentliche Umstrukturierungen sind von der Korrekturschleife ausgeschlossen und werden nach Aufwand gesondert berechnet.
+                    </p>
+                    <p class="text-light-dim">
+                        (4) Die Abnahme gilt als erfolgt, wenn der Auftraggeber nicht innerhalb von <strong>14 Tagen</strong> nach Übergabe schriftlich konkrete Mängel rügt. Die Mängelrüge muss die beanstandeten Punkte nachvollziehbar beschreiben.
+                    </p>
+                    <p class="text-light-dim">
+                        (5) Mit der Abnahme bestätigt der Auftraggeber, dass das Werk vertragsgemäß erstellt wurde.
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 7 Vergütung und Zahlungsbedingungen</h2>
-                <p>
-                    (1) Es gelten die im Angebot vereinbarten Preise. Alle Preise verstehen sich in Euro. Als Kleinunternehmer im Sinne von § 19 Abs. 1 UStG wird keine Umsatzsteuer berechnet (ODER: zzgl. der gesetzlichen Mehrwertsteuer, falls du kein Kleinunternehmer bist).
-                    <br>(2) Rechnungen sind innerhalb von 7 Tagen nach Rechnungsstellung ohne Abzug zahlbar.
-                    <br>(3) Bei größeren Projekten ist der Auftragnehmer berechtigt, angemessene Abschlagszahlungen zu fordern (z.B. 50% bei Auftragserteilung).
-                </p>
+                <!-- §8 Nutzungsrechte -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 8 Nutzungsrechte</h2>
+                    <p class="text-light-dim">
+                        (1) Mit vollständiger Zahlung der vereinbarten Vergütung erhält der Auftraggeber die vereinbarten Nutzungsrechte an den erstellten Werken.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Soweit nicht anders im Angebot vereinbart, erhält der Auftraggeber ein <strong>einfaches, zeitlich und räumlich unbeschränktes Nutzungsrecht</strong> für folgende Verwendungszwecke:
+                    </p>
+                    <ul>
+                        <li>Veröffentlichung auf der eigenen Website;</li>
+                        <li>Veröffentlichung auf eigenen Social-Media-Kanälen (z. B. Instagram, LinkedIn, YouTube, TikTok);</li>
+                        <li>Interne Verwendung (z. B. Präsentationen, Schulungen).</li>
+                    </ul>
+                    <p class="text-light-dim">
+                        (3) Nicht vom Standard-Nutzungsrecht umfasst sind:
+                    </p>
+                    <ul>
+                        <li>Werbliche Nutzung mit Media-Budget (Paid Ads);</li>
+                        <li>TV- oder Kinoauswertung;</li>
+                        <li>Weitergabe an Dritte zur kommerziellen Nutzung;</li>
+                        <li>Bearbeitung oder Veränderung des Werks.</li>
+                    </ul>
+                    <p class="text-light-dim">
+                        (4) Erweiterte Nutzungsrechte können gegen Aufpreis vereinbart werden. Die Konditionen werden im Angebot gesondert ausgewiesen.
+                    </p>
+                    <p class="text-light-dim">
+                        (5) Die Rohdaten (Footage), offene Projektdateien und Konzepte verbleiben beim Auftragnehmer. Eine Herausgabe ist nur bei gesonderter Vereinbarung und Vergütung geschuldet.
+                    </p>
+                    <p class="text-light-dim">
+                        (6) Der Auftragnehmer ist berechtigt, die erstellten Werke zum Zwecke der Eigenwerbung (z. B. auf der eigenen Website, Showreel, Social Media) zu nutzen, sofern nichts anderes vereinbart wurde. Auf Wunsch des Auftraggebers kann eine Sperrfrist von bis zu 3 Monaten vereinbart werden.
+                    </p>
+                    <p class="text-light-dim">
+                        (7) Der Auftragnehmer ist berechtigt, im Vor- oder Abspann des Videos sowie bei Online-Veröffentlichungen als Urheber genannt zu werden (z. B. „Produktion: Reinwarth Media").
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 8 Haftung</h2>
-                <p>
-                    (1) Der Auftragnehmer haftet nur für Vorsatz und grobe Fahrlässigkeit.
-                    <br>(2) Für die rechtliche Zulässigkeit der vom Auftraggeber gelieferten Inhalte (z.B. Musikrechte, Bildrechte Dritter) ist allein der Auftraggeber verantwortlich. Der Auftraggeber stellt den Auftragnehmer von Ansprüchen Dritter frei.
-                </p>
+                <!-- §9 Geheimhaltung -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 9 Geheimhaltung & Vertraulichkeit</h2>
+                    <p class="text-light-dim">
+                        (1) Beide Parteien verpflichten sich, alle im Rahmen der Zusammenarbeit erhaltenen vertraulichen Informationen geheim zu halten und nur für die Zwecke des Auftrags zu verwenden.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Als vertraulich gelten insbesondere Geschäfts- und Betriebsgeheimnisse, unveröffentlichte Produkte, Strategien, Kundendaten sowie alle als vertraulich gekennzeichneten Informationen.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Die Geheimhaltungspflicht besteht über das Vertragsende hinaus fort und endet erst, wenn die Informationen allgemein bekannt werden oder der Berechtigte einer Offenlegung schriftlich zustimmt.
+                    </p>
+                    <p class="text-light-dim">
+                        (4) Der Auftragnehmer verpflichtet sich, auch eingesetzte Erfüllungsgehilfen entsprechend zur Verschwiegenheit zu verpflichten.
+                    </p>
+                </section>
 
-                <h2 class="text-xl font-semibold text-white">§ 9 Schlussbestimmungen</h2>
-                <p>
-                    (1) Es gilt das Recht der Bundesrepublik Deutschland.
-                    <br>(2) Erfüllungsort und Gerichtsstand ist Düsseldorf, soweit gesetzlich zulässig.
-                    <br>(3) Sollte eine Bestimmung dieser AGB unwirksam sein, so bleibt der Vertrag im Übrigen wirksam.
-                </p>
+                <!-- §10 Datenspeicherung -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 10 Datenspeicherung & Archivierung</h2>
+                    <p class="text-light-dim">
+                        (1) Der Auftragnehmer speichert die finalen Projektdateien für einen Zeitraum von <strong>6 Monaten</strong> nach Projektabschluss. Innerhalb dieses Zeitraums können gegen Aufpreis erneute Exporte oder kleinere Anpassungen vorgenommen werden.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Die Rohdaten (Footage) werden für einen Zeitraum von <strong>3 Monaten</strong> nach Projektabschluss aufbewahrt. Danach werden diese unwiderruflich gelöscht, sofern keine gesonderte Archivierungsvereinbarung getroffen wurde.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Eine längerfristige Archivierung kann gegen eine jährliche Gebühr vereinbart werden. Die Konditionen werden auf Anfrage mitgeteilt.
+                    </p>
+                    <p class="text-light-dim">
+                        (4) Der Auftraggeber ist selbst verantwortlich für die Sicherung der ihm übergebenen finalen Dateien.
+                    </p>
+                </section>
 
-            </div>
+                <!-- §11 Haftung -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 11 Haftung</h2>
+                    <p class="text-light-dim">
+                        (1) Der Auftragnehmer haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Bei leichter Fahrlässigkeit haftet der Auftragnehmer nur bei Verletzung vertragswesentlicher Pflichten (Kardinalpflichten). In diesem Fall ist die Haftung <strong>begrenzt auf den typischerweise vorhersehbaren Schaden, maximal jedoch auf die Höhe der vereinbarten Netto-Auftragssumme</strong>.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Der Auftragnehmer haftet nicht für die rechtliche Zulässigkeit der erstellten Inhalte (z. B. Wettbewerbsrecht, Markenrecht, Urheberrecht an vom Kunden geliefertem Material). Die Prüfung der rechtlichen Zulässigkeit obliegt dem Auftraggeber.
+                    </p>
+                    <p class="text-light-dim">
+                        (4) Der Auftraggeber stellt den Auftragnehmer von sämtlichen Ansprüchen Dritter frei, die aus der Verletzung von Rechten durch vom Auftraggeber bereitgestellte Materialien oder Inhalte resultieren.
+                    </p>
+                    <p class="text-light-dim">
+                        (5) Die Haftung für Datenverlust wird auf den typischen Wiederherstellungsaufwand beschränkt, der bei regelmäßiger und gefahrentsprechender Anfertigung von Sicherungskopien eingetreten wäre.
+                    </p>
+                </section>
 
-            <div class="mt-16 pt-8 border-t border-neutral-800">
-                <a href="#navbar" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Nach oben scrollen &uarr;</a>
+                <!-- §12 Schlussbestimmungen -->
+                <section class="pt-8 border-t border-base-800">
+                    <h2 class="text-2xl font-bold text-accent mb-6">§ 12 Schlussbestimmungen</h2>
+                    <p class="text-light-dim">
+                        (1) Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.
+                    </p>
+                    <p class="text-light-dim">
+                        (2) Erfüllungsort für alle Leistungen ist der Geschäftssitz des Auftragnehmers.
+                    </p>
+                    <p class="text-light-dim">
+                        (3) Gerichtsstand für alle Streitigkeiten aus diesem Vertrag ist, soweit gesetzlich zulässig, der Geschäftssitz des Auftragnehmers.
+                    </p>
+                    <p class="text-light-dim">
+                        (4) Änderungen und Ergänzungen dieses Vertrages bedürfen der Schriftform. Dies gilt auch für die Abbedingung dieses Schriftformerfordernisses. Die elektronische Form (E-Mail) genügt der Schriftform.
+                    </p>
+                    <p class="text-light-dim">
+                        (5) Sollten einzelne Bestimmungen dieses Vertrages unwirksam sein oder werden, so wird die Wirksamkeit der übrigen Bestimmungen hierdurch nicht berührt. Die unwirksame Bestimmung ist durch eine wirksame zu ersetzen, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.
+                    </p>
+                </section>
+
+                <!-- Stand -->
+                <section class="pt-8 border-t border-base-800">
+                    <p class="text-light-dim text-sm">
+                        <strong>Stand:</strong> Januar 2026
+                    </p>
+                </section>
+
             </div>
 
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t py-12 bg-black border-neutral-900">
+    <footer class="border-t py-12 bg-base-900 border-base-800">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <p class="text-xs text-neutral-600 mb-4">© 2026 Reinwarth media. Alle Rechte vorbehalten.</p>
-            <div class="flex justify-center gap-6 text-sm text-neutral-500">
-                <a href="Reinwarth_Media_Website.html" class="hover:text-indigo-400 transition-colors">Startseite</a>
-                <a href="impressum.html" class="hover:text-indigo-400 transition-colors">Impressum</a>
-                <a href="datenschutz.html" class="hover:text-indigo-400 transition-colors">Datenschutz</a>
-                <span class="text-white font-medium cursor-default">AGB</span>
+            <p class="text-xs text-light-dim mb-4">© 2026 Reinwarth Media. Alle Rechte vorbehalten.</p>
+            <div class="flex justify-center gap-6 text-sm text-light-dim">
+                <a href="index.html" class="hover:text-accent transition-colors">Startseite</a>
+                <a href="impressum.html" class="hover:text-accent transition-colors">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-accent transition-colors">Datenschutz</a>
+                <span class="text-light cursor-default font-medium">AGB</span>
             </div>
         </div>
     </footer>
