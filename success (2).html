@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vielen Dank! | Reinwarth Media</title>
+    
+    <!-- Meta Tags für SEO -->
+    <meta name="description" content="Vielen Dank für deine Anfrage bei Reinwarth Media. Wir melden uns in Kürze bei dir.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://reinwarth-media.de/success.html">
+    <meta property="og:title" content="Vielen Dank! | Reinwarth Media">
+    <meta property="og:description" content="Deine Anfrage ist erfolgreich eingegangen. Marcel wird sich in Kürze persönlich bei dir melden.">
+    <meta property="og:image" content="https://reinwarth-media.de/og-image.jpg">
+    <meta property="og:locale" content="de_DE">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://reinwarth-media.de/success.html">
+    <meta name="twitter:title" content="Vielen Dank! | Reinwarth Media">
+    <meta name="twitter:description" content="Deine Anfrage ist erfolgreich eingegangen. Marcel wird sich in Kürze persönlich bei dir melden.">
+    <meta name="twitter:image" content="https://reinwarth-media.de/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://reinwarth-media.de/success.html">
+
+    <!-- Fonts vorgeladen für bessere Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- TAILWIND KONFIGURATION (Identisch zur Startseite) -->
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                base: {
+                    DEFAULT: '#0f172a', 
+                    900: '#0f172a',
+                    800: '#1e293b', 
+                    700: '#334155', 
+                },
+                light: {
+                    DEFAULT: '#f8fafc', 
+                    dim: '#94a3b8', 
+                },
+                accent: {
+                    DEFAULT: '#f59e0b', 
+                    hover: '#d97706', 
+                    glow: '#f59e0b',
+                    light: '#fcd34d', 
+                }
+              },
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                serif: ['Playfair Display', 'serif'],
+              },
+              animation: {
+                'bounce-slow': 'bounce 2s infinite',
+              }
+            }
+          }
+        }
+    </script>
+
+    <!-- Konfetti Bibliothek -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+        
+        /* Hintergrund-Animation */
+        .ambient-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0; 
+            background: #0f172a; 
+        }
+        
+        .ambient-light::before {
+            content: '';
+            position: absolute;
+            width: 90vw;
+            height: 90vh;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, rgba(15, 23, 42, 0) 60%);
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: blur(100px);
+        }
+
+        /* Timer Balken Animation */
+        @keyframes shrinkWidth {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+        
+        .animate-timer {
+            animation: shrinkWidth 8s linear forwards;
+        }
+        
+        /* Sanfte Bounce Animation für Icon */
+        @keyframes bounce-slow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce-slow 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-base-900 text-light flex flex-col min-h-screen items-center justify-center relative">
+
+    <!-- Ambient Hintergrund -->
+    <div class="ambient-light"></div>
+
+    <!-- Main Content Card -->
+    <main class="relative z-10 w-full max-w-lg px-6 py-12 text-center">
+        
+        <!-- Icon Circle -->
+        <div class="w-24 h-24 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-8 border border-accent/20 shadow-[0_0_30px_rgba(245,158,11,0.2)] animate-bounce-slow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-light mb-4 font-serif">Vielen Dank!</h1>
+        <p class="text-light-dim text-lg mb-2">Deine Anfrage ist erfolgreich eingegangen.</p>
+        <p class="text-light-dim/70 text-sm mb-10">Marcel wird sich in Kürze persönlich bei dir melden.</p>
+
+        <!-- Progress Bar (Auto Redirect) -->
+        <div class="w-full bg-base-800 rounded-full h-1.5 mb-8 overflow-hidden max-w-xs mx-auto">
+            <div id="progress-bar" class="bg-accent h-1.5 rounded-full animate-timer w-full"></div>
+        </div>
+        
+        <!-- Button -->
+        <a href="index.html" class="inline-flex items-center justify-center gap-2 bg-light text-base-900 font-bold px-8 py-3 rounded-xl hover:bg-accent hover:text-base-900 transition-all duration-300 shadow-lg hover:shadow-accent/30 group">
+            Zurück zur Startseite
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform duration-300">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </a>
+
+        <p class="text-xs text-light-dim/40 mt-12">
+            Du wirst in <span id="countdown">8</span> Sekunden automatisch weitergeleitet.
+        </p>
+
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Konfetti Effekt beim Laden
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prüfen ob confetti verfügbar ist
+            if (typeof confetti === 'undefined') {
+                console.warn('Konfetti-Bibliothek nicht geladen');
+                return;
+            }
+            
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                
+                confetti(Object.assign({}, defaults, { 
+                    particleCount: particleCount, 
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, 
+                    colors: ['#f59e0b', '#f8fafc', '#334155'] 
+                }));
+                
+                confetti(Object.assign({}, defaults, { 
+                    particleCount: particleCount, 
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, 
+                    colors: ['#f59e0b', '#f8fafc', '#334155'] 
+                }));
+            }, 250);
+        });
+
+        // 2. Countdown & Redirect Logic
+        (function() {
+            var timeLeft = 8;
+            var countdownEl = document.getElementById('countdown');
+            
+            if (!countdownEl) {
+                console.warn('Countdown-Element nicht gefunden');
+                return;
+            }
+            
+            var timer = setInterval(function() {
+                timeLeft--;
+                countdownEl.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    
+                    // Sichere Weiterleitung
+                    try {
+                        window.location.href = 'index.html';
+                    } catch (e) {
+                        console.log('Automatische Weiterleitung in dieser Umgebung nicht möglich.');
+                    }
+                }
+            }, 1000);
+        })();
+    </script>
+
+</body>
+</html>
