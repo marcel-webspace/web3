@@ -3,9 +3,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reinwarth Media | Dein Partner für Video & Schnitt</title>
+    
+    <!-- Meta Tags für Google -->
+    <meta name="description" content="Online Reichweite für Unternehmer auf Social Media. Vertrauen durch authentischen Dreh, Schnitt & Social Media Management – aus einer Hand.">
+    <meta property="og:title" content="Reinwarth Media | Dein Partner für Video & Schnitt">
+    <meta property="og:description" content="Online Reichweite für Unternehmer auf Social Media. Vertrauen durch authentischen Dreh, Schnitt & Social Media Management.">
+    <meta property="og:image" content="https://reinwarth-media.de/favicon.ico">
+    <meta property="og:type" content="website">
 
-    <link rel="icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Google Analytics & Facebook Pixel werden NACH Consent geladen -->
+    <script>
+        // Consent Management - DSGVO konform
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Prüfe ob User bereits zugestimmt hat
+        const consent = localStorage.getItem('cookieConsent');
+        if (consent === 'all') {
+            // User hat zugestimmt - lade Tracking
+            loadTracking();
+        }
+        
+        function loadTracking() {
+            // Google Analytics laden
+            const gaScript = document.createElement('script');
+            gaScript.async = true;
+            gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-GDV88J2YZ9';
+            document.head.appendChild(gaScript);
+            
+            gaScript.onload = function() {
+                gtag('js', new Date());
+                gtag('config', 'G-GDV88J2YZ9', {
+                    'anonymize_ip': true,  // IP-Anonymisierung für DSGVO
+                    'allow_google_signals': false,
+                    'allow_ad_personalization_signals': false
+                });
+            };
+            
+            // Facebook Pixel laden
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '869381855692973');
+            fbq('track', 'PageView');
+        }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Strukturierte Daten für Google (Logo) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Reinwarth Media",
+      "url": "https://reinwarth-media.de",
+      "logo": "https://reinwarth-media.de/favicon.ico",
+      "description": "Online Reichweite für Unternehmer auf Social Media. Vertrauen durch authentischen Dreh, Schnitt & Social Media Management.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+49-15679-614591",
+        "contactType": "customer service",
+        "email": "marcelreinwarth@gmail.com"
+      }
+    }
+    </script>
 
     <!-- TAILWIND: Wichtig für Styling, nicht deferren um FOUC zu vermeiden -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -179,25 +247,52 @@
             filter: grayscale(0) brightness(1.1) blur(0); transform: scale(1.1) translateY(-10px) rotate(0deg) !important;
             z-index: 50; box-shadow: 0 10px 30px -5px rgba(245, 158, 11, 0.3); border-color: #f59e0b;
         }
+
+        /* Quiz Styles */
+        .quiz-box { position: relative; }
+        .quiz-progress-btn { pointer-events: none; opacity: 0.6; }
+        
+        /* Progressive Button States */
+        .submit-btn-disabled {
+            background: #475569;
+            color: #94a3b8;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .submit-btn-partial {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #0f172a;
+            cursor: pointer;
+            opacity: 1;
+            animation: pulse-glow 2s infinite;
+        }
+        .submit-btn-complete {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            cursor: pointer;
+            opacity: 1;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            animation: pulse-green 2s infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 rgba(245, 158, 11, 0); }
+            50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
+        }
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 rgba(16, 185, 129, 0); transform: scale(1); }
+            50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.5); transform: scale(1.02); }
+        }
+        
+        /* Contact Method Selection */
+        .contact-method-selected {
+            border-color: #f59e0b !important;
+            background: rgba(245, 158, 11, 0.1) !important;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+        }
     </style>
 
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '869381855692973');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+    <!-- Meta Pixel wird nur mit Consent geladen (siehe oben im Head) -->
 </head>
 
 <body class="antialiased bg-base-900 text-light">
@@ -241,7 +336,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
                 <div class="flex items-center gap-3">
                     <button onclick="openBooking()" class="hidden sm:inline-block transition-all hover:shadow-lg hover:-translate-y-0.5 hover:shadow-accent/20 text-sm font-bold text-base-900 bg-accent hover:bg-accent-hover rounded-lg py-2.5 px-5">
-                        Termin vereinbaren
+                        Jetzt Quiz starten
                     </button>
                     <button class="lg:hidden p-2 text-light" id="mobileMenuBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -258,7 +353,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             <a href="#comparison" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Fakten</a>
             <a href="#testimonials" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Kundenstimmen</a>
             <a href="#faq" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">FAQ</a>
-            <button onclick="openBooking(); closeMenu();" class="text-xl font-medium text-accent hover:text-accent-hover transition-colors mobile-link">Termin vereinbaren</button>
+            <button onclick="openBooking(); closeMenu();" class="text-xl font-medium text-accent hover:text-accent-hover transition-colors mobile-link">Jetzt Quiz starten</button>
             <button id="closeMobileMenu" class="absolute top-6 right-6 text-light-dim p-2 hover:text-light transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
@@ -273,17 +368,20 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div class="space-y-8 animate-fade-in-up order-2 lg:order-1 text-center lg:text-left">
                     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-light tracking-tight leading-tight">
-                        Online Sichtbarkeit für Unternehmer
+                        Online Reichweite für Unternehmer
                         <span class="text-accent whitespace-nowrap">auf Social Media.</span>
                     </h1>
                     <p class="text-lg sm:text-xl text-light-dim leading-relaxed max-w-2xl mx-auto lg:mx-0">
                         Vertrauen durch authentischen Dreh, Schnitt & Social Media Management – aus einer Hand.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-                        <button onclick="openBooking()" class="inline-flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-accent hover:bg-accent-hover text-base-900 hover:shadow-accent/30">
-                            Jetzt Termin vereinbaren
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
-                        </button>
+                        <div class="flex flex-col items-center gap-3">
+                            <p class="text-xs text-light underline decoration-accent animate-pulse">⚡ Nur für kurze Zeit! ⚡<br>Spiele das Quiz und bekomme ein kostenloses Video</p>
+                            <button onclick="openBooking()" class="inline-flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-accent hover:bg-accent-hover text-base-900 hover:shadow-accent/30">
+                                Jetzt Quiz starten
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
+                            </button>
+                        </div>
                         <!-- ÄNDERUNG: HREF auf #location angepasst -->
                         <a href="#location" class="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 rounded-xl transition-all hover:bg-white/5 text-light-dim border border-base-700 hover:border-accent/50 hover:text-light">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -308,21 +406,21 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
 
                             <!-- Bilder Collage -->
                             <div class="collage-container relative h-32 w-full max-w-md animate-float-collage">
-                                <div class="flex justify-center lg:justify-start items-end h-full pl-4">
-                                    <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-16 md:-mr-24 z-10 transform -rotate-6 hover:rotate-0 origin-bottom-left transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f1936c64-7b86-4296-b9cf-9d234a7b28e7_800w.png" loading="lazy" class="w-full h-full object-cover bg-center" alt="Projekt 1">
+                                <div class="flex justify-center lg:justify-start items-end h-full">
+                                    <div class="collage-item relative w-20 h-12 md:w-32 md:h-20 bg-base-800 rounded-lg border-2 border-base-700 shadow-xl overflow-hidden -mr-8 md:-mr-12 z-10 transform -rotate-6 hover:rotate-0 origin-bottom-left transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
+                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f1936c64-7b86-4296-b9cf-9d234a7b28e7_800w.png" loading="lazy" class="w-full h-full object-cover" alt="Projekt 1">
                                     </div>
-                                    <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-16 md:-mr-24 z-20 transform -rotate-3 hover:rotate-0 origin-bottom-left transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/02ecb8db-5bca-4a84-9714-93664cc7a638_800w.png" loading="lazy" class="w-full h-full object-cover bg-center" alt="Projekt 2">
+                                    <div class="collage-item relative w-20 h-12 md:w-32 md:h-20 bg-base-800 rounded-lg border-2 border-base-700 shadow-xl overflow-hidden -mr-8 md:-mr-12 z-20 transform -rotate-3 hover:rotate-0 origin-bottom-left transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
+                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/02ecb8db-5bca-4a84-9714-93664cc7a638_800w.png" loading="lazy" class="w-full h-full object-cover" alt="Projekt 2">
                                     </div>
-                                    <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-16 md:-mr-24 z-30 transform rotate-0 hover:scale-110 origin-bottom transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e3f24e2a-7254-42dc-9321-cc49d8118d4d_800w.png" loading="lazy" class="bg-center w-full h-full object-cover" alt="Projekt 3">
+                                    <div class="collage-item relative w-20 h-12 md:w-32 md:h-20 bg-base-800 rounded-lg border-2 border-base-700 shadow-xl overflow-hidden -mr-8 md:-mr-12 z-30 transform rotate-0 hover:scale-110 origin-bottom transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
+                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e3f24e2a-7254-42dc-9321-cc49d8118d4d_800w.png" loading="lazy" class="w-full h-full object-cover" alt="Projekt 3">
                                     </div>
-                                    <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden -mr-16 md:-mr-24 z-20 transform rotate-3 hover:rotate-0 origin-bottom-right transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d8c9d92f-eab7-43be-a587-4ea30a895cda_800w.png" loading="lazy" class="bg-center w-full h-full object-cover" alt="Projekt 4">
+                                    <div class="collage-item relative w-20 h-12 md:w-32 md:h-20 bg-base-800 rounded-lg border-2 border-base-700 shadow-xl overflow-hidden -mr-8 md:-mr-12 z-20 transform rotate-3 hover:rotate-0 origin-bottom-right transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
+                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d8c9d92f-eab7-43be-a587-4ea30a895cda_800w.png" loading="lazy" class="w-full h-full object-cover" alt="Projekt 4">
                                     </div>
-                                    <div class="collage-item relative w-24 h-14 md:w-40 md:h-24 bg-base-800 rounded-lg border border-base-700 shadow-xl overflow-hidden z-10 transform rotate-6 hover:rotate-0 origin-bottom-right transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
-                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4b7ede95-bacb-4d78-8edd-e606f4182791_800w.png" loading="lazy" class="bg-center w-full h-full object-cover" alt="Projekt 5">
+                                    <div class="collage-item relative w-20 h-12 md:w-32 md:h-20 bg-base-800 rounded-lg border-2 border-base-700 shadow-xl overflow-hidden z-10 transform rotate-6 hover:rotate-0 origin-bottom-right transition-transform duration-300" onclick="openLightbox(this.querySelector('img').src)">
+                                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4b7ede95-bacb-4d78-8edd-e606f4182791_800w.png" loading="lazy" class="w-full h-full object-cover" alt="Projekt 5">
                                     </div>
                                 </div>
                             </div>
@@ -358,41 +456,42 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         <div class="max-w-7xl mx-auto px-4 md:px-8 mb-8 text-center">
             <p class="text-xs md:text-sm font-semibold text-light-dim uppercase tracking-[0.2em]">Kunden die mir vertrauen</p>
         </div>
-        <div class="relative w-full mask-gradient">
-            <div class="animate-scroll">
-                <div class="flex items-center gap-12 md:gap-24 px-6">
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&q=80" loading="lazy" alt="Partner">
+        <div class="relative w-full mask-gradient group">
+            <div class="flex animate-scroll">
+                <!-- First Set -->
+                <div class="flex items-center gap-12 md:gap-24 px-6 shrink-0">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="w-full h-auto">
                     </div>
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" loading="lazy" alt="Partner">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" loading="lazy" alt="Partner" class="w-full h-auto">
                     </div>
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="scale-90">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="w-full h-auto scale-90">
                     </div>
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="-translate-x-8">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="w-full h-auto">
                     </div>
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" loading="lazy" alt="Dein Logo" class="-translate-x-8 object-cover bg-center">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" loading="lazy" alt="Dein Logo" class="w-full h-auto object-cover bg-center">
                     </div>
                 </div>
                 <!-- Duplicate for infinite scroll -->
-                <div class="flex items-center gap-12 md:gap-24 px-6">
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&q=80" loading="lazy" alt="Partner">
+                <div class="flex items-center gap-12 md:gap-24 px-6 shrink-0">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="w-full h-auto">
                     </div>
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" loading="lazy" alt="Partner">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" loading="lazy" alt="Partner" class="w-full h-auto">
                     </div>
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="scale-90">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="w-full h-auto scale-90">
                     </div>
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="-translate-x-8">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" loading="lazy" alt="Partner" class="w-full h-auto">
                     </div>
-                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" loading="lazy" alt="Dein Logo" class="-translate-x-8 object-cover bg-center">
+                    <div class="w-32 md:w-40 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 shrink-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" loading="lazy" alt="Dein Logo" class="w-full h-auto object-cover bg-center">
                     </div>
                 </div>
             </div>
@@ -696,8 +795,9 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
 
                     <div class="mt-4 pt-6 border-t border-base-700/50 text-center">
+                        <p class="text-xs text-light underline decoration-accent animate-pulse mb-3">⚡ Nur für kurze Zeit! ⚡<br>Spiele das Quiz und bekomme ein kostenloses Video</p>
                         <button onclick="openBooking()" class="w-full bg-accent hover:bg-accent-hover text-base-900 font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-accent/40 hover:-translate-y-1 text-lg">
-                            Jetzt anfragen
+                            Jetzt Quiz starten
                         </button>
                     </div>
                 </div>
@@ -868,8 +968,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
                 <div class="flex flex-col items-center justify-center">
                     <span class="text-xs text-light-dim font-medium uppercase tracking-wider mb-2">E-Mail Kontakt</span>
-                    <a href="mailto:Mail@marcel-reinwarth.de" class="text-accent font-medium text-lg animate-email-pulse hover:text-light transition-colors">
-                        Mail@marcel-reinwarth.de
+                    <a href="/cdn-cgi/l/email-protection#78351911143815190a1b1d14550a1d11160f190a0c10561c1d" class="text-accent font-medium text-lg animate-email-pulse hover:text-light transition-colors">
+                        <span class="__cf_email__" data-cfemail="e8a5898184a885899a8b8d84c59a8d81869f899a9c80c68c8d">[email&#160;protected]</span>
                     </a>
 
                     <div class="flex gap-6 mt-6 justify-center">
@@ -895,151 +995,305 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     </footer>
 </div>
 
-<!-- Cookie Banner -->
-<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-base-900 border-t border-base-800 p-6 z-[60] hidden flex-col md:flex-row items-center justify-between gap-4 shadow-2xl">
-    <div class="text-sm text-light-dim max-w-2xl">
-        <p class="mb-2"><strong class="text-light">Datenschutz-Einstellungen</strong></p>
-        <p>Wir nutzen Cookies und externe Dienste (wie Video-Player), um das Nutzererlebnis zu verbessern. Einige sind essenziell, andere helfen uns, Inhalte zu optimieren.</p>
-        <div class="mt-2 flex gap-4 text-xs">
-            <a href="datenschutz.html" class="underline hover:text-accent">Datenschutzerklärung</a>
-            <a href="impressum.html" class="underline hover:text-accent">Impressum</a>
+<!-- Cookie Banner - DSGVO konform -->
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-base-900 via-base-800 to-base-900 border-t-2 border-accent/30 p-6 z-[60] hidden flex-col md:flex-row items-center justify-between gap-6 shadow-2xl backdrop-blur-md">
+    <div class="text-sm text-light max-w-2xl">
+        <p class="mb-3 flex items-center gap-2">
+            <span class="text-3xl">🍪</span>
+            <strong class="text-xl text-light">Gönn dir ein Cookie!</strong>
+        </p>
+        <p class="text-light-dim leading-relaxed mb-3">
+            Wir nutzen Cookies und Analyse-Tools (Google Analytics, Facebook Pixel), um zu verstehen, wie du unsere Seite nutzt und sie für dich zu verbessern. 
+            <strong class="text-light">Ohne deine Zustimmung tracken wir nichts!</strong> ✌️
+        </p>
+        <div class="flex flex-wrap gap-4 text-xs text-light-dim">
+            <a href="datenschutz.html" class="underline hover:text-accent transition-colors">📄 Datenschutzerklärung</a>
+            <a href="impressum.html" class="underline hover:text-accent transition-colors">ℹ️ Impressum</a>
+            <span class="opacity-60">🔒 Deine Daten sind sicher</span>
         </div>
     </div>
-    <div class="flex gap-3 shrink-0">
-        <button onclick="acceptCookies('essential')" class="px-4 py-2 rounded-lg border border-base-800 text-light-dim text-sm font-medium hover:bg-base-800 transition-colors">Nur Essenzielle</button>
-        <button onclick="acceptCookies('all')" class="px-4 py-2 rounded-lg bg-accent text-base-900 text-sm font-bold hover:bg-accent-hover transition-colors shadow-lg shadow-accent/20">Alles akzeptieren</button>
+    <div class="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
+        <button onclick="acceptCookies('essential')" class="px-6 py-3 rounded-lg border-2 border-base-700 text-light text-sm font-medium hover:bg-base-700 hover:border-accent/50 transition-all">
+            ❌ Nur Essenzielle
+        </button>
+        <button onclick="acceptCookies('all')" class="px-6 py-3 rounded-lg bg-gradient-to-r from-accent to-accent-hover text-base-900 text-sm font-bold hover:shadow-xl hover:shadow-accent/40 transition-all transform hover:scale-105">
+            ✅ Alle Cookies gönnen!
+        </button>
     </div>
 </div>
 
-<!-- === FULLSCREEN BOOKING OVERLAY === -->
+<!-- === FULLSCREEN QUIZ OVERLAY === -->
 <div id="booking-overlay" class="fixed inset-0 z-[100] bg-base-900 hidden flex flex-col items-center justify-center overflow-y-auto">
     <button onclick="closeBooking()" class="absolute top-6 right-6 p-2 rounded-full bg-base-800 text-light-dim hover:text-light hover:bg-base-700 transition-all z-50">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
     </button>
 
-    <div class="w-full max-w-lg px-6 py-12 relative">
+    <div class="w-full max-w-2xl px-6 py-12 relative">
         <div id="form-container" class="transition-opacity duration-500">
+            
+            <!-- Teaser Text über Quiz -->
+            <div class="text-center mb-8">
+                <p class="text-sm text-light underline decoration-accent animate-pulse">⚡ Nur für kurze Zeit! ⚡<br>Spiele das Quiz und bekomme ein kostenloses Video</p>
+            </div>
+
+            <!-- Progress Bar -->
             <div class="mb-12">
                 <div class="flex justify-between text-xs text-light-dim mb-2 uppercase tracking-wider font-medium">
-                    <span>Schritt <span id="current-step-text">1</span> von 4</span>
-                    <span id="step-name">Über dich</span>
+                    <span>Frage <span id="current-step-text">1</span> von 5</span>
+                    <span id="step-name">Deine Präsenz</span>
                 </div>
                 <div class="h-1 bg-base-800 rounded-full overflow-hidden">
-                    <div id="progress-bar" class="h-full bg-accent transition-all duration-500 w-1/4"></div>
+                    <div id="progress-bar" class="h-full bg-accent transition-all duration-500 w-[20%]"></div>
                 </div>
             </div>
 
             <form id="booking-form" onsubmit="event.preventDefault();">
-                <!-- STEP 1: Basic Info -->
+                
+                <!-- QUIZ FRAGE 1: Social Media Präsenz -->
                 <div class="step-content active" id="step-1">
-                    <h2 class="text-3xl font-bold text-light mb-2">Lass uns starten.</h2>
-                    <p class="text-light-dim mb-8">Wie dürfen wir dich ansprechen?</p>
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-medium text-light-dim mb-2">Dein Name</label>
-                            <input type="text" id="input-name" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="Max Mustermann">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-light-dim mb-2">E-Mail Adresse</label>
-                            <input type="email" id="input-email" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="max@beispiel.de">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-light-dim mb-2">Telefonnummer <span class="text-light-dim/70">(Optional)</span></label>
-                            <input type="tel" id="input-phone" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="+49 151 ...">
-                        </div>
+                    <h2 class="text-3xl font-bold text-light mb-4 text-center">Wie präsent bist du auf Social Media?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                        <button type="button" onclick="selectAnswer(1, 'Kaum bis gar nicht'); nextStep(2);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📱</div>
+                            <h3 class="text-xl font-bold text-light mb-2">Kaum bis gar nicht</h3>
+                            <p class="text-sm text-light-dim">Ich poste selten oder habe noch gar nicht angefangen</p>
+                        </button>
+                        <button type="button" onclick="selectAnswer(1, 'Aktiv, aber ohne Strategie'); nextStep(2);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📊</div>
+                            <h3 class="text-xl font-bold text-light mb-2">Aktiv, aber ohne Strategie</h3>
+                            <p class="text-sm text-light-dim">Ich poste regelmäßig, aber ohne klaren Plan</p>
+                        </button>
                     </div>
-                    <div class="mt-10 flex justify-end">
-                        <button onclick="nextStep(2)" class="bg-light text-base-900 px-8 py-3 rounded-xl font-bold hover:bg-accent transition-colors">Weiter</button>
+                    <div class="text-center mt-8">
+                        <button type="button" class="quiz-progress-btn bg-accent text-base-900 px-8 py-3 rounded-xl font-bold">4 Fragen bis zum kostenlosen Video 🎯</button>
                     </div>
                 </div>
 
-                <!-- STEP 2: Company Info -->
+                <!-- QUIZ FRAGE 2: Größtes Problem -->
                 <div class="step-content" id="step-2">
-                    <h2 class="text-3xl font-bold text-light mb-2">Dein Business.</h2>
-                    <p class="text-light-dim mb-8">Erzähl uns kurz von deinem Unternehmen.</p>
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-medium text-light-dim mb-2">Unternehmen <span class="text-light-dim/70">(Optional)</span></label>
-                            <input type="text" id="input-company" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="Firma GmbH">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-light-dim mb-2">Website <span class="text-light-dim/70">(Optional)</span></label>
-                            <input type="url" id="input-website" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="www.deineseite.de">
-                        </div>
+                    <h2 class="text-3xl font-bold text-light mb-4 text-center">Was ist dein größtes Problem?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                        <button type="button" onclick="selectAnswer(2, 'Keine Zeit für Content'); nextStep(3);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">⏰</div>
+                            <h3 class="text-xl font-bold text-light mb-2">Keine Zeit für Content</h3>
+                            <p class="text-sm text-light-dim">Ich habe einfach keine Zeit für die Content-Erstellung</p>
+                        </button>
+                        <button type="button" onclick="selectAnswer(2, 'Keine Ahnung was ankommt'); nextStep(3);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🤔</div>
+                            <h3 class="text-xl font-bold text-light mb-2">Keine Ahnung, was gut ankommt</h3>
+                            <p class="text-sm text-light-dim">Ich weiß nicht, welcher Content funktioniert</p>
+                        </button>
                     </div>
-                    <div class="mt-10 flex justify-between items-center">
-                        <button onclick="nextStep(1)" class="text-light-dim hover:text-light transition-colors">Zurück</button>
-                        <button onclick="nextStep(3)" class="bg-light text-base-900 px-8 py-3 rounded-xl font-bold hover:bg-accent transition-colors">Weiter</button>
+                    <div class="text-center mt-8">
+                        <button type="button" class="quiz-progress-btn bg-accent text-base-900 px-8 py-3 rounded-xl font-bold">3 Fragen bis zum kostenlosen Video 🎯</button>
                     </div>
                 </div>
 
-                <!-- STEP 3: Project Details -->
+                <!-- QUIZ FRAGE 3: Gewünschte Lösung -->
                 <div class="step-content" id="step-3">
-                    <h2 class="text-3xl font-bold text-light mb-2">Das Projekt.</h2>
-                    <p class="text-light-dim mb-8">Worum geht es genau?</p>
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-medium text-light-dim mb-2">Projekttyp</label>
-                            <select id="input-type" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors appearance-none">
-                                <option value="Social Media Content">Social Media Content (TikTok/Reels)</option>
-                                <option value="Imagefilm">Imagefilm</option>
-                                <option value="Werbeanzeige">Werbeanzeige (Ads)</option>
-                                <option value="Sonstiges">Sonstiges</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-light-dim mb-2">Wunsch-Deadline <span class="text-light-dim/70">(Optional)</span></label>
-                            <input type="text" id="input-deadline" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="z.B. Ende nächsten Monats">
-                        </div>
+                    <h2 class="text-3xl font-bold text-light mb-4 text-center">Welche Lösung passt zu dir?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                        <button type="button" onclick="selectAnswer(3, 'Nur professionelle Videos'); nextStep(4);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎥</div>
+                            <h3 class="text-xl font-bold text-light mb-2">Ich brauche nur Videos</h3>
+                            <p class="text-sm text-light-dim">Professionelle Videos (Dreh + Schnitt)</p>
+                        </button>
+                        <button type="button" onclick="selectAnswer(3, 'Social Media Betreuung'); nextStep(4);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
+                            <h3 class="text-xl font-bold text-light mb-2">Komplette Betreuung</h3>
+                            <p class="text-sm text-light-dim">Social Media Betreuung (Full-Service)</p>
+                        </button>
                     </div>
-                    <div class="mt-10 flex justify-between items-center">
-                        <button onclick="nextStep(2)" class="text-light-dim hover:text-light transition-colors">Zurück</button>
-                        <button onclick="nextStep(4)" class="bg-light text-base-900 px-8 py-3 rounded-xl font-bold hover:bg-accent transition-colors">Weiter</button>
+                    <div class="text-center mt-8">
+                        <button type="button" class="quiz-progress-btn bg-accent text-base-900 px-8 py-3 rounded-xl font-bold">2 Fragen bis zum kostenlosen Video 🎯</button>
                     </div>
                 </div>
 
-                <!-- STEP 4: Summary / Send -->
+                <!-- QUIZ FRAGE 4: Startzeit -->
                 <div class="step-content" id="step-4">
-                    <h2 class="text-3xl font-bold text-light mb-2">Fast geschafft.</h2>
-                    <p class="text-light-dim mb-8">Noch eine kurze Nachricht dazu?</p>
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-medium text-light-dim mb-2">Nachricht / Details <span class="text-light-dim/70">(Optional)</span></label>
-                            <textarea id="input-message" rows="4" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors placeholder-light-dim/50" placeholder="Erzähl mir kurz was über deine Ziele..."></textarea>
+                    <h2 class="text-3xl font-bold text-light mb-4 text-center">Wann möchtest du starten?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                        <button type="button" onclick="selectAnswer(4, 'So schnell wie möglich'); nextStep(5);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">⚡</div>
+                            <h3 class="text-xl font-bold text-light mb-2">So schnell wie möglich</h3>
+                            <p class="text-sm text-light-dim">Ich will direkt loslegen</p>
+                        </button>
+                        <button type="button" onclick="selectAnswer(4, 'In 1-3 Monaten'); nextStep(5);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📅</div>
+                            <h3 class="text-xl font-bold text-light mb-2">In 1-3 Monaten</h3>
+                            <p class="text-sm text-light-dim">Ich plane voraus und will bald starten</p>
+                        </button>
+                    </div>
+                    <div class="text-center mt-8">
+                        <button type="button" class="quiz-progress-btn bg-accent text-base-900 px-8 py-3 rounded-xl font-bold">1 Frage bis zum kostenlosen Video 🎯</button>
+                    </div>
+                </div>
+
+                <!-- FRAGE 5: Lead Capture -->
+                <div class="step-content" id="step-5">
+                    <h2 class="text-3xl font-bold text-light mb-2 text-center">Fast geschafft! 🎉</h2>
+                    <p class="text-light-dim mb-8 text-center">Deine Daten für dein kostenloses, maßgeschneidertes Video:</p>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-light mb-2">Vorname <span class="text-accent">*</span></label>
+                                <input type="text" id="input-firstname" required class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="Max" oninput="checkFormCompletion()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-light mb-2">Nachname <span class="text-accent">*</span></label>
+                                <input type="text" id="input-lastname" required class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="Mustermann" oninput="checkFormCompletion()">
+                            </div>
                         </div>
-                        <div class="bg-base-800 p-4 rounded-xl border border-base-700 text-xs text-light-dim mt-6">
-                            Deine Daten werden sicher übertragen und nur für die Kontaktaufnahme genutzt.
+                        <div>
+                            <label class="block text-sm font-medium text-light mb-2">Unternehmen <span class="text-light-dim/70">(Optional)</span></label>
+                            <input type="text" id="input-company" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="Deine Firma GmbH" oninput="checkFormCompletion()">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-light mb-2">Website <span class="text-light-dim/70">(Optional)</span></label>
+                            <input type="url" id="input-website" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="www.deine-firma.de" oninput="checkFormCompletion()">
+                        </div>
+                        
+                        <!-- Kontaktweg Auswahl -->
+                        <div class="pt-4">
+                            <label class="block text-sm font-medium text-light mb-3">Wie sollen wir dich kontaktieren? <span class="text-accent">*</span></label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <button type="button" onclick="selectContactMethod('whatsapp')" id="contact-whatsapp" class="contact-method-btn bg-base-800 hover:bg-base-700 border-2 border-base-700 rounded-xl p-4 transition-all cursor-pointer text-left">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-3xl">💬</div>
+                                        <div>
+                                            <h4 class="text-light font-bold">WhatsApp</h4>
+                                            <p class="text-xs text-light-dim">Schnell & bequem</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                <button type="button" onclick="selectContactMethod('email')" id="contact-email" class="contact-method-btn bg-base-800 hover:bg-base-700 border-2 border-base-700 rounded-xl p-4 transition-all cursor-pointer text-left">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-3xl">✉️</div>
+                                        <div>
+                                            <h4 class="text-light font-bold">E-Mail</h4>
+                                            <p class="text-xs text-light-dim">Klassisch & sicher</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dynamisches Kontakt-Feld -->
+                        <div id="contact-field-container" class="hidden">
+                            <div id="whatsapp-field" class="hidden">
+                                <label class="block text-sm font-medium text-light mb-2">Deine WhatsApp-Nummer <span class="text-accent">*</span></label>
+                                <input type="tel" id="input-phone" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="+49 151 ..." oninput="checkFormCompletion()">
+                            </div>
+                            <div id="email-field" class="hidden">
+                                <label class="block text-sm font-medium text-light mb-2">Deine E-Mail-Adresse <span class="text-accent">*</span></label>
+                                <input type="email" id="input-email" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="max@beispiel.de" oninput="checkFormCompletion()">
+                            </div>
+                        </div>
+
+                        <div class="bg-base-800/50 p-4 rounded-xl border border-base-700/50 text-xs text-light-dim mt-6">
+                            🔒 Deine Daten werden sicher übertragen und nur für die Zusendung deines Videos genutzt.
                         </div>
                     </div>
-                    <div class="mt-10 flex justify-between items-center">
-                        <button onclick="nextStep(3)" class="text-light-dim hover:text-light transition-colors">Zurück</button>
-                        <button id="send-button" onclick="sendToGoogleSheets()" class="bg-accent hover:bg-accent-hover text-base-900 px-8 py-3 rounded-xl font-bold transition-all shadow-lg flex items-center gap-2">
-                            <span>Absenden</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    <div class="mt-8 flex justify-center">
+                        <button id="final-submit-btn" disabled onclick="sendToGoogleSheets()" class="submit-btn-disabled px-12 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2">
+                            <span id="submit-btn-icon">🔒</span>
+                            <span id="submit-btn-text">Schalte dein Kostenloses Video frei</span>
                         </button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <!-- SUCCESS MESSAGE (In-Page Fallback, jetzt ungenutzt aber zur Sicherheit da) -->
+        <!-- SUCCESS MESSAGE -->
         <div id="success-message" class="hidden opacity-0 transition-opacity duration-500 absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <div class="w-20 h-20 bg-accent/20 text-accent rounded-full flex items-center justify-center mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <h2 class="text-3xl font-bold text-light mb-4">Vielen Dank, Marcel meldet sich bald bei dir</h2>
-            <p class="text-light-dim max-w-md mx-auto mb-8">Du wirst in wenigen Sekunden zur Startseite weitergeleitet.</p>
+            <h2 class="text-3xl font-bold text-light mb-4">Perfekt! 🎉</h2>
+            <p class="text-light-dim max-w-md mx-auto mb-8">Dein kostenloses Video wird erstellt. Marcel meldet sich innerhalb von 24h bei dir!</p>
             <div class="w-full bg-base-800 rounded-full h-1.5 mt-4 max-w-xs mx-auto overflow-hidden">
                 <div class="bg-accent h-1.5 rounded-full animate-timer w-full"></div>
             </div>
-            <button onclick="closeBooking()" class="mt-8 bg-light text-base-900 px-8 py-3 rounded-xl font-bold hover:bg-accent transition-colors">Jetzt schließen</button>
         </div>
     </div>
 </div>
 
 <!-- Logic Script -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzec34b5zh0OFhPOt1MEPeY1889vIHM3fCFF_US7byyiQ97MCqQEgbrPXfRxOZ-0i4/exec";
+
+    // Quiz Antworten speichern
+    const quizAnswers = {
+        q1: null,
+        q2: null,
+        q3: null,
+        q4: null,
+        contactMethod: null
+    };
+
+    // --- QUIZ FUNCTIONS ---
+    function selectAnswer(questionNumber, answer) {
+        quizAnswers[`q${questionNumber}`] = answer;
+    }
+
+    function selectContactMethod(method) {
+        quizAnswers.contactMethod = method;
+        
+        // Visuelle Feedback für Buttons
+        document.getElementById('contact-whatsapp').classList.remove('contact-method-selected');
+        document.getElementById('contact-email').classList.remove('contact-method-selected');
+        
+        if(method === 'whatsapp') {
+            document.getElementById('contact-whatsapp').classList.add('contact-method-selected');
+            document.getElementById('whatsapp-field').classList.remove('hidden');
+            document.getElementById('email-field').classList.add('hidden');
+            document.getElementById('input-email').value = '';
+        } else {
+            document.getElementById('contact-email').classList.add('contact-method-selected');
+            document.getElementById('email-field').classList.remove('hidden');
+            document.getElementById('whatsapp-field').classList.add('hidden');
+            document.getElementById('input-phone').value = '';
+        }
+        
+        document.getElementById('contact-field-container').classList.remove('hidden');
+        checkFormCompletion();
+    }
+
+    function checkFormCompletion() {
+        const firstname = document.getElementById('input-firstname').value.trim();
+        const lastname = document.getElementById('input-lastname').value.trim();
+        const phone = document.getElementById('input-phone').value.trim();
+        const email = document.getElementById('input-email').value.trim();
+        
+        const btn = document.getElementById('final-submit-btn');
+        const btnText = document.getElementById('submit-btn-text');
+        const btnIcon = document.getElementById('submit-btn-icon');
+        
+        const hasNames = firstname && lastname;
+        const hasContact = (quizAnswers.contactMethod === 'whatsapp' && phone) || 
+                          (quizAnswers.contactMethod === 'email' && email);
+        
+        // Button States
+        if (hasNames && hasContact) {
+            // GRÜN - Vollständig
+            btn.disabled = false;
+            btn.className = 'submit-btn-complete px-12 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2';
+            btnText.textContent = 'Klicke hier für dein Kostenloses Video';
+            btnIcon.textContent = '✅';
+        } else if (hasNames) {
+            // ORANGE - Teilweise
+            btn.disabled = true;
+            btn.className = 'submit-btn-partial px-12 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2';
+            btnText.textContent = 'Schalte dein Kostenloses Video frei';
+            btnIcon.textContent = '🔓';
+        } else {
+            // GRAU - Leer
+            btn.disabled = true;
+            btn.className = 'submit-btn-disabled px-12 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2';
+            btnText.textContent = 'Schalte dein Kostenloses Video frei';
+            btnIcon.textContent = '🔒';
+        }
+    }
 
     // --- LIGHTBOX FUNCTIONS ---
     function openLightbox(src) {
@@ -1118,18 +1372,28 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         link.addEventListener('click', () => { closeMenu(); });
     });
 
-    // --- Cookie Banner Logic ---
+    // --- Cookie Banner Logic - DSGVO konform ---
     function checkCookies() {
         if (!localStorage.getItem('cookieConsent')) {
             document.getElementById('cookie-banner').classList.remove('hidden');
             document.getElementById('cookie-banner').classList.add('flex');
         }
     }
+    
     function acceptCookies(type) {
         localStorage.setItem('cookieConsent', type);
         document.getElementById('cookie-banner').classList.add('hidden');
         document.getElementById('cookie-banner').classList.remove('flex');
+        
+        // Wenn User "Alle Cookies" akzeptiert, lade Tracking-Scripts
+        if (type === 'all' && typeof loadTracking === 'function') {
+            loadTracking();
+            console.log('✅ Tracking aktiviert (Google Analytics + Facebook Pixel)');
+        } else {
+            console.log('ℹ️ Nur essenzielle Cookies - kein Tracking');
+        }
     }
+    
     window.addEventListener('load', checkCookies);
 
     // --- Booking Overlay Logic ---
@@ -1145,6 +1409,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         document.getElementById('form-container').classList.remove('opacity-0', 'hidden');
         document.getElementById('success-message').classList.add('hidden', 'opacity-0');
         document.getElementById('booking-form').reset();
+        // Reset quiz answers
+        quizAnswers.q1 = null;
+        quizAnswers.q2 = null;
+        quizAnswers.q3 = null;
+        quizAnswers.q4 = null;
+        quizAnswers.contactMethod = null;
         nextStep(1);
     }
 
@@ -1159,29 +1429,66 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             document.getElementById(`step-${step}`).classList.add('active');
         }
         currentStepText.innerText = step;
-        if(step === 1) { progressBar.style.width = '25%'; stepName.innerText = "Über dich"; }
-        else if(step === 2) { progressBar.style.width = '50%'; stepName.innerText = "Unternehmen"; }
-        else if(step === 3) { progressBar.style.width = '75%'; stepName.innerText = "Projekt"; }
-        else if(step === 4) { progressBar.style.width = '100%'; stepName.innerText = "Abschluss"; }
+        
+        // Update Progress Bar & Step Names
+        if(step === 1) { 
+            progressBar.style.width = '20%'; 
+            stepName.innerText = "Deine Präsenz"; 
+        }
+        else if(step === 2) { 
+            progressBar.style.width = '40%'; 
+            stepName.innerText = "Dein Problem"; 
+        }
+        else if(step === 3) { 
+            progressBar.style.width = '60%'; 
+            stepName.innerText = "Deine Lösung"; 
+        }
+        else if(step === 4) { 
+            progressBar.style.width = '80%'; 
+            stepName.innerText = "Start-Zeitpunkt"; 
+        }
+        else if(step === 5) { 
+            progressBar.style.width = '100%'; 
+            stepName.innerText = "Fast geschafft!"; 
+        }
     }
 
     async function sendToGoogleSheets() {
-        const btn = document.getElementById('send-button');
+        const btn = document.getElementById('final-submit-btn');
         const originalBtnContent = btn.innerHTML;
+        
+        const firstname = document.getElementById('input-firstname').value.trim();
+        const lastname = document.getElementById('input-lastname').value.trim();
+        const company = document.getElementById('input-company').value.trim() || "-";
+        const website = document.getElementById('input-website').value.trim() || "-";
+        
+        let phone = "-";
+        let email = "-";
+        
+        if(quizAnswers.contactMethod === 'whatsapp') {
+            phone = document.getElementById('input-phone').value.trim();
+        } else if(quizAnswers.contactMethod === 'email') {
+            email = document.getElementById('input-email').value.trim();
+        }
+        
+        // ALTE FELDNAMEN für Google Sheet Kompatibilität
         const data = {
-            name: document.getElementById('input-name').value,
-            email: document.getElementById('input-email').value,
-            phone: document.getElementById('input-phone').value || "-",
-            company: document.getElementById('input-company').value || "-",
-            website: document.getElementById('input-website').value || "-",
-            type: document.getElementById('input-type').value,
-            deadline: document.getElementById('input-deadline').value || "-",
-            message: document.getElementById('input-message').value || "-"
+            name: firstname + " " + lastname,           // Kombiniert zu einem Namen
+            email: email,                               // Entweder Email oder "-"
+            phone: phone,                               // Entweder Telefon oder "-"
+            company: company,                           // Unternehmen
+            website: website,                           // Website
+            type: quizAnswers.q3 || "Social Media Content",  // Quiz Frage 3 als "Angebot"
+            deadline: quizAnswers.q4 || "-",           // Quiz Frage 4 als "Deadline"
+            message: "Quiz Antworten:\nFrage 1 (Präsenz): " + (quizAnswers.q1 || "-") + 
+                    "\nFrage 2 (Problem): " + (quizAnswers.q2 || "-") + 
+                    "\nFrage 3 (Lösung): " + (quizAnswers.q3 || "-") + 
+                    "\nFrage 4 (Startzeit): " + (quizAnswers.q4 || "-") +
+                    "\nKontaktweg: " + (quizAnswers.contactMethod || "-")
         };
 
-        if(!data.name || !data.email) {
-            alert("Bitte gib zumindest deinen Namen und deine E-Mail an.");
-            nextStep(1);
+        if(!firstname || !lastname || (phone === "-" && email === "-")) {
+            alert("Bitte fülle alle Pflichtfelder aus.");
             return;
         }
 
@@ -1197,7 +1504,6 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             });
 
             // --- ERFOLGREICH: Weiterleitung zur separaten Success-Seite ---
-            // Hier leiten wir den Nutzer auf die neue Seite weiter
             window.location.href = 'success.html';
 
         } catch (error) {
@@ -1287,13 +1593,4 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         const el = document.getElementById('view-counter');
         let current = startValue;
         setInterval(() => {
-            const add = Math.floor(Math.random() * 50) + 5;
-            current += add;
-            el.innerText = Math.floor(current).toLocaleString('de-DE');
-        }, 2500);
-    }
-
-    document.addEventListener('DOMContentLoaded', animateCounter);
-</script>
-</body>
-</html>
+            const add = M
