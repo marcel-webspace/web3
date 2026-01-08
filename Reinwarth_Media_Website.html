@@ -1441,9 +1441,9 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             telefonnummer: quizAnswers.contactMethod === 'whatsapp' ? contactValue : "",
             unternehmen: company,
             website: website,
-            angebot: quizAnswers.q3 || "",
-            deadline: quizAnswers.q4 || "",
-            textinfo: `Frage 1 (Präsenz): ${quizAnswers.q1 || "-"}; Frage 2 (Problem): ${quizAnswers.q2 || "-"}; Kontaktweg: ${quizAnswers.contactMethod || "-"}`
+            angebot: quizAnswers.q3 || "-",
+            deadline: quizAnswers.q4 || "-",
+            textinfo: `Frage 1 (Präsenz): ${quizAnswers.q1 || "-"} | Frage 2 (Problem): ${quizAnswers.q2 || "-"} | Frage 3 (Lösung): ${quizAnswers.q3 || "-"} | Frage 4 (Startzeit): ${quizAnswers.q4 || "-"} | Kontaktweg: ${quizAnswers.contactMethod || "-"}`
         };
 
         if(!firstname || !lastname || !contactValue || contactValue === "-") {
