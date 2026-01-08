@@ -1437,13 +1437,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         
         const data = {
             name: `${firstname} ${lastname}`,
-            email: quizAnswers.contactMethod === 'email' ? contactValue : "",
-            telefonnummer: quizAnswers.contactMethod === 'whatsapp' ? contactValue : "",
-            unternehmen: company,
+            email: quizAnswers.contactMethod === 'email' ? contactValue : "-",
+            phone: quizAnswers.contactMethod === 'whatsapp' ? contactValue : "-",
+            company: company,
             website: website,
-            angebot: quizAnswers.q3 || "-",
+            type: quizAnswers.q3 || "-",
             deadline: quizAnswers.q4 || "-",
-            textinfo: `Frage 1 (Präsenz): ${quizAnswers.q1 || "-"} | Frage 2 (Problem): ${quizAnswers.q2 || "-"} | Frage 3 (Lösung): ${quizAnswers.q3 || "-"} | Frage 4 (Startzeit): ${quizAnswers.q4 || "-"} | Kontaktweg: ${quizAnswers.contactMethod || "-"}`
+            message: `Frage 1 (Präsenz): ${quizAnswers.q1 || "-"} | Frage 2 (Problem): ${quizAnswers.q2 || "-"} | Frage 3 (Lösung): ${quizAnswers.q3 || "-"} | Frage 4 (Startzeit): ${quizAnswers.q4 || "-"} | Kontaktweg: ${quizAnswers.contactMethod || "-"}`
         };
 
         if(!firstname || !lastname || !contactValue || contactValue === "-") {
