@@ -6,14 +6,10 @@
 
 
 <!-- Favicon -->
-    <!-- SVG für moderne Browser (scharf bei jedem Zoom) -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <!-- PNG/ICO als Fallback für Google & ältere Browser -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     
     <!-- Meta Tags für Google -->
     <meta name="description" content="Online Reichweite für Unternehmer auf Social Media. Vertrauen durch authentischen Dreh, Schnitt & Social Media Management – aus einer Hand.">
@@ -31,6 +27,9 @@
    
       gtag('config', 'G-GDV88J2YZ9');
     </script>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
     <!-- Strukturierte Daten für Google (Logo) -->
     <script type="application/ld+json">
@@ -963,8 +962,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
                 <div class="flex flex-col items-center justify-center">
                     <span class="text-xs text-light-dim font-medium uppercase tracking-wider mb-2">E-Mail Kontakt</span>
-                    <a href="/cdn-cgi/l/email-protection#adc0ccc4c1edc0ccdfcec8c180dfc8c4c3daccdfd9c583c9c8" class="text-accent font-medium text-lg animate-email-pulse hover:text-light transition-colors">
-                        <span class="__cf_email__" data-cfemail="e588848c89a5888497868089c897808c8b928497918dcb8180">[email&#160;protected]</span>
+                    <a href="mailto:mail@marcel-reinwarth.de" class="text-accent font-medium text-lg animate-email-pulse hover:text-light transition-colors">
+                        mail@marcel-reinwarth.de
                     </a>
 
                     <div class="flex gap-6 mt-6 justify-center">
@@ -1203,7 +1202,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
 </div>
 
 <!-- Logic Script -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzec34b5zh0OFhPOt1MEPeY1889vIHM3fCFF_US7byyiQ97MCqQEgbrPXfRxOZ-0i4/exec";
 
     // Quiz Antworten speichern
@@ -1566,4 +1565,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         const el = document.getElementById('view-counter');
         let current = startValue;
         setInterval(() => {
-            const add = M
+            const add = Math.floor(Math.random() * 50) + 5;
+            current += add;
+            el.innerText = Math.floor(current).toLocaleString('de-DE');
+        }, 2500);
+    }
+
+    document.addEventListener('DOMContentLoaded', animateCounter);
+</script>
+</body>
+</html>
