@@ -323,6 +323,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     <a href="#comparison" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Fakten</a>
                     <a href="#testimonials" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Kunden</a>
                     <a href="#faq" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">FAQ</a>
+                    <a href="portfolio.html" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Portfolio</a>
                 </div>
                 <div class="flex items-center gap-3">
                     <button onclick="openBooking()" class="hidden sm:inline-block transition-all hover:shadow-lg hover:-translate-y-0.5 hover:shadow-accent/20 text-sm font-bold text-base-900 bg-accent hover:bg-accent-hover rounded-lg py-2.5 px-5">
@@ -343,6 +344,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             <a href="#comparison" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Fakten</a>
             <a href="#testimonials" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Kundenstimmen</a>
             <a href="#faq" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">FAQ</a>
+            <a href="portfolio.html" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Portfolio</a>
             <button onclick="openBooking(); closeMenu();" class="text-xl font-medium text-accent hover:text-accent-hover transition-colors mobile-link">Jetzt Quiz starten</button>
             <button id="closeMobileMenu" class="absolute top-6 right-6 text-light-dim p-2 hover:text-light transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -857,6 +859,14 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" class="text-base-900 ml-1"><path d="M8 5v14l11-7z"/></svg>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Portfolio Button -->
+            <div class="mt-10">
+                <a href="portfolio.html" class="inline-flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-accent hover:bg-accent-hover text-base-900 hover:shadow-accent/30">
+                    Mehr Projekte ansehen
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
+                </a>
             </div>
         </div>
     </section>
@@ -1511,23 +1521,26 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     // --- OPTIMIERUNG: Reduzierte Icon Anzahl (12 statt 45) ---
     function initSocialBackground() {
         const container = document.getElementById('social-pattern');
+        if (!container) return;
         const icons = ['mdi:instagram', 'ic:baseline-tiktok', 'mdi:youtube'];
-        // OPTIMIERUNG: 12 Icons für weniger GPU Last
         const count = 12;
 
         for (let i = 0; i < count; i++) {
             const iconName = icons[Math.floor(Math.random() * icons.length)];
-            const el = document.crea= 1.5 + Math.random() * 2.5;
-            el.style.fontSize = `${size}rem`;
+            const el = document.createElement('span');
+            el.className = 'social-icon iconify';
+            el.setAttribute('data-icon', iconName);
+            el.style.left = Math.random() * 100 + '%';
+            el.style.top = Math.random() * 100 + '%';
+            const size = 1.5 + Math.random() * 2.5;
+            el.style.fontSize = size + 'rem';
             const duration = 20 + Math.random() * 40;
-            el.style.animationDuration = `${duration}s, ${duration/2}s`;
+            el.style.animationDuration = duration + 's, ' + (duration/2) + 's';
             const delay = -1 * (Math.random() * 40);
-            el.style.animationDelay = `${delay}s, ${delay}s`;
+            el.style.animationDelay = delay + 's, ' + delay + 's';
             container.appendChild(el);
         }
     }
-
-    // Da Script nun deferred ist, warten bis Iconify geladen ist, sonst manuell triggern oder DOMContentLoaded nutzen
     document.addEventListener('DOMContentLoaded', initSocialBackground);
 
     // --- Live View Counter Animation ---
