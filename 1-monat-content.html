@@ -1,0 +1,524 @@
+<html lang="de" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Monat Content - Reinwarth Media</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Fonts (Gleiche wie Hauptseite) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND & CONFIG -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: {
+                            DEFAULT: '#0f172a', // Slate 950
+                            900: '#0f172a',
+                            800: '#1e293b', // Slate 800
+                            700: '#334155', // Slate 700
+                        },
+                        light: {
+                            DEFAULT: '#f8fafc', // Slate 50
+                            dim: '#94a3b8', // Slate 400
+                        },
+                        accent: {
+                            DEFAULT: '#f59e0b', // Amber 500
+                            hover: '#d97706', // Amber 600
+                            glow: '#f59e0b',
+                            light: '#fcd34d', // Amber 300
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        oswald: ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- OPTIMIERUNG: Scripts -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Animationen aus der Hauptseite */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
+
+        @keyframes pulse-glow-text {
+            0%, 100% { text-shadow: 0 0 4px rgba(245, 158, 11, 0.1); opacity: 0.7; }
+            50% { text-shadow: 0 0 12px rgba(245, 158, 11, 0.4); opacity: 1; }
+        }
+        .animate-email-pulse { animation: pulse-glow-text 3s infinite ease-in-out; }
+
+        /* Quiz Styles */
+        .quiz-box { position: relative; }
+        .step-content { display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+        .step-content.active { display: block; opacity: 1; transform: translateY(0); }
+        
+        /* Button States */
+        .submit-btn-disabled { background: #475569; color: #94a3b8; cursor: not-allowed; opacity: 0.6; }
+        .submit-btn-partial { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #0f172a; cursor: pointer; opacity: 1; }
+        .submit-btn-complete { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; cursor: pointer; opacity: 1; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+
+        /* Contact Selection */
+        .contact-method-selected { border-color: #f59e0b !important; background: rgba(245, 158, 11, 0.1) !important; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3); }
+
+        .whatsapp-gradient-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-gradient-btn:hover {
+            background: linear-gradient(135deg, #2cf274 0%, #16a596 100%);
+            box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-left-color: #f59e0b;
+            border-radius: 50%;
+            width: 24px; height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+
+<body class="antialiased bg-base-900 text-light">
+
+    <!-- === NAVIGATION (Angepasst für Unterseite) === -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-base-900/95 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="Reinwarth_Media_Website.html" class="flex items-center group select-none py-2 cursor-pointer">
+                    <div class="flex items-baseline leading-none">
+                        <span class="text-2xl font-semibold tracking-tight text-light">Reinwarth</span>
+                        <span class="text-2xl font-semibold tracking-tight text-accent ml-1">Media</span>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu (Links zeigen zurück zur Home Page) -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="Reinwarth_Media_Website.html" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Home</a>
+                    <a href="Reinwarth_Media_Website.html#services" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Alle Services</a>
+                    <a href="Reinwarth_Media_Website.html#testimonials" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Kunden</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/+4915679614591" target="_blank" class="hidden sm:inline-flex items-center gap-2 whatsapp-gradient-btn font-bold text-sm rounded-lg py-2.5 px-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                        WhatsApp
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <a href="Reinwarth_Media_Website.html" class="lg:hidden p-2 text-light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HERO SECTION === -->
+    <section class="pt-32 pb-16 relative overflow-hidden">
+        <!-- Glow Effect -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-accent/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-accent/10 text-accent text-sm font-bold uppercase tracking-wider mb-6 border border-accent/20">
+                Das Bestseller-Paket
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold text-light mb-8 leading-tight">
+                1 Drehtag.<br>
+                <span class="text-accent">1 Monat Content.</span>
+            </h1>
+            <p class="text-xl text-light-dim mb-10 max-w-2xl mx-auto leading-relaxed">
+                Schluss mit täglichem Content-Stress. Ich komme zu dir, wir drehen alles an einem Tag ab, und du hast Ruhe für den ganzen Monat.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openBooking()" class="inline-flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-accent hover:bg-accent-hover text-base-900 hover:shadow-accent/30 text-lg">
+                    Termin anfragen
+                </button>
+                <a href="https://wa.me/+4915679614591" target="_blank" class="inline-flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group whatsapp-gradient-btn text-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    Direkt über WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- === STRATEGIE BOX (USER WUNSCH) === -->
+    <section class="py-12">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-base-800/60 backdrop-blur-md border border-accent/30 rounded-2xl p-8 md:p-12 relative overflow-hidden shadow-[0_0_40px_rgba(245,158,11,0.05)]">
+                <!-- Deko Icon im Hintergrund -->
+                <div class="absolute top-0 right-0 opacity-5 -translate-y-1/4 translate-x-1/4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 12h-2v-2h2zm0-4h-2V7h2z"/></svg>
+                </div>
+
+                <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-16 h-16 rounded-full bg-accent flex items-center justify-center shadow-[0_0_30px_rgba(245,158,11,0.4)]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-base-900"><path d="M2 12h5"/><path d="M17 12h5"/><path d="M7 12a5 5 0 0 1 5-5a5 5 0 0 1 5 5"/><path d="M7 12a5 5 0 0 0 5 5a5 5 0 0 0 5-5"/></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-light mb-4">Deine individuelle Strategie</h3>
+                        <p class="text-lg text-light-dim leading-relaxed">
+                            Ich baue dir deine individuelle, maßgeschneiderte Content-Strategie. Am besten ist es sogar, <strong class="text-light">täglich zu posten</strong> für die besten Ergebnisse. 
+                        </p>
+                        <p class="text-lg text-light-dim leading-relaxed mt-4">
+                            Weil das aber auch etwas mehr Zeit für dich in Anspruch nimmt, gibt es für den Start die <strong class="text-accent">15 Kurzvideos</strong>, damit jeden 2. Tag gepostet werden kann. So bleibst du sichtbar, ohne dich zu überlasten.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === WAS IST DRIN? === -->
+    <section class="py-16 border-t border-base-800 bg-base-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-light mb-16">Der Ablauf im Detail</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <!-- Step 1: Planung & Konzepte (Neu gestaltet) -->
+                <div class="group p-8 rounded-2xl bg-base-800/80 border border-accent/20 hover:border-accent/60 transition-colors relative overflow-hidden flex flex-col h-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)]">
+                    <div class="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="text-5xl mb-6 grayscale group-hover:grayscale-0 transition-all relative z-10">📝</div>
+                    <h3 class="text-xl font-bold text-light mb-4 relative z-10">Planung & Konzepte</h3>
+                    <div class="text-light-dim space-y-3 relative z-10 text-sm leading-relaxed flex-grow">
+                        <p>Bevor wir drehen, analysiere ich deine Nische.</p>
+                        <p><strong class="text-light">Hooks & Ideen:</strong> Ich bringe Konzepte mit, an denen wir uns orientieren können.</p>
+                        <p><strong class="text-light">Flexibel:</strong> Die Skripte sind nicht bindend! Wir können auch spontan & authentisch Videos drehen, basierend auf deinem Expertenwissen, falls dir das leichter fällt.</p>
+                        <p class="pt-2 italic text-accent/80">Du willst nicht vor die Kamera? Auch dafür besprechen wir individuelle Lösungen.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="group p-8 rounded-2xl bg-base-800 border border-base-700 hover:border-accent/50 transition-colors flex flex-col h-full">
+                    <div class="text-5xl mb-6 grayscale group-hover:grayscale-0 transition-all">🎬</div>
+                    <h3 class="text-xl font-bold text-light mb-3">2. Der Drehtag</h3>
+                    <p class="text-light-dim flex-grow">Ich komme zu dir, bringe alles mit, was wir brauchen. Wir produzieren effizient <strong>15 - 30 Videos an einem Tag</strong> – ohne Stress und ohne viel Aufwand für dich. Ich bin flexibel und auch am <strong>Wochenende</strong> für dich einsatzbereit.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="group p-8 rounded-2xl bg-base-800 border border-base-700 hover:border-accent/50 transition-colors flex flex-col h-full">
+                    <div class="text-5xl mb-6 grayscale group-hover:grayscale-0 transition-all">✨</div>
+                    <h3 class="text-xl font-bold text-light mb-3">3. Schnitt & Upload</h3>
+                    <p class="text-light-dim flex-grow">Du bekommst die fertigen Videos inkl. Untertitel und Effekte zurück. Ich übernehme für dich die <strong>Social Media Kanäle</strong> und den <strong>Upload der Videos</strong>, sodass du dich voll auf andere Dinge konzentrieren kannst.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === CTA SECTION === -->
+    <section class="py-24 text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-light mb-6">Bist du bereit für Sichtbarkeit?</h2>
+            <p class="text-xl text-light-dim mb-10">Sichere dir jetzt deinen Termin oder starte mit dem Quiz, um zu sehen, ob wir zusammenpassen.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openBooking()" class="inline-flex items-center justify-center gap-2 font-bold px-10 py-5 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-accent hover:bg-accent-hover text-base-900 hover:shadow-accent/30 text-xl">
+                    Jetzt Platz sichern
+                </button>
+                <a href="https://wa.me/+4915679614591" target="_blank" class="inline-flex items-center justify-center gap-2 font-bold px-10 py-5 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group whatsapp-gradient-btn text-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+            <p class="mt-4 text-sm text-light-dim">Unverbindliche Anfrage. Keine versteckten Kosten.</p>
+        </div>
+    </section>
+
+    <!-- === FOOTER (Minimal) === -->
+    <footer class="border-t py-12 bg-base-900 border-base-800 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <a href="Reinwarth_Media_Website.html" class="font-bold text-light text-xl hover:text-accent transition-colors">Reinwarth Media</a>
+            <p class="text-xs text-light-dim mt-2">© 2026 Alle Rechte vorbehalten.</p>
+            <div class="flex gap-6 justify-center mt-6 text-sm text-light-dim">
+                <a href="impressum.html" class="hover:text-accent">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-accent">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- === FULLSCREEN QUIZ OVERLAY (Kopie von Main Page) === -->
+    <div id="booking-overlay" class="fixed inset-0 z-[100] bg-base-900 hidden flex flex-col items-center justify-center overflow-y-auto">
+        <button onclick="closeBooking()" class="absolute top-6 right-6 p-2 rounded-full bg-base-800 text-light-dim hover:text-light hover:bg-base-700 transition-all z-50">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
+        <div class="w-full max-w-2xl px-6 py-12 relative">
+            <div id="form-container" class="transition-opacity duration-500">
+                <div class="text-center mb-8">
+                    <p class="text-sm text-light underline decoration-accent animate-pulse">⚡ Nur für kurze Zeit! ⚡<br>Spiele das Quiz und bekomme ein kostenloses Video</p>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-12">
+                    <div class="flex justify-between text-xs text-light-dim mb-2 uppercase tracking-wider font-medium">
+                        <span>Frage <span id="current-step-text">1</span> von 5</span>
+                        <span id="step-name">Deine Präsenz</span>
+                    </div>
+                    <div class="h-1 bg-base-800 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-accent transition-all duration-500 w-[20%]"></div>
+                    </div>
+                </div>
+
+                <form id="booking-form" onsubmit="event.preventDefault();">
+                    <!-- QUIZ FRAGE 1 -->
+                    <div class="step-content active" id="step-1">
+                        <h2 class="text-3xl font-bold text-light mb-4 text-center">Wie präsent bist du auf Social Media?</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                            <button type="button" onclick="selectAnswer(1, 'Kaum bis gar nicht'); nextStep(2);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📱</div>
+                                <h3 class="text-xl font-bold text-light mb-2">Kaum bis gar nicht</h3>
+                            </button>
+                            <button type="button" onclick="selectAnswer(1, 'Aktiv, aber ohne Strategie'); nextStep(2);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📊</div>
+                                <h3 class="text-xl font-bold text-light mb-2">Aktiv, aber planlos</h3>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- QUIZ FRAGE 2 -->
+                    <div class="step-content" id="step-2">
+                        <h2 class="text-3xl font-bold text-light mb-4 text-center">Was ist dein größtes Problem?</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                            <button type="button" onclick="selectAnswer(2, 'Keine Zeit für Content'); nextStep(3);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">⏰</div>
+                                <h3 class="text-xl font-bold text-light mb-2">Keine Zeit</h3>
+                            </button>
+                            <button type="button" onclick="selectAnswer(2, 'Keine Ahnung was ankommt'); nextStep(3);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🤔</div>
+                                <h3 class="text-xl font-bold text-light mb-2">Fehlende Ideen</h3>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- QUIZ FRAGE 3 -->
+                    <div class="step-content" id="step-3">
+                        <h2 class="text-3xl font-bold text-light mb-4 text-center">Welche Lösung passt zu dir?</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                            <button type="button" onclick="selectAnswer(3, 'Nur professionelle Videos'); nextStep(4);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎥</div>
+                                <h3 class="text-xl font-bold text-light mb-2">Nur Videos</h3>
+                            </button>
+                            <button type="button" onclick="selectAnswer(3, 'Social Media Betreuung'); nextStep(4);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
+                                <h3 class="text-xl font-bold text-light mb-2">Komplettpaket</h3>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- QUIZ FRAGE 4 -->
+                    <div class="step-content" id="step-4">
+                        <h2 class="text-3xl font-bold text-light mb-4 text-center">Wann möchtest du starten?</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                            <button type="button" onclick="selectAnswer(4, 'So schnell wie möglich'); nextStep(5);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">⚡</div>
+                                <h3 class="text-xl font-bold text-light mb-2">Sofort</h3>
+                            </button>
+                            <button type="button" onclick="selectAnswer(4, 'In 1-3 Monaten'); nextStep(5);" class="quiz-box group bg-base-800 hover:bg-base-700 border-2 border-base-700 hover:border-accent rounded-2xl p-8 transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/20 cursor-pointer">
+                                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📅</div>
+                                <h3 class="text-xl font-bold text-light mb-2">In 1-3 Monaten</h3>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FRAGE 5: Lead Capture -->
+                    <div class="step-content" id="step-5">
+                        <h2 class="text-3xl font-bold text-light mb-2 text-center">Fast geschafft! 🎉</h2>
+                        <p class="text-light-dim mb-8 text-center">Deine Daten für dein kostenloses Video:</p>
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-light mb-2">Vorname <span class="text-accent">*</span></label>
+                                    <input type="text" id="input-firstname" required class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="Max" oninput="checkFormCompletion()">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-light mb-2">Nachname <span class="text-accent">*</span></label>
+                                    <input type="text" id="input-lastname" required class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="Mustermann" oninput="checkFormCompletion()">
+                                </div>
+                            </div>
+                            
+                            <!-- Kontaktweg Auswahl -->
+                            <div class="pt-4">
+                                <label class="block text-sm font-medium text-light mb-3">Wie sollen wir dich kontaktieren? <span class="text-accent">*</span></label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <button type="button" onclick="selectContactMethod('whatsapp')" id="contact-whatsapp" class="contact-method-btn bg-base-800 hover:bg-base-700 border-2 border-base-700 rounded-xl p-4 transition-all cursor-pointer text-left">
+                                        <div class="flex items-center gap-3">
+                                            <div class="text-3xl">💬</div>
+                                            <div>
+                                                <h4 class="text-light font-bold">WhatsApp</h4>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <button type="button" onclick="selectContactMethod('email')" id="contact-email" class="contact-method-btn bg-base-800 hover:bg-base-700 border-2 border-base-700 rounded-xl p-4 transition-all cursor-pointer text-left">
+                                        <div class="flex items-center gap-3">
+                                            <div class="text-3xl">✉️</div>
+                                            <div>
+                                                <h4 class="text-light font-bold">E-Mail</h4>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Dynamisches Kontakt-Feld -->
+                            <div id="contact-field-container" class="hidden">
+                                <div id="whatsapp-field" class="hidden">
+                                    <label class="block text-sm font-medium text-light mb-2">WhatsApp Nummer <span class="text-accent">*</span></label>
+                                    <input type="tel" id="input-phone" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="+49..." oninput="checkFormCompletion()">
+                                </div>
+                                <div id="email-field" class="hidden">
+                                    <label class="block text-sm font-medium text-light mb-2">E-Mail Adresse <span class="text-accent">*</span></label>
+                                    <input type="email" id="input-email" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="mail@..." oninput="checkFormCompletion()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-center">
+                            <button id="final-submit-btn" disabled onclick="sendToGoogleSheets()" class="submit-btn-disabled px-12 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2">
+                                <span id="submit-btn-icon">🔒</span>
+                                <span id="submit-btn-text">Absenden</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- SUCCESS MESSAGE -->
+            <div id="success-message" class="hidden opacity-0 transition-opacity duration-500 absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                <div class="w-20 h-20 bg-accent/20 text-accent rounded-full flex items-center justify-center mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <h2 class="text-3xl font-bold text-light mb-4">Perfekt! 🎉</h2>
+                <p class="text-light-dim max-w-md mx-auto mb-8">Marcel meldet sich in Kürze bei dir.</p>
+                <button onclick="closeBooking()" class="text-light-dim hover:text-white underline text-sm">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIK (Kopie von Main Page für Funktionalität) -->
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzec34b5zh0OFhPOt1MEPeY1889vIHM3fCFF_US7byyiQ97MCqQEgbrPXfRxOZ-0i4/exec";
+        const quizAnswers = { q1: null, q2: null, q3: null, q4: null, contactMethod: null };
+
+        function selectAnswer(q, a) { quizAnswers[`q${q}`] = a; }
+        function nextStep(step) {
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            if(document.getElementById(`step-${step}`)) document.getElementById(`step-${step}`).classList.add('active');
+            
+            const progress = step * 20;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('current-step-text').innerText = step;
+            const names = ["Start", "Präsenz", "Problem", "Lösung", "Zeit", "Kontakt"];
+            document.getElementById('step-name').innerText = names[step] || "Finale";
+        }
+
+        function selectContactMethod(method) {
+            quizAnswers.contactMethod = method;
+            document.getElementById('contact-whatsapp').classList.remove('contact-method-selected');
+            document.getElementById('contact-email').classList.remove('contact-method-selected');
+            
+            if(method === 'whatsapp') {
+                document.getElementById('contact-whatsapp').classList.add('contact-method-selected');
+                document.getElementById('whatsapp-field').classList.remove('hidden');
+                document.getElementById('email-field').classList.add('hidden');
+                document.getElementById('input-email').value = '';
+            } else {
+                document.getElementById('contact-email').classList.add('contact-method-selected');
+                document.getElementById('email-field').classList.remove('hidden');
+                document.getElementById('whatsapp-field').classList.add('hidden');
+                document.getElementById('input-phone').value = '';
+            }
+            document.getElementById('contact-field-container').classList.remove('hidden');
+            checkFormCompletion();
+        }
+
+        function checkFormCompletion() {
+            const first = document.getElementById('input-firstname').value.trim();
+            const last = document.getElementById('input-lastname').value.trim();
+            const phone = document.getElementById('input-phone').value.trim();
+            const email = document.getElementById('input-email').value.trim();
+            const btn = document.getElementById('final-submit-btn');
+            
+            const hasContact = (quizAnswers.contactMethod === 'whatsapp' && phone) || (quizAnswers.contactMethod === 'email' && email);
+            
+            if (first && last && hasContact) {
+                btn.disabled = false;
+                btn.className = 'submit-btn-complete px-12 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2';
+                document.getElementById('submit-btn-text').innerText = 'Jetzt absenden';
+                document.getElementById('submit-btn-icon').innerText = '🚀';
+            } else {
+                btn.disabled = true;
+                btn.className = 'submit-btn-disabled px-12 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2';
+            }
+        }
+
+        function openBooking() {
+            document.getElementById('booking-overlay').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            nextStep(1);
+        }
+        function closeBooking() {
+            document.getElementById('booking-overlay').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        async function sendToGoogleSheets() {
+            const btn = document.getElementById('final-submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<div class="spinner"></div>';
+            
+            // Dummy Data Collection Logic compatible with main script
+            const data = {
+                name: document.getElementById('input-firstname').value + " " + document.getElementById('input-lastname').value,
+                email: document.getElementById('input-email').value || "-",
+                phone: document.getElementById('input-phone').value || "-",
+                message: "Anfrage über 1-Monat-Content Landing Page"
+            };
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST", mode: "no-cors",
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify(data)
+                });
+                document.getElementById('form-container').classList.add('hidden');
+                const success = document.getElementById('success-message');
+                success.classList.remove('hidden');
+                setTimeout(() => success.classList.remove('opacity-0'), 50);
+            } catch (e) {
+                alert("Fehler beim Senden.");
+                btn.disabled = false;
+                btn.innerText = "Erneut versuchen";
+            }
+        }
+    </script>
+</body>
+</html>
