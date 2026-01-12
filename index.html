@@ -199,28 +199,41 @@
             animation: gradient-x 3s ease infinite;
         }
 
-        /* Mini Service Buttons Glow */
-        .service-mini-btn {
+        /* --- NEUES DESIGN: Creative Holographic Orbs --- */
+        .creative-orb {
             position: relative;
+            background: rgba(30, 41, 59, 0.4); /* base-800 low opacity */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
         }
-        .service-mini-btn::before {
+        .creative-orb::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 120%, rgba(245, 158, 11, 0.4), transparent 60%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
         }
-        .service-mini-btn:hover::before {
+        .creative-orb:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 10px 30px -5px rgba(245, 158, 11, 0.2), 
+                        inset 0 0 10px rgba(245, 158, 11, 0.1);
+        }
+        .creative-orb:hover::after {
             opacity: 1;
         }
-        @keyframes subtle-glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.2); }
-            50% { box-shadow: 0 0 12px rgba(245, 158, 11, 0.35); }
+        .creative-orb svg {
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
-        .service-mini-btn {
-            animation: subtle-glow 3s ease-in-out infinite;
+        .creative-orb:hover svg {
+            color: #fff;
+            filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
+            transform: scale(1.1);
         }
 
         .whatsapp-gradient {
@@ -466,25 +479,62 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
                 </div>
                 <div class="order-1 lg:order-2 relative group">
-                    <!-- Mini Service Buttons über Video -->
-                    <div class="flex justify-center sm:grid sm:grid-cols-4 gap-3 sm:gap-3 mb-4">
-                        <!-- Mobile: Runde Icons ohne Text | Desktop: Mit Text -->
-                        <a href="1-monat-content.html" class="service-mini-btn group/btn flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-2 sm:px-3 sm:py-2.5 bg-base-800/80 border border-base-700 rounded-full sm:rounded-xl hover:border-accent/50 hover:bg-base-800 transition-all duration-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]" title="Content-Paket">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-4 sm:h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><path d="m4 11 8-8 8 8"></path><path d="M12 3v8"></path></svg>
-                            <span class="hidden sm:inline text-xs font-medium text-light/80 group-hover/btn:text-light whitespace-nowrap">Content-Paket</span>
-                        </a>
-                        <a href="videoschnitt.html" class="service-mini-btn group/btn flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-2 sm:px-3 sm:py-2.5 bg-base-800/80 border border-base-700 rounded-full sm:rounded-xl hover:border-accent/50 hover:bg-base-800 transition-all duration-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]" title="Videoschnitt">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-4 sm:h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m14 7 5 5-5 5"></path><path d="m10 7-5 5 5 5"></path><line x1="4" y1="4" x2="4" y2="4.01"></line><line x1="20" y1="20" x2="20" y2="20.01"></line></svg>
-                            <span class="hidden sm:inline text-xs font-medium text-light/80 group-hover/btn:text-light whitespace-nowrap">Videoschnitt</span>
-                        </a>
-                        <a href="werbeanzeigen.html" class="service-mini-btn group/btn flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-2 sm:px-3 sm:py-2.5 bg-base-800/80 border border-base-700 rounded-full sm:rounded-xl hover:border-accent/50 hover:bg-base-800 transition-all duration-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]" title="Werbeanzeigen">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-4 sm:h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                            <span class="hidden sm:inline text-xs font-medium text-light/80 group-hover/btn:text-light whitespace-nowrap">Werbeanzeigen</span>
-                        </a>
-                        <a href="ki-videos.html" class="service-mini-btn group/btn flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-2 sm:px-3 sm:py-2.5 bg-base-800/80 border border-base-700 rounded-full sm:rounded-xl hover:border-accent/50 hover:bg-base-800 transition-all duration-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]" title="KI-Videos">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-4 sm:h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="3"></circle><line x1="8" y1="16" x2="8" y2="16.01"></line><line x1="16" y1="16" x2="16" y2="16.01"></line></svg>
-                            <span class="hidden sm:inline text-xs font-medium text-light/80 group-hover/btn:text-light whitespace-nowrap">KI-Videos</span>
-                        </a>
+                    
+                    <!-- CREATIVE ICONS SECTION (Calendar, Video Button, Rocket, Robot) -->
+                    <div class="flex justify-center gap-6 mb-8 mt-2 relative z-20">
+                        <!-- 1. Kalender Emoji/Icon -->
+                        <div class="creative-orb w-14 h-14 rounded-full flex items-center justify-center group/orb cursor-pointer" title="Content-Planung">
+                            <span class="text-accent/80 group-hover/orb:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    <path d="M8 14h.01"></path>
+                                    <path d="M12 14h.01"></path>
+                                    <path d="M16 14h.01"></path>
+                                    <path d="M8 18h.01"></path>
+                                    <path d="M12 18h.01"></path>
+                                    <path d="M16 18h.01"></path>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <!-- 2. Videobutton Emoji/Icon -->
+                        <div class="creative-orb w-14 h-14 rounded-full flex items-center justify-center group/orb cursor-pointer" title="Professioneller Schnitt">
+                            <span class="text-accent/80 group-hover/orb:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <!-- 3. Rakete Emoji/Icon -->
+                        <div class="creative-orb w-14 h-14 rounded-full flex items-center justify-center group/orb cursor-pointer" title="Marketing Boost">
+                            <span class="text-accent/80 group-hover/orb:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <!-- 4. Roboter Emoji/Icon -->
+                        <div class="creative-orb w-14 h-14 rounded-full flex items-center justify-center group/orb cursor-pointer" title="KI-Automation">
+                            <span class="text-accent/80 group-hover/orb:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 8V4H8"></path>
+                                    <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                                    <path d="M2 14h2"></path>
+                                    <path d="M20 14h2"></path>
+                                    <path d="M15 13v2"></path>
+                                    <path d="M9 13v2"></path>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
 
 
@@ -797,133 +847,6 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         Mehr Infos
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                     </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- VERGLEICH SECTION -->
-    <section id="comparison" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-light mb-4">Warum Video-Marketing unverzichtbar ist</h2>
-                <p class="text-light-dim">Der Unterschied zwischen Stillstand und Wachstum.</p>
-            </div>
-
-
-            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
-                <!-- Karte LINKS: Ohne Social Media (Negativ) -->
-                <div class="relative bg-base-800/90 md:bg-base-800/30 backdrop-blur-none md:backdrop-blur-sm border border-red-900/30 rounded-2xl p-6 md:p-10 transition-all duration-500 hover:border-red-900/50 group">
-                    <div class="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-40 transition-opacity">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-red-400 mb-2 uppercase tracking-widest text-sm">Der "Klassische" Weg</h3>
-                    <div class="text-4xl font-bold text-light-dim mb-8 flex items-baseline gap-2 opacity-60">
-                        0 <span class="text-lg font-normal">Sichtbarkeit</span>
-                    </div>
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-4 text-light-dim">
-                            <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded bg-red-900/20 text-red-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                            </div>
-                            <span><strong>Unsichtbar</strong> für Neukunden im Netz</span>
-                        </li>
-                        <li class="flex items-start gap-4 text-light-dim">
-                            <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded bg-red-900/20 text-red-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                            </div>
-                            <span>Abhängig von <strong>Zufall & Mundpropaganda</strong></span>
-                        </li>
-                        <li class="flex items-start gap-4 text-light-dim">
-                            <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded bg-red-900/20 text-red-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                            </div>
-                            <span>Keine Möglichkeit für <strong>Wachstum</strong></span>
-                        </li>
-                    </ul>
-                </div>
-
-
-                <!-- Karte RECHTS: Mit Social Media (Positiv/Gold) -->
-                <div class="relative bg-base-800 border border-accent rounded-2xl p-6 md:p-10 shadow-[0_0_50px_-15px_rgba(245,158,11,0.1)] transform md:scale-105 z-10">
-                    <div class="absolute -top-4 -right-4 bg-accent text-base-900 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        Die Lösung
-                    </div>
-                    <h3 class="text-xl font-bold text-accent mb-2 uppercase tracking-widest text-sm">Mit Reinwarth Media</h3>
-                    <div class="text-4xl md:text-5xl font-bold text-light mb-1 flex items-baseline gap-2">
-                        +100.000 <span class="text-lg font-normal text-light-dim">Aufrufe mgl.</span>
-                    </div>
-                    <p class="text-xs text-accent mb-8 uppercase tracking-wide font-medium opacity-80">Organisch & Regional über Video</p>
-
-
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-4 text-light">
-                            <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded-full bg-accent text-base-900 shadow-[0_0_10px_rgba(245,158,11,0.4)]">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </div>
-                            <span><strong>Digitale Marke aufbauen:</strong> Täglich sichtbar bei deiner Zielgruppe.</span>
-                        </li>
-                        <li class="flex items-start gap-4 text-light">
-                            <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded-full bg-accent text-base-900 shadow-[0_0_10px_rgba(245,158,11,0.4)]">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </div>
-                            <span><strong>Vertrauensvorschuss:</strong> Kunden kennen dich schon vor dem ersten Anruf.</span>
-                        </li>
-                        <li class="flex items-start gap-4 text-light">
-                            <div class="mt-1 min-w-[24px] h-6 flex items-center justify-center rounded-full bg-accent text-base-900 shadow-[0_0_10px_rgba(245,158,11,0.4)]">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </div>
-                            <span><strong>Modern & Attraktiv:</strong> Wirkt auch auf neue Mitarbeiter anziehend.</span>
-                        </li>
-                    </ul>
-
-
-                    <!-- OPTIONAL BUTTON/HINWEIS -->
-                    <div class="mt-6 mb-2 p-3 rounded-xl bg-base-900/60 border border-accent/30 flex items-start gap-3 backdrop-blur-sm">
-                        <span class="text-xl">🚀</span>
-                        <div class="text-xs text-light-dim leading-relaxed">
-                            <strong class="text-accent uppercase tracking-wide text-[10px]">Optional:</strong><br>
-                            Du kannst die Videos zusätzlich bewerben (Ads), um regional noch sichtbarer zu sein.
-                        </div>
-                    </div>
-
-
-                    <div class="mt-4 pt-6 border-t border-base-700/50 text-center">
-                        <p class="text-xs text-light underline decoration-accent animate-pulse mb-3">⚡ Nur für kurze Zeit! ⚡<br>Spiele das Quiz und bekomme ein kostenloses Video</p>
-                        <button onclick="openBooking()" class="w-full bg-accent hover:bg-accent-hover text-base-900 font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-accent/40 hover:-translate-y-1 text-lg">
-                            Jetzt Quiz starten
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Equipment Section -->
-    <section id="equipment" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-6">
-                    <h2 class="text-3xl md:text-4xl font-bold text-light">
-                        Profi-Technik & <span class="text-accent">Echte YouTube-Erfahrung</span>
-                    </h2>
-                    <div class="space-y-4 text-light-dim leading-relaxed text-lg">
-                        <p>
-                            Ich arbeite mit modernstem, Social-Media-gerechtem Equipment, das perfekt auf das 9:16 Hochformat für TikTok und Reels abgestimmt ist. Beim Schnitt vertraue ich auf den Industriestandard <strong>Adobe Premiere Pro</strong> und bilde mich ständig zu den neuesten <strong>KI-Video-Tools</strong> weiter, um effizienter zu sein.
-                        </p>
-                        <p>
-                            Mein Hintergrund: Ich komme aus <strong>Düsseldorf</strong> und habe meine eigenen YouTube-Projekte auf über <strong>500.000 Abonnenten</strong> und <strong>30 Millionen Aufrufe</strong> skaliert. Genau dieses Praxiswissen setze ich jetzt für Ihren Unternehmenserfolg ein.
-                        </p>
-                        <p>
-                            Zusätzlich biete ich professionelle <strong>Drohnenaufnahmen</strong> (DJI) an – ideal für beeindruckende Vorher-Nachher-Vergleiche, zum Beispiel im Garten- und Landschaftsbau.
-                        </p>
-                    </div>
-                </div>
-                <div class="relative h-[400px] w-full bg-base-800/95 md:bg-base-800/80 backdrop-blur-none md:backdrop-blur-md rounded-2xl border border-base-700 flex items-center justify-center overflow-hidden group">
-                    <div class="bg-center opacity-100 mix-blend-normal bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/65c73167-4410-4d6b-9304-ebc94f9a1d63_1600w.png)] bg-cover absolute top-0 right-0 bottom-0 left-0 scale-100"></div>
                 </div>
             </div>
         </div>
