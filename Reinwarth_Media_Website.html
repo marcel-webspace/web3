@@ -4,13 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reinwarth Media | Dein Partner für Video & Schnitt</title>
 
-
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     
     <!-- Meta Tags für Google -->
     <meta name="description" content="Online Reichweite für Unternehmer auf Social Media. Vertrauen durch authentischen Dreh, Schnitt & Social Media Management – aus einer Hand.">
@@ -49,7 +48,7 @@
     }
     </script>
 
-    <!-- TAILWIND: Wichtig für Styling, nicht deferren um FOUC zu vermeiden -->
+    <!-- TAILWIND: Wichtig für Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- TAILWIND KONFIGURATION -->
@@ -190,6 +189,40 @@
         }
 
         @keyframes gradient-slide-left { 0% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        /* Gradient Animation für Mehr Infos Buttons */
+        @keyframes gradient-x {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+            animation: gradient-x 3s ease infinite;
+        }
+
+        /* Mini Service Buttons Glow */
+        .service-mini-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .service-mini-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .service-mini-btn:hover::before {
+            opacity: 1;
+        }
+        @keyframes subtle-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 0 12px rgba(245, 158, 11, 0.35); }
+        }
+        .service-mini-btn {
+            animation: subtle-glow 3s ease-in-out infinite;
+        }
+
         .whatsapp-gradient {
             background: linear-gradient(270deg, #064e3b, #059669, #064e3b);
             background-size: 200% 100%; animation: gradient-slide-left 4s linear infinite;
@@ -266,6 +299,7 @@
         }
     </style>
 
+
     <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -285,12 +319,15 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head>
 
+
 <body class="antialiased bg-base-900 text-light">
+
 
 <!-- Ambient Hintergrund Ebene (Fixiert) -->
 <div class="ambient-light">
     <div class="social-pattern" id="social-pattern"></div>
 </div>
+
 
 <!-- === LIGHTBOX FÜR BILDER === -->
 <div id="lightbox" class="fixed inset-0 z-[300] bg-black/90 backdrop-blur-none md:backdrop-blur-xl hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0" onclick="closeLightbox()">
@@ -300,11 +337,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     </button>
 </div>
 
+
 <!-- === HAUPTSEITE (Main Content) === -->
 <div id="main-content" class="transition-opacity duration-500 ease-in-out relative z-10">
 
+
     <!-- Navigation -->
-    <!-- OPTIMIERUNG: backdrop-blur-none auf Mobile, md:backdrop-blur-md auf Desktop -->
     <nav class="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-colors duration-300" id="navbar">
         <div id="navbar-bg" class="absolute inset-0 bg-base-900/95 md:bg-base-900/80 backdrop-blur-none md:backdrop-blur-md transition-opacity duration-500 -z-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -336,7 +374,6 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             </div>
         </div>
         <!-- Mobile Menu -->
-        <!-- OPTIMIERUNG: backdrop-blur-none für Performance -->
         <div class="lg:hidden fixed inset-0 bg-base-900/95 backdrop-blur-none z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-8" id="mobileMenu">
             <a href="#services" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Zusammenarbeit</a>
             <a href="#equipment" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Über mich</a>
@@ -351,6 +388,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             </button>
         </div>
     </nav>
+
 
     <!-- Hero Section -->
     <section class="relative pt-24 pb-12 lg:pt-40 lg:pb-32 overflow-hidden">
@@ -390,6 +428,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         </div>
                     </div>
 
+
                     <div class="mt-8 pt-8 border-t border-base-800/50 w-full">
                         <div class="flex flex-col items-center lg:items-start gap-6">
                             <div class="flex flex-col items-center lg:items-start gap-1">
@@ -401,6 +440,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                                     Aufrufe über alle Social Media Kanäle & eigene Projekte generiert.
                                 </p>
                             </div>
+
 
                             <!-- Bilder Collage -->
                             <div class="collage-container relative h-32 w-full max-w-md animate-float-collage">
@@ -426,13 +466,36 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
                 </div>
                 <div class="order-1 lg:order-2 relative group">
+                    <!-- Mini Service Buttons über Video -->
+                    <div class="flex justify-center sm:grid sm:grid-cols-4 gap-3 sm:gap-3 mb-4">
+                        <!-- Mobile: Runde Icons ohne Text | Desktop: Mit Text -->
+                        <a href="1-monat-content.html" class="service-mini-btn group/btn flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-2 sm:px-3 sm:py-2.5 bg-base-800/80 border border-base-700 rounded-full sm:rounded-xl hover:border-accent/50 hover:bg-base-800 transition-all duration-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]" title="Content-Paket">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-4 sm:h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><path d="m4 11 8-8 8 8"></path><path d="M12 3v8"></path></svg>
+                            <span class="hidden sm:inline text-xs font-medium text-light/80 group-hover/btn:text-light whitespace-nowrap">Content-Paket</span>
+                        </a>
+                        <a href="videoschnitt.html" class="service-mini-btn group/btn flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-2 sm:px-3 sm:py-2.5 bg-base-800/80 border border-base-700 rounded-full sm:rounded-xl hover:border-accent/50 hover:bg-base-800 transition-all duration-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]" title="Videoschnitt">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-4 sm:h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m14 7 5 5-5 5"></path><path d="m10 7-5 5 5 5"></path><line x1="4" y1="4" x2="4" y2="4.01"></line><line x1="20" y1="20" x2="20" y2="20.01"></line></svg>
+                            <span class="hidden sm:inline text-xs font-medium text-light/80 group-hover/btn:text-light whitespace-nowrap">Videoschnitt</span>
+                        </a>
+                        <a href="werbeanzeigen.html" class="service-mini-btn group/btn flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-2 sm:px-3 sm:py-2.5 bg-base-800/80 border border-base-700 rounded-full sm:rounded-xl hover:border-accent/50 hover:bg-base-800 transition-all duration-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]" title="Werbeanzeigen">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-4 sm:h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                            <span class="hidden sm:inline text-xs font-medium text-light/80 group-hover/btn:text-light whitespace-nowrap">Werbeanzeigen</span>
+                        </a>
+                        <a href="ki-videos.html" class="service-mini-btn group/btn flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-2 sm:px-3 sm:py-2.5 bg-base-800/80 border border-base-700 rounded-full sm:rounded-xl hover:border-accent/50 hover:bg-base-800 transition-all duration-300 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]" title="KI-Videos">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-4 sm:h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="3"></circle><line x1="8" y1="16" x2="8" y2="16.01"></line><line x1="16" y1="16" x2="16" y2="16.01"></line></svg>
+                            <span class="hidden sm:inline text-xs font-medium text-light/80 group-hover/btn:text-light whitespace-nowrap">KI-Videos</span>
+                        </a>
+                    </div>
+
+
                     <!-- OPTIMIERUNG: Lazy Load Video Container -->
-                    <!-- FIX: aspect-video und onclick ruft jetzt loadVideo auf -->
                     <div class="relative rounded-2xl overflow-hidden border border-base-700 bg-base-900 shadow-2xl cursor-pointer group aspect-video max-h-[45vh] sm:max-h-none"
                          onclick="loadVideo(this, 'AgFPrlNRjGg')">
 
+
                         <!-- Thumbnail Image -->
                         <img src="https://img.youtube.com/vi/AgFPrlNRjGg/maxresdefault.jpg" loading="lazy" alt="Video Thumbnail" class="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
+
 
                         <!-- Play Button Overlay -->
                         <div class="absolute inset-0 flex items-center justify-center">
@@ -446,8 +509,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         </div>
     </section>
 
+
     <!-- Partner Slider (Transparenter BG) -->
-    <!-- OPTIMIERUNG: backdrop-blur-none auf Mobile -->
     <section class="border-y border-base-800 overflow-hidden bg-transparent w-full pt-12 pb-12 relative backdrop-blur-none md:backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 md:px-8 mb-8 text-center">
             <p class="text-xs md:text-sm font-semibold text-light-dim uppercase tracking-[0.2em]">Kunden die mir vertrauen</p>
@@ -494,11 +557,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         </div>
     </section>
 
+
     <!-- DEUTSCHLANDWEIT SECTION -->
-    <!-- OPTIMIERUNG: backdrop-blur-none auf Mobile -->
     <section id="location" class="py-16 md:py-24 bg-base-900/90 md:bg-base-900/50 backdrop-blur-none md:backdrop-blur-sm border-b border-base-800 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex flex-col md:flex-row gap-10 md:gap-12 lg:gap-20 items-center">
+
 
                 <!-- Karte (Links) -->
                 <div class="relative h-[300px] md:h-[500px] w-full md:w-auto flex-none flex items-center justify-center md:justify-start">
@@ -518,6 +582,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             </filter>
                         </defs>
 
+
                         <!-- HOMEBASE: Düsseldorf -->
                         <g transform="translate(300, 400)">
                             <circle r="30" class="fill-accent/20 animate-ping"></circle>
@@ -525,6 +590,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             <circle r="6" class="fill-accent stroke-base-900 stroke-2"></circle>
                             <text x="15" y="5" class="fill-white text-lg font-bold font-oswald uppercase tracking-wider drop-shadow-md" style="font-size: 16px;">Düsseldorf</text>
                         </g>
+
 
                         <!-- SATELLITEN STÄDTE & ROUTEN -->
                         <g><path d="M300,400 Q310,500 320,580" fill="none" stroke="url(#routeGradient)" stroke-width="2" stroke-linecap="round" filter="url(#glow)"><animate attributeName="stroke-dasharray" from="0, 1000" to="300, 0" dur="2.5s" fill="freeze"></animate></path><circle cx="320" cy="580" r="4" class="fill-white animate-pulse"></circle><text x="330" y="585" class="fill-light/80 text-xs font-sans font-medium" style="font-size:13px">Köln</text></g>
@@ -537,6 +603,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </svg>
                 </div>
 
+
                 <!-- Text & Infos (Rechts) -->
                 <div class="flex-1 max-w-lg w-full">
                     <div class="flex items-center gap-3 mb-6 justify-center md:justify-start">
@@ -546,17 +613,21 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <span class="text-accent font-bold tracking-widest uppercase text-sm">Mobile Produktion</span>
                     </div>
 
+
                     <h2 class="text-3xl md:text-4xl font-bold text-light mb-6 text-center md:text-left">
                         Ich komme zu dir.
                     </h2>
+
 
                     <p class="text-light-dim text-lg mb-10 leading-relaxed text-center md:text-left">
                         Egal wo dein Unternehmen sitzt – für das <span class="text-light font-bold">1 Monat Content, 1 Drehtag Paket</span>.
                     </p>
 
+
                     <div class="flex flex-col gap-6 relative max-w-sm mx-auto md:mx-0">
                         <!-- Verbindungsline -->
                         <div class="absolute left-[19px] top-8 bottom-8 w-0.5 bg-base-700 -z-10"></div>
+
 
                         <!-- OPTIMIERUNG: bg opacity erhöht auf mobile -->
                         <div class="flex items-center gap-4 bg-base-800/95 md:bg-base-800/50 p-4 rounded-xl border border-base-700/50 hover:border-accent/30 transition-colors">
@@ -569,6 +640,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             </div>
                         </div>
 
+
                         <div class="flex items-center gap-4 bg-base-800/95 md:bg-base-800/50 p-4 rounded-xl border border-base-700/50 hover:border-accent/30 transition-colors">
                             <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center shrink-0 text-base-900 border border-accent shadow-[0_0_15px_rgba(245,158,11,0.4)]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path></svg>
@@ -579,6 +651,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             </div>
                         </div>
                     </div>
+
 
                     <div class="mt-10 flex flex-wrap gap-3 justify-center md:justify-start">
                             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-base-800 border border-base-700 text-light text-sm hover:border-accent/50 transition-colors cursor-default">
@@ -592,13 +665,14 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             </span>
                     </div>
 
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section (JETZT HIER UNTEN) -->
-    <!-- OPTIMIERUNG: backdrop-blur-none auf Mobile -->
+
+    <!-- Stats Section -->
     <section id="stats" class="bg-base-900/90 md:bg-base-900/30 backdrop-blur-none md:backdrop-blur-sm py-16 w-full border-b border-base-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -634,6 +708,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         </div>
     </section>
 
+
     <!-- SERVICES SECTION -->
     <section id="services" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
         <div class="sm:px-6 lg:px-8 max-w-7xl mr-auto ml-auto pr-4 pl-4">
@@ -643,8 +718,9 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 <p class="text-light-dim">Wähle das passende Modell für deinen Erfolg. Keine Agentur, sondern dein Partner auf Augenhöhe.</p>
             </div>
 
+
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Service 1: OPTIMIERUNG backdrop-blur-none mobile -->
+                <!-- Service 1 -->
                 <div class="group relative p-6 md:p-8 bg-base-800/95 md:bg-base-800/80 backdrop-blur-none md:backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
@@ -657,7 +733,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Dreh & Schnitt aus einer Hand</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Veröffentlichung & Wachstum</li>
                     </ul>
+                    <a href="1-monat-content.html" class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-accent via-accent-light to-accent bg-[length:200%_100%] animate-gradient-x text-base-900 font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:shadow-[0_0_35px_rgba(245,158,11,0.8)] hover:scale-105">
+                        Mehr Infos
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </a>
                 </div>
+
 
                 <!-- Service 2 -->
                 <div class="group relative p-6 md:p-8 bg-base-800/95 md:bg-base-800/80 backdrop-blur-none md:backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
@@ -672,7 +753,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Persönliche Sichtung & Schnitt</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Faire Preise nach Aufwand</li>
                     </ul>
+                    <a href="videoschnitt.html" class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-accent via-accent-light to-accent bg-[length:200%_100%] animate-gradient-x text-base-900 font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:shadow-[0_0_35px_rgba(245,158,11,0.8)] hover:scale-105">
+                        Mehr Infos
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </a>
                 </div>
+
 
                 <!-- Service 3 -->
                 <div class="group relative p-6 md:p-8 bg-base-800/95 md:bg-base-800/80 backdrop-blur-none md:backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
@@ -687,7 +773,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Dynamische Untertitel & Hooks</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Schnelle Umsetzung</li>
                     </ul>
+                    <a href="werbeanzeigen.html" class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-accent via-accent-light to-accent bg-[length:200%_100%] animate-gradient-x text-base-900 font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:shadow-[0_0_35px_rgba(245,158,11,0.8)] hover:scale-105">
+                        Mehr Infos
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </a>
                 </div>
+
 
                 <!-- Service 4 -->
                 <div class="group relative p-6 md:p-8 bg-base-800/95 md:bg-base-800/80 backdrop-blur-none md:backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
@@ -702,10 +793,15 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Professionelles Motion Design</li>
                         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Produktion in wenigen Tagen</li>
                     </ul>
+                    <a href="ki-videos.html" class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-accent via-accent-light to-accent bg-[length:200%_100%] animate-gradient-x text-base-900 font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:shadow-[0_0_35px_rgba(245,158,11,0.8)] hover:scale-105">
+                        Mehr Infos
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- VERGLEICH SECTION -->
     <section id="comparison" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
@@ -715,9 +811,9 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 <p class="text-light-dim">Der Unterschied zwischen Stillstand und Wachstum.</p>
             </div>
 
+
             <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
                 <!-- Karte LINKS: Ohne Social Media (Negativ) -->
-                <!-- OPTIMIERUNG: backdrop-blur-none auf Mobile -->
                 <div class="relative bg-base-800/90 md:bg-base-800/30 backdrop-blur-none md:backdrop-blur-sm border border-red-900/30 rounded-2xl p-6 md:p-10 transition-all duration-500 hover:border-red-900/50 group">
                     <div class="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-40 transition-opacity">
                         <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
@@ -748,6 +844,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </ul>
                 </div>
 
+
                 <!-- Karte RECHTS: Mit Social Media (Positiv/Gold) -->
                 <div class="relative bg-base-800 border border-accent rounded-2xl p-6 md:p-10 shadow-[0_0_50px_-15px_rgba(245,158,11,0.1)] transform md:scale-105 z-10">
                     <div class="absolute -top-4 -right-4 bg-accent text-base-900 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-2">
@@ -759,6 +856,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         +100.000 <span class="text-lg font-normal text-light-dim">Aufrufe mgl.</span>
                     </div>
                     <p class="text-xs text-accent mb-8 uppercase tracking-wide font-medium opacity-80">Organisch & Regional über Video</p>
+
 
                     <ul class="space-y-5">
                         <li class="flex items-start gap-4 text-light">
@@ -781,6 +879,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         </li>
                     </ul>
 
+
                     <!-- OPTIONAL BUTTON/HINWEIS -->
                     <div class="mt-6 mb-2 p-3 rounded-xl bg-base-900/60 border border-accent/30 flex items-start gap-3 backdrop-blur-sm">
                         <span class="text-xl">🚀</span>
@@ -789,6 +888,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             Du kannst die Videos zusätzlich bewerben (Ads), um regional noch sichtbarer zu sein.
                         </div>
                     </div>
+
 
                     <div class="mt-4 pt-6 border-t border-base-700/50 text-center">
                         <p class="text-xs text-light underline decoration-accent animate-pulse mb-3">⚡ Nur für kurze Zeit! ⚡<br>Spiele das Quiz und bekomme ein kostenloses Video</p>
@@ -801,8 +901,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         </div>
     </section>
 
+
     <!-- Equipment Section -->
-    <!-- OPTIMIERUNG: backdrop-blur-none auf Mobile -->
     <section id="equipment" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -822,13 +922,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         </p>
                     </div>
                 </div>
-                <!-- OPTIMIERUNG: backdrop-blur-none auf Mobile -->
                 <div class="relative h-[400px] w-full bg-base-800/95 md:bg-base-800/80 backdrop-blur-none md:backdrop-blur-md rounded-2xl border border-base-700 flex items-center justify-center overflow-hidden group">
                     <div class="bg-center opacity-100 mix-blend-normal bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/65c73167-4410-4d6b-9304-ebc94f9a1d63_1600w.png)] bg-cover absolute top-0 right-0 bottom-0 left-0 scale-100"></div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Testimonials (Custom Player) -->
     <section id="testimonials" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
@@ -847,9 +947,9 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
             </div>
             <!-- OPTIMIERUNG: Lazy Load Video Container auch hier -->
-            <!-- FIX: aspect-video und onclick ruft jetzt loadVideo auf -->
             <div class="relative rounded-2xl overflow-hidden border border-base-800 shadow-2xl bg-base-900 mx-auto max-w-2xl group cursor-pointer aspect-video"
                  onclick="loadVideo(this, 'boqVkInzq00')">
+
 
                 <!-- Thumbnail Image -->
                 <img src="https://img.youtube.com/vi/boqVkInzq00/maxresdefault.jpg" loading="lazy" alt="Testimonial Video" class="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
@@ -871,8 +971,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         </div>
     </section>
 
+
     <!-- FAQ Section -->
-    <!-- OPTIMIERUNG: backdrop-blur-none auf Mobile -->
     <section id="faq" class="py-16 md:py-24 bg-base-900/90 md:bg-base-900/50 backdrop-blur-none md:backdrop-blur-sm border-t border-base-800">
         <div class="max-w-3xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-16">
@@ -960,6 +1060,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         </div>
     </section>
 
+
     <!-- Footer -->
     <footer class="border-t py-12 bg-base-900 border-base-800">
         <div class="max-w-6xl mx-auto px-6">
@@ -998,6 +1099,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     </footer>
 </div>
 
+
 <!-- Cookie Banner -->
 <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-base-900 border-t border-base-800 p-6 z-[60] hidden flex-col md:flex-row items-center justify-between gap-4 shadow-2xl">
     <div class="text-sm text-light-dim max-w-2xl">
@@ -1014,11 +1116,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     </div>
 </div>
 
+
 <!-- === FULLSCREEN QUIZ OVERLAY === -->
 <div id="booking-overlay" class="fixed inset-0 z-[100] bg-base-900 hidden flex flex-col items-center justify-center overflow-y-auto">
     <button onclick="closeBooking()" class="absolute top-6 right-6 p-2 rounded-full bg-base-800 text-light-dim hover:text-light hover:bg-base-700 transition-all z-50">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
     </button>
+
 
     <div class="w-full max-w-2xl px-6 py-12 relative">
         <div id="form-container" class="transition-opacity duration-500">
@@ -1027,6 +1131,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             <div class="text-center mb-8">
                 <p class="text-sm text-light underline decoration-accent animate-pulse">⚡ Nur für kurze Zeit! ⚡<br>Spiele das Quiz und bekomme ein kostenloses Video</p>
             </div>
+
 
             <!-- Progress Bar -->
             <div class="mb-12">
@@ -1038,6 +1143,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     <div id="progress-bar" class="h-full bg-accent transition-all duration-500 w-[20%]"></div>
                 </div>
             </div>
+
 
             <form id="booking-form" onsubmit="event.preventDefault();">
                 
@@ -1061,6 +1167,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
                 </div>
 
+
                 <!-- QUIZ FRAGE 2: Größtes Problem -->
                 <div class="step-content" id="step-2">
                     <h2 class="text-3xl font-bold text-light mb-4 text-center">Was ist dein größtes Problem?</h2>
@@ -1080,6 +1187,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <button type="button" class="quiz-progress-btn bg-accent text-base-900 px-8 py-3 rounded-xl font-bold">3 Fragen bis zum kostenlosen Video 🎯</button>
                     </div>
                 </div>
+
 
                 <!-- QUIZ FRAGE 3: Gewünschte Lösung -->
                 <div class="step-content" id="step-3">
@@ -1101,6 +1209,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
                 </div>
 
+
                 <!-- QUIZ FRAGE 4: Startzeit -->
                 <div class="step-content" id="step-4">
                     <h2 class="text-3xl font-bold text-light mb-4 text-center">Wann möchtest du starten?</h2>
@@ -1120,6 +1229,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <button type="button" class="quiz-progress-btn bg-accent text-base-900 px-8 py-3 rounded-xl font-bold">1 Frage bis zum kostenlosen Video 🎯</button>
                     </div>
                 </div>
+
 
                 <!-- FRAGE 5: Lead Capture -->
                 <div class="step-content" id="step-5">
@@ -1170,6 +1280,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             </div>
                         </div>
 
+
                         <!-- Dynamisches Kontakt-Feld -->
                         <div id="contact-field-container" class="hidden">
                             <div id="whatsapp-field" class="hidden">
@@ -1181,6 +1292,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                                 <input type="email" id="input-email" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="max@beispiel.de" oninput="checkFormCompletion()">
                             </div>
                         </div>
+
 
                         <div class="bg-base-800/50 p-4 rounded-xl border border-base-700/50 text-xs text-light-dim mt-6">
                             🔒 Deine Daten werden sicher übertragen und nur für die Zusendung deines Videos genutzt.
@@ -1196,6 +1308,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             </form>
         </div>
 
+
         <!-- SUCCESS MESSAGE -->
         <div id="success-message" class="hidden opacity-0 transition-opacity duration-500 absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <div class="w-20 h-20 bg-accent/20 text-accent rounded-full flex items-center justify-center mb-6">
@@ -1206,9 +1319,11 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             <div class="w-full bg-base-800 rounded-full h-1.5 mt-4 max-w-xs mx-auto overflow-hidden">
                 <div class="bg-accent h-1.5 rounded-full animate-timer w-full"></div>
             </div>
+            <button onclick="closeBooking()" class="mt-8 text-light-dim hover:text-white underline text-sm">Zurück zur Website</button>
         </div>
     </div>
 </div>
+
 
 <!-- Logic Script -->
 <script>
@@ -1251,6 +1366,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         checkFormCompletion();
     }
 
+
     function checkFormCompletion() {
         const firstname = document.getElementById('input-firstname').value.trim();
         const lastname = document.getElementById('input-lastname').value.trim();
@@ -1287,6 +1403,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         }
     }
 
+
     // --- LIGHTBOX FUNCTIONS ---
     function openLightbox(src) {
         const lightbox = document.getElementById('lightbox');
@@ -1301,6 +1418,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         document.body.classList.add('overflow-hidden');
     }
 
+
     function closeLightbox() {
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -1313,6 +1431,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         }, 300);
     }
 
+
     // --- NEW: Video Loader Function to fix height collapse ---
     function loadVideo(container, videoId) {
         // Create iframe element
@@ -1323,13 +1442,16 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
         iframe.setAttribute('allowfullscreen', '');
 
+
         // Apply classes to fill the aspect-video container
         iframe.className = "absolute top-0 left-0 w-full h-full rounded-2xl";
+
 
         // Clear current content (image & play button) and append iframe
         container.innerHTML = '';
         container.appendChild(iframe);
     }
+
 
     // --- Navbar Transparency Logic ---
     const navbar = document.getElementById('navbar');
@@ -1344,11 +1466,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         }
     });
 
+
     // --- Mobile Menu Logic ---
     const menuBtn = document.getElementById('mobileMenuBtn');
     const closeBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
+
 
     function openMenu() {
         mobileMenu.classList.remove('translate-x-full');
@@ -1364,6 +1488,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         link.addEventListener('click', () => { closeMenu(); });
     });
 
+
     // --- Cookie Banner Logic ---
     function checkCookies() {
         if (!localStorage.getItem('cookieConsent')) {
@@ -1378,12 +1503,14 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     }
     window.addEventListener('load', checkCookies);
 
+
     // --- Booking Overlay Logic ---
     const bookingOverlay = document.getElementById('booking-overlay');
     const mainContent = document.getElementById('main-content');
     const progressBar = document.getElementById('progress-bar');
     const stepName = document.getElementById('step-name');
     const currentStepText = document.getElementById('current-step-text');
+
 
     function openBooking() {
         bookingOverlay.classList.remove('hidden');
@@ -1400,10 +1527,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         nextStep(1);
     }
 
+
     function closeBooking() {
         bookingOverlay.classList.add('hidden');
         mainContent.classList.remove('opacity-0', 'pointer-events-none');
     }
+
 
     function nextStep(step) {
         document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
@@ -1434,6 +1563,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             stepName.innerText = "Fast geschafft!"; 
         }
     }
+
 
     async function sendToGoogleSheets() {
         const btn = document.getElementById('final-submit-btn');
@@ -1468,13 +1598,16 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         // Validierung
         const hasContact = (phoneValue !== "-") || (emailValue !== "-");
 
+
         if(!firstname || !lastname || !hasContact) {
             alert("Bitte fülle alle Pflichtfelder aus.");
             return;
         }
 
+
         btn.disabled = true;
         btn.innerHTML = '<div class="spinner"></div>';
+
 
         try {
             await fetch(GOOGLE_SCRIPT_URL, {
@@ -1484,8 +1617,16 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 body: JSON.stringify(data)
             });
 
-            // --- ERFOLGREICH: Weiterleitung zur separaten Success-Seite ---
-            window.location.href = 'success.html';
+            // --- ERFOLG: Zeige Success Message IN-PAGE (statt Weiterleitung) ---
+            document.getElementById('form-container').classList.add('opacity-0');
+            setTimeout(() => {
+                document.getElementById('form-container').classList.add('hidden');
+                const successMsg = document.getElementById('success-message');
+                successMsg.classList.remove('hidden');
+                setTimeout(() => {
+                     successMsg.classList.remove('opacity-0');
+                }, 50);
+            }, 500);
 
         } catch (error) {
             console.error("Fehler:", error);
@@ -1494,6 +1635,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             btn.innerHTML = originalBtnContent;
         }
     }
+
 
     // --- FAQ Accordion Logic ---
     const faqItems = document.querySelectorAll('.faq-item');
@@ -1518,12 +1660,14 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         });
     });
 
+
     // --- OPTIMIERUNG: Reduzierte Icon Anzahl (12 statt 45) ---
     function initSocialBackground() {
         const container = document.getElementById('social-pattern');
         if (!container) return;
         const icons = ['mdi:instagram', 'ic:baseline-tiktok', 'mdi:youtube'];
         const count = 12;
+
 
         for (let i = 0; i < count; i++) {
             const iconName = icons[Math.floor(Math.random() * icons.length)];
@@ -1542,6 +1686,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         }
     }
     document.addEventListener('DOMContentLoaded', initSocialBackground);
+
 
     // --- Live View Counter Animation ---
     function animateCounter() {
@@ -1568,17 +1713,32 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         }, 1000 / fps);
     }
 
+
     function startSlowGrowth(startValue) {
         const el = document.getElementById('view-counter');
         let current = startValue;
         setInterval(() => {
-            const add = Math.floor(Math.random() * 50) + 5;
+            const add = Math.floor(Math.random() * 500) + 100;
             current += add;
             el.innerText = Math.floor(current).toLocaleString('de-DE');
-        }, 2500);
+        }, 2000);
     }
 
-    document.addEventListener('DOMContentLoaded', animateCounter);
+
+    // Start counter when element is in view
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter();
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    });
+
+    const counterElement = document.getElementById('view-counter');
+    if (counterElement) {
+        counterObserver.observe(counterElement);
+    }
 </script>
 </body>
 </html>
