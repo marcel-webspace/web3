@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reinwarth Media | Dein Partner für Video & Schnitt</title>
 
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -18,6 +19,7 @@
     <meta property="og:image" content="https://reinwarth-media.de/favicon.ico">
     <meta property="og:type" content="website">
 
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDV88J2YZ9"></script>
     <script>
@@ -27,6 +29,7 @@
    
       gtag('config', 'G-GDV88J2YZ9');
     </script>
+
 
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
@@ -48,8 +51,10 @@
     }
     </script>
 
+
     <!-- TAILWIND: Wichtig für Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+
 
     <!-- TAILWIND KONFIGURATION -->
     <script>
@@ -83,14 +88,17 @@
         }
     </script>
 
+
     <!-- OPTIMIERUNG: Scripts deferred für schnelleres Laden -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 
     <style>
         /* --- GLOBAL & ANIMATIONEN --- */
@@ -101,6 +109,7 @@
             overflow-x: hidden;
             position: relative;
         }
+
 
         /* --- CUSTOM VIDEO PLAYER STYLES (Reinwarth Media Player) --- */
         .rm-video-container {
@@ -115,6 +124,7 @@
             cursor: pointer;
         }
 
+
         /* NEU: Diagonales Schweben für Icons */
         @keyframes diagonal-drift {
             0% { transform: translate(0, 0); opacity: 0; }
@@ -123,10 +133,12 @@
             100% { transform: translate(100px, -150px); opacity: 0; }
         }
 
+
         @keyframes icon-flash-subtle {
             0%, 90%, 100% { color: #334155; filter: none; }
             95% { color: #f59e0b; filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.3)); }
         }
+
 
         .ambient-light {
             position: fixed;
@@ -134,7 +146,9 @@
             pointer-events: none; z-index: 0; background: #0f172a; overflow: hidden;
         }
 
+
         .social-pattern { position: absolute; inset: -20%; overflow: hidden; }
+
 
         .social-icon {
             position: absolute;
@@ -143,6 +157,7 @@
             animation: diagonal-drift linear infinite, icon-flash-subtle linear infinite;
             will-change: transform, opacity;
         }
+
 
         .ambient-light::before, .ambient-light::after {
             content: ''; position: absolute; width: 90vw; height: 90vh; border-radius: 50%; filter: blur(100px);
@@ -156,17 +171,21 @@
             bottom: -30%; right: -20%; animation: subtle-drift-reverse 20s infinite ease-in-out;
         }
 
+
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
+
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .animate-scroll { display: flex; width: max-content; animation: scroll 30s linear infinite; }
         .group:hover .animate-scroll { animation-play-state: paused; }
 
+
         .mask-gradient {
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
+
 
         @keyframes pulse-gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .text-gradient-pulse {
@@ -175,6 +194,7 @@
             background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: pulse-gradient 3s ease infinite;
         }
+
 
         .faq-content {
             transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease;
@@ -188,6 +208,7 @@
             box-shadow: 0 0 20px -5px rgba(245, 158, 11, 0.15);
         }
 
+
         @keyframes gradient-slide-left { 0% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
         /* Gradient Animation für Mehr Infos Buttons */
@@ -198,6 +219,7 @@
         .animate-gradient-x {
             animation: gradient-x 3s ease infinite;
         }
+
 
         /* --- NEUES DESIGN: Creative Holographic Orbs --- */
         .creative-orb {
@@ -236,6 +258,7 @@
             transform: scale(1.1);
         }
 
+
         .whatsapp-gradient {
             background: linear-gradient(270deg, #064e3b, #059669, #064e3b);
             background-size: 200% 100%; animation: gradient-slide-left 4s linear infinite;
@@ -243,11 +266,14 @@
         }
         .whatsapp-gradient:hover { filter: brightness(1.2); }
 
+
         @keyframes pulse-glow-text { 0%, 100% { text-shadow: 0 0 4px rgba(245, 158, 11, 0.1); opacity: 0.7; } 50% { text-shadow: 0 0 12px rgba(245, 158, 11, 0.4); opacity: 1; } }
         .animate-email-pulse { animation: pulse-glow-text 3s infinite ease-in-out; }
 
+
         .step-content { display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
         .step-content.active { display: block; opacity: 1; transform: translateY(0); }
+
 
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.1); border-left-color: #f59e0b;
@@ -255,11 +281,14 @@
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+
         @keyframes shrinkWidth { from { width: 100%; } to { width: 0%; } }
         .animate-timer { animation: shrinkWidth 5s linear forwards; }
 
+
         @keyframes float-collage { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-5px); } }
         .animate-float-collage { animation: float-collage 6s ease-in-out infinite; }
+
 
         .collage-item { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); filter: grayscale(0.6) brightness(0.8); cursor: pointer; }
         .collage-container:hover .collage-item { filter: grayscale(1) brightness(0.5) blur(1px); }
@@ -267,6 +296,7 @@
             filter: grayscale(0) brightness(1.1) blur(0); transform: scale(1.1) translateY(-10px) rotate(0deg) !important;
             z-index: 50; box-shadow: 0 10px 30px -5px rgba(245, 158, 11, 0.3); border-color: #f59e0b;
         }
+
 
         /* Quiz Styles */
         .quiz-box { position: relative; }
@@ -322,6 +352,8 @@
     </style>
 
 
+
+
     <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -342,13 +374,19 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
 </head>
 
 
+
+
 <body class="antialiased bg-base-900 text-light">
+
+
 
 
 <!-- Ambient Hintergrund Ebene (Fixiert) -->
 <div class="ambient-light">
     <div class="social-pattern" id="social-pattern"></div>
 </div>
+
+
 
 
 <!-- === LIGHTBOX FÜR BILDER === -->
@@ -360,8 +398,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
 </div>
 
 
+
+
 <!-- === HAUPTSEITE (Main Content) === -->
 <div id="main-content" class="transition-opacity duration-500 ease-in-out relative z-10">
+
+
 
 
     <!-- Navigation -->
@@ -377,8 +419,10 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </a>
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center gap-8">
-                    <a href="#services" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Zusammenarbeit</a>
-                    <a href="#equipment" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Über mich</a>
+                    <!-- CHANGE: Zusammenarbeit -> #location -->
+                    <a href="#location" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Zusammenarbeit</a>
+                    <!-- CHANGE: Über mich -> External Link -->
+                    <a href="uebermich.html" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Über mich</a>
                     <a href="#services" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Ablauf</a>
                     <a href="#comparison" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Fakten</a>
                     <a href="#testimonials" class="text-sm font-medium transition-colors text-light/80 hover:text-accent">Kunden</a>
@@ -397,8 +441,9 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         </div>
         <!-- Mobile Menu -->
         <div class="lg:hidden fixed inset-0 bg-base-900/95 backdrop-blur-none z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-8" id="mobileMenu">
-            <a href="#services" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Zusammenarbeit</a>
-            <a href="#equipment" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Über mich</a>
+            <!-- CHANGE: Mobile Menu links as well -->
+            <a href="#location" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Zusammenarbeit</a>
+            <a href="uebermich.html" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Über mich</a>
             <a href="#services" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Ablauf</a>
             <a href="#comparison" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Fakten</a>
             <a href="#testimonials" class="text-xl font-medium text-light hover:text-accent transition-colors mobile-link">Kundenstimmen</a>
@@ -412,9 +457,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     </nav>
 
 
+
+
     <!-- Hero Section -->
-    <section class="relative pt-24 pb-12 lg:pt-40 lg:pb-32 overflow-hidden">
+    <!-- CHANGE: Removed overflow-hidden to prevent icon cutoff -->
+    <section class="relative pt-24 pb-12 lg:pt-40 lg:pb-32">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-accent/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
@@ -451,6 +500,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
 
 
+
+
                     <div class="mt-8 pt-8 border-t border-base-800/50 w-full">
                         <div class="flex flex-col items-center lg:items-start gap-6">
                             <div class="flex flex-col items-center lg:items-start gap-1">
@@ -462,6 +513,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                                     Aufrufe über alle Social Media Kanäle & eigene Projekte generiert.
                                 </p>
                             </div>
+
+
 
 
                             <!-- Bilder Collage -->
@@ -488,8 +541,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
                 </div>
                 
-                <!-- RIGHT COLUMN (Video + Icons) - Moved up on Web (lg:-mt-20) -->
-                <div class="order-1 lg:order-2 relative group lg:-mt-20">
+                <!-- RIGHT COLUMN (Video + Icons) - Moved up on Web (lg:-mt-40) -->
+                <div class="order-1 lg:order-2 relative group lg:-mt-40">
                     
                     <!-- CREATIVE ICONS SECTION - Moved up on Mobile (-mt-8) -->
                     <div class="flex justify-center gap-6 mb-8 -mt-8 lg:mt-2 relative z-20">
@@ -511,6 +564,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             </span>
                         </div>
 
+
                         <!-- 2. Videobutton Emoji/Icon -->
                         <div class="creative-orb w-14 h-14 rounded-full flex items-center justify-center group/orb cursor-pointer" title="Professioneller Schnitt">
                             <span class="text-accent/80 group-hover/orb:text-white transition-colors">
@@ -520,6 +574,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                                 </svg>
                             </span>
                         </div>
+
 
                         <!-- 3. Rakete Emoji/Icon -->
                         <div class="creative-orb w-14 h-14 rounded-full flex items-center justify-center group/orb cursor-pointer" title="Marketing Boost">
@@ -532,6 +587,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                                 </svg>
                             </span>
                         </div>
+
 
                         <!-- 4. Roboter Emoji/Icon -->
                         <div class="creative-orb w-14 h-14 rounded-full flex items-center justify-center group/orb cursor-pointer" title="KI-Automation">
@@ -549,13 +605,19 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
 
 
+
+
                     <!-- OPTIMIERUNG: Lazy Load Video Container -->
                     <div class="relative rounded-2xl overflow-hidden border border-base-700 bg-base-900 shadow-2xl cursor-pointer group aspect-video max-h-[45vh] sm:max-h-none"
                          onclick="loadVideo(this, 'AgFPrlNRjGg')">
 
 
+
+
                         <!-- Thumbnail Image -->
                         <img src="https://img.youtube.com/vi/AgFPrlNRjGg/maxresdefault.jpg" loading="lazy" alt="Video Thumbnail" class="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
+
+
 
 
                         <!-- Play Button Overlay with Breath Animation -->
@@ -569,6 +631,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             </div>
         </div>
     </section>
+
+
 
 
     <!-- Partner Slider (Transparenter BG) -->
@@ -619,10 +683,56 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     </section>
 
 
+    <!-- Testimonials (Custom Player) MOVED HERE -->
+    <section id="testimonials" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-light mb-12">
+                Das sagen die <span class="text-accent">Kunden</span>
+            </h2>
+            <div class="relative mb-12">
+                <p class="text-light/90 text-xl md:text-2xl leading-relaxed font-light italic relative z-10">
+                    „Das, was wir gedreht haben, war so gut, dass ich mittlerweile auf der Straße erkannt werde.“
+                </p>
+                <div class="mt-8 flex flex-col items-center justify-center">
+                    <div class="w-16 h-0.5 bg-accent mb-4"></div>
+                    <p class="text-light font-bold tracking-wide uppercase">David Petermann</p>
+                    <p class="text-light-dim text-sm">KFZ Gutachter</p>
+                </div>
+            </div>
+            <!-- OPTIMIERUNG: Lazy Load Video Container auch hier -->
+            <div class="relative rounded-2xl overflow-hidden border border-base-800 shadow-2xl bg-base-900 mx-auto max-w-2xl group cursor-pointer aspect-video"
+                 onclick="loadVideo(this, 'boqVkInzq00')">
+
+
+
+
+                <!-- Thumbnail Image -->
+                <img src="https://img.youtube.com/vi/boqVkInzq00/maxresdefault.jpg" loading="lazy" alt="Testimonial Video" class="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
+                <!-- Play Button -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(245,158,11,0.5)] animate-breath group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" class="text-base-900 ml-1"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Button -->
+            <div class="mt-10">
+                <a href="portfolio.html" class="inline-flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-accent hover:bg-accent-hover text-base-900 hover:shadow-accent/30">
+                    Mehr Projekte ansehen
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
     <!-- DEUTSCHLANDWEIT SECTION -->
     <section id="location" class="py-16 md:py-24 bg-base-900/90 md:bg-base-900/50 backdrop-blur-none md:backdrop-blur-sm border-b border-base-800 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex flex-col md:flex-row gap-10 md:gap-12 lg:gap-20 items-center">
+
+
 
 
                 <!-- Karte (Links) -->
@@ -644,6 +754,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         </defs>
 
 
+
+
                         <!-- HOMEBASE: Düsseldorf -->
                         <g transform="translate(300, 400)">
                             <circle r="30" class="fill-accent/20 animate-ping"></circle>
@@ -651,6 +763,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             <circle r="6" class="fill-accent stroke-base-900 stroke-2"></circle>
                             <text x="15" y="5" class="fill-white text-lg font-bold font-oswald uppercase tracking-wider drop-shadow-md" style="font-size: 16px;">Düsseldorf</text>
                         </g>
+
+
 
 
                         <!-- SATELLITEN STÄDTE & ROUTEN -->
@@ -665,6 +779,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
 
 
+
+
                 <!-- Text & Infos (Rechts) -->
                 <div class="flex-1 max-w-lg w-full">
                     <div class="flex items-center gap-3 mb-6 justify-center md:justify-start">
@@ -675,9 +791,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
 
 
+
+
                     <h2 class="text-3xl md:text-4xl font-bold text-light mb-6 text-center md:text-left">
                         Ich komme zu dir.
                     </h2>
+
+
 
 
                     <p class="text-light-dim text-lg mb-10 leading-relaxed text-center md:text-left">
@@ -685,9 +805,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </p>
 
 
+
+
                     <div class="flex flex-col gap-6 relative max-w-sm mx-auto md:mx-0">
                         <!-- Verbindungsline -->
                         <div class="absolute left-[19px] top-8 bottom-8 w-0.5 bg-base-700 -z-10"></div>
+
+
 
 
                         <!-- OPTIMIERUNG: bg opacity erhöht auf mobile -->
@@ -702,6 +826,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         </div>
 
 
+
+
                         <div class="flex items-center gap-4 bg-base-800/95 md:bg-base-800/50 p-4 rounded-xl border border-base-700/50 hover:border-accent/30 transition-colors">
                             <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center shrink-0 text-base-900 border border-accent shadow-[0_0_15px_rgba(245,158,11,0.4)]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path></svg>
@@ -712,6 +838,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                             </div>
                         </div>
                     </div>
+
+
 
 
                     <div class="mt-10 flex flex-wrap gap-3 justify-center md:justify-start">
@@ -727,10 +855,14 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     </div>
 
 
+
+
                 </div>
             </div>
         </div>
     </section>
+
+
 
 
     <!-- Stats Section -->
@@ -770,6 +902,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     </section>
 
 
+
+
     <!-- SERVICES SECTION -->
     <section id="services" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
         <div class="sm:px-6 lg:px-8 max-w-7xl mr-auto ml-auto pr-4 pl-4">
@@ -778,6 +912,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 <h2 class="text-3xl md:text-4xl font-bold text-light mt-2 mb-6">Meine Unterstützung für dich</h2>
                 <p class="text-light-dim">Wähle das passende Modell für deinen Erfolg. Keine Agentur, sondern dein Partner auf Augenhöhe.</p>
             </div>
+
+
 
 
             <div class="grid md:grid-cols-2 gap-8">
@@ -801,6 +937,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
 
 
+
+
                 <!-- Service 2 -->
                 <div class="group relative p-6 md:p-8 bg-base-800/95 md:bg-base-800/80 backdrop-blur-none md:backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -819,6 +957,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                     </a>
                 </div>
+
+
 
 
                 <!-- Service 3 -->
@@ -841,11 +981,13 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
 
 
+
+
                 <!-- Service 4 -->
                 <div class="group relative p-6 md:p-8 bg-base-800/95 md:bg-base-800/80 backdrop-blur-none md:backdrop-blur-md border border-base-700 rounded-2xl hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path><path d="M8.5 8.5v.01"></path><path d="M16 16v.01"></path><path d="M12 12v.01"></path><path d="M8.5 16v.01"></path><path d="M16 8.5v.01"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path><path d="M8.5 8.5v.01"></path><path d="M16 16v.01"></path><path d="M12 12v.01"></path><path d="M8.5 16v.01"></path><path d="M16 8.5v.01"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold text-light mb-3">KI-Videos & Animationen</h3>
                     <p class="text-light-dim leading-relaxed mb-6">Moderne KI-Erklärfilme kombiniert mit Motion Design. Schnell produziert und visuell beeindruckend. Ideal, wenn es mal keine Realdreh-Aufnahmen sein sollen.</p>
@@ -859,48 +1001,6 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Testimonials (Custom Player) -->
-    <section id="testimonials" class="py-16 md:py-24 bg-transparent relative border-b border-base-800">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold text-light mb-12">
-                Das sagen die <span class="text-accent">Kunden</span>
-            </h2>
-            <div class="relative mb-12">
-                <p class="text-light/90 text-xl md:text-2xl leading-relaxed font-light italic relative z-10">
-                    „Das, was wir gedreht haben, war so gut, dass ich mittlerweile auf der Straße erkannt werde.“
-                </p>
-                <div class="mt-8 flex flex-col items-center justify-center">
-                    <div class="w-16 h-0.5 bg-accent mb-4"></div>
-                    <p class="text-light font-bold tracking-wide uppercase">David Petermann</p>
-                    <p class="text-light-dim text-sm">KFZ Gutachter</p>
-                </div>
-            </div>
-            <!-- OPTIMIERUNG: Lazy Load Video Container auch hier -->
-            <div class="relative rounded-2xl overflow-hidden border border-base-800 shadow-2xl bg-base-900 mx-auto max-w-2xl group cursor-pointer aspect-video"
-                 onclick="loadVideo(this, 'boqVkInzq00')">
-
-
-                <!-- Thumbnail Image -->
-                <img src="https://img.youtube.com/vi/boqVkInzq00/maxresdefault.jpg" loading="lazy" alt="Testimonial Video" class="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
-                <!-- Play Button -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(245,158,11,0.5)] animate-breath group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" class="text-base-900 ml-1"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Portfolio Button -->
-            <div class="mt-10">
-                <a href="portfolio.html" class="inline-flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 group bg-accent hover:bg-accent-hover text-base-900 hover:shadow-accent/30">
-                    Mehr Projekte ansehen
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7l-7 7"></path></svg>
-                </a>
             </div>
         </div>
     </section>
@@ -995,6 +1095,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     </section>
 
 
+
+
     <!-- Footer -->
     <footer class="border-t py-12 bg-base-900 border-base-800">
         <div class="max-w-6xl mx-auto px-6">
@@ -1010,6 +1112,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         mail@marcel-reinwarth.de
                     </a>
 
+
                     <div class="flex gap-6 mt-6 justify-center">
                         <a href="https://www.instagram.com/reinwarthmedia/" target="_blank" rel="noopener noreferrer" class="text-light-dim hover:text-accent transition-colors transform hover:scale-110 duration-300" title="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24" data-icon="mdi:instagram" class="iconify text-2xl iconify--mdi"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3"></path></svg>
@@ -1022,6 +1125,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         </a>
                     </div>
 
+
                 </div>
                 <div class="flex gap-6 text-sm text-light-dim justify-center md:justify-end">
                     <a href="impressum.html" class="hover:text-accent transition-colors">Impressum</a>
@@ -1032,6 +1136,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         </div>
     </footer>
 </div>
+
+
 
 
 <!-- Cookie Banner -->
@@ -1051,11 +1157,15 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
 </div>
 
 
+
+
 <!-- === FULLSCREEN QUIZ OVERLAY === -->
 <div id="booking-overlay" class="fixed inset-0 z-[100] bg-base-900 hidden flex flex-col items-center justify-center overflow-y-auto">
     <button onclick="closeBooking()" class="absolute top-6 right-6 p-2 rounded-full bg-base-800 text-light-dim hover:text-light hover:bg-base-700 transition-all z-50">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
     </button>
+
+
 
 
     <div class="w-full max-w-2xl px-6 py-12 relative">
@@ -1065,6 +1175,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             <div class="text-center mb-8">
                 <p class="text-sm text-light underline decoration-accent animate-pulse">⚡ Nur für kurze Zeit! ⚡<br>Spiele das Quiz und bekomme ein kostenloses Video</p>
             </div>
+
+
 
 
             <!-- Progress Bar -->
@@ -1077,6 +1189,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                     <div id="progress-bar" class="h-full bg-accent transition-all duration-500 w-[20%]"></div>
                 </div>
             </div>
+
+
 
 
             <form id="booking-form" onsubmit="event.preventDefault();">
@@ -1102,6 +1216,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
 
 
+
+
                 <!-- QUIZ FRAGE 2: Größtes Problem -->
                 <div class="step-content" id="step-2">
                     <h2 class="text-3xl font-bold text-light mb-4 text-center">Was ist dein größtes Problem?</h2>
@@ -1121,6 +1237,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <button type="button" class="quiz-progress-btn bg-accent text-base-900 px-8 py-3 rounded-xl font-bold">3 Fragen bis zum kostenlosen Video 🎯</button>
                     </div>
                 </div>
+
+
 
 
                 <!-- QUIZ FRAGE 3: Gewünschte Lösung -->
@@ -1144,6 +1262,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
 
 
+
+
                 <!-- QUIZ FRAGE 4: Startzeit -->
                 <div class="step-content" id="step-4">
                     <h2 class="text-3xl font-bold text-light mb-4 text-center">Wann möchtest du starten?</h2>
@@ -1163,6 +1283,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         <button type="button" class="quiz-progress-btn bg-accent text-base-900 px-8 py-3 rounded-xl font-bold">1 Frage bis zum kostenlosen Video 🎯</button>
                     </div>
                 </div>
+
+
 
 
                 <!-- FRAGE 5: Lead Capture -->
@@ -1215,6 +1337,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                         </div>
 
 
+
+
                         <!-- Dynamisches Kontakt-Feld -->
                         <div id="contact-field-container" class="hidden">
                             <div id="whatsapp-field" class="hidden">
@@ -1226,6 +1350,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                                 <input type="email" id="input-email" class="w-full bg-base-800 border border-base-700 rounded-xl px-4 py-3 text-light focus:outline-none focus:border-accent transition-colors" placeholder="max@beispiel.de" oninput="checkFormCompletion()">
                             </div>
                         </div>
+
+
 
 
                         <div class="bg-base-800/50 p-4 rounded-xl border border-base-700/50 text-xs text-light-dim mt-6">
@@ -1241,6 +1367,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 </div>
             </form>
         </div>
+
+
 
 
         <!-- SUCCESS MESSAGE -->
@@ -1259,9 +1387,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
 </div>
 
 
+
+
 <!-- Logic Script -->
 <script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzec34b5zh0OFhPOt1MEPeY1889vIHM3fCFF_US7byyiQ97MCqQEgbrPXfRxOZ-0i4/exec";
+
 
     // Quiz Antworten speichern
     const quizAnswers = {
@@ -1272,10 +1403,12 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         contactMethod: null
     };
 
+
     // --- QUIZ FUNCTIONS ---
     function selectAnswer(questionNumber, answer) {
         quizAnswers[`q${questionNumber}`] = answer;
     }
+
 
     function selectContactMethod(method) {
         quizAnswers.contactMethod = method;
@@ -1299,6 +1432,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         document.getElementById('contact-field-container').classList.remove('hidden');
         checkFormCompletion();
     }
+
+
 
 
     function checkFormCompletion() {
@@ -1338,6 +1473,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     }
 
 
+
+
     // --- LIGHTBOX FUNCTIONS ---
     function openLightbox(src) {
         const lightbox = document.getElementById('lightbox');
@@ -1353,6 +1490,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     }
 
 
+
+
     function closeLightbox() {
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -1366,6 +1505,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     }
 
 
+
+
     // --- NEW: Video Loader Function to fix height collapse ---
     function loadVideo(container, videoId) {
         // Create iframe element
@@ -1377,14 +1518,20 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         iframe.setAttribute('allowfullscreen', '');
 
 
+
+
         // Apply classes to fill the aspect-video container
         iframe.className = "absolute top-0 left-0 w-full h-full rounded-2xl";
+
+
 
 
         // Clear current content (image & play button) and append iframe
         container.innerHTML = '';
         container.appendChild(iframe);
     }
+
+
 
 
     // --- Navbar Transparency Logic ---
@@ -1401,11 +1548,15 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     });
 
 
+
+
     // --- Mobile Menu Logic ---
     const menuBtn = document.getElementById('mobileMenuBtn');
     const closeBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
+
+
 
 
     function openMenu() {
@@ -1423,6 +1574,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     });
 
 
+
+
     // --- Cookie Banner Logic ---
     function checkCookies() {
         if (!localStorage.getItem('cookieConsent')) {
@@ -1438,12 +1591,16 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     window.addEventListener('load', checkCookies);
 
 
+
+
     // --- Booking Overlay Logic ---
     const bookingOverlay = document.getElementById('booking-overlay');
     const mainContent = document.getElementById('main-content');
     const progressBar = document.getElementById('progress-bar');
     const stepName = document.getElementById('step-name');
     const currentStepText = document.getElementById('current-step-text');
+
+
 
 
     function openBooking() {
@@ -1462,10 +1619,14 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     }
 
 
+
+
     function closeBooking() {
         bookingOverlay.classList.add('hidden');
         mainContent.classList.remove('opacity-0', 'pointer-events-none');
     }
+
+
 
 
     function nextStep(step) {
@@ -1497,6 +1658,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             stepName.innerText = "Fast geschafft!"; 
         }
     }
+
+
 
 
     async function sendToGoogleSheets() {
@@ -1533,14 +1696,20 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         const hasContact = (phoneValue !== "-") || (emailValue !== "-");
 
 
+
+
         if(!firstname || !lastname || !hasContact) {
             alert("Bitte fülle alle Pflichtfelder aus.");
             return;
         }
 
 
+
+
         btn.disabled = true;
         btn.innerHTML = '<div class="spinner"></div>';
+
+
 
 
         try {
@@ -1550,6 +1719,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 headers: { "Content-Type": "text/plain" },
                 body: JSON.stringify(data)
             });
+
 
             // --- ERFOLG: Zeige Success Message IN-PAGE (statt Weiterleitung) ---
             document.getElementById('form-container').classList.add('opacity-0');
@@ -1562,6 +1732,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
                 }, 50);
             }, 500);
 
+
         } catch (error) {
             console.error("Fehler:", error);
             alert("Es gab einen Fehler beim Senden. Bitte versuche es später erneut.");
@@ -1569,6 +1740,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             btn.innerHTML = originalBtnContent;
         }
     }
+
+
 
 
     // --- FAQ Accordion Logic ---
@@ -1595,12 +1768,16 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     });
 
 
+
+
     // --- OPTIMIERUNG: Reduzierte Icon Anzahl (12 statt 45) ---
     function initSocialBackground() {
         const container = document.getElementById('social-pattern');
         if (!container) return;
         const icons = ['mdi:instagram', 'ic:baseline-tiktok', 'mdi:youtube'];
         const count = 12;
+
+
 
 
         for (let i = 0; i < count; i++) {
@@ -1620,6 +1797,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
         }
     }
     document.addEventListener('DOMContentLoaded', initSocialBackground);
+
+
 
 
     // --- Live View Counter Animation ---
@@ -1648,6 +1827,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     }
 
 
+
+
     function startSlowGrowth(startValue) {
         const el = document.getElementById('view-counter');
         let current = startValue;
@@ -1659,6 +1840,8 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
     }
 
 
+
+
     // Start counter when element is in view
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1668,6 +1851,7 @@ src="https://www.facebook.com/tr?id=869381855692973&ev=PageView&noscript=1"
             }
         });
     });
+
 
     const counterElement = document.getElementById('view-counter');
     if (counterElement) {
