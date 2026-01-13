@@ -1117,8 +1117,10 @@ fbq('track', 'PageView');
                         </div>
                     </div>
                 </div>
-<!-- ==================== PORTFOLIO BANNER SECTION ==================== -->
-<!-- Füge diesen CSS-Code in deinen <style> Bereich ein -->
+
+                <!-- Portfolio Button -->
+           <!-- ==================== PORTFOLIO BANNER SECTION ==================== -->
+<!-- CSS - Füge dies in deinen bestehenden <style> Bereich ein -->
 <style>
     /* Portfolio Banner Section */
     .portfolio-banner-section {
@@ -1146,7 +1148,6 @@ fbq('track', 'PageView');
         border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* Marquee */
     .banner-marquee {
         display: flex;
         overflow: hidden;
@@ -1169,7 +1170,6 @@ fbq('track', 'PageView');
         100% { transform: translateX(-50%); }
     }
 
-    /* Video Items */
     .banner-item {
         display: flex;
         align-items: center;
@@ -1223,7 +1223,6 @@ fbq('track', 'PageView');
         margin-top: 2px;
     }
 
-    /* Divider dots */
     .banner-divider {
         width: 6px;
         height: 6px;
@@ -1233,7 +1232,6 @@ fbq('track', 'PageView');
         opacity: 0.6;
     }
 
-    /* Section Title above banner */
     .banner-header {
         text-align: center;
         margin-bottom: 40px;
@@ -1256,7 +1254,6 @@ fbq('track', 'PageView');
         color: #fff;
     }
 
-    /* CTA below banner */
     .banner-cta {
         text-align: center;
         margin-top: 40px;
@@ -1287,7 +1284,7 @@ fbq('track', 'PageView');
         transform: translateX(4px);
     }
 
-    /* Portfolio Banner Lightbox */
+    /* Portfolio Lightbox */
     .portfolio-lightbox {
         position: fixed;
         inset: 0;
@@ -1300,7 +1297,9 @@ fbq('track', 'PageView');
         backdrop-filter: blur(20px);
     }
 
-    .portfolio-lightbox.active { display: flex; }
+    .portfolio-lightbox.active {
+        display: flex;
+    }
 
     .portfolio-lightbox-content {
         width: 100%;
@@ -1309,6 +1308,7 @@ fbq('track', 'PageView');
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 0 60px rgba(245, 158, 11, 0.2);
+        background: #000;
     }
 
     .portfolio-lightbox-content.shorts {
@@ -1373,18 +1373,35 @@ fbq('track', 'PageView');
         transform: translateX(-5px);
     }
 
-    .portfolio-lightbox-back svg { stroke: #f59e0b; }
+    .portfolio-lightbox-back svg {
+        stroke: #f59e0b;
+    }
 
     @media (max-width: 768px) {
-        .banner-thumb { width: 80px; height: 45px; }
-        .banner-thumb.short { width: 35px; height: 62px; }
-        .banner-label { font-size: 12px; }
-        .banner-track { gap: 30px; }
-        .banner-subtitle { font-size: 22px; }
+        .portfolio-banner-section {
+            padding: 60px 0;
+        }
+        .banner-thumb {
+            width: 80px;
+            height: 45px;
+        }
+        .banner-thumb.short {
+            width: 35px;
+            height: 62px;
+        }
+        .banner-label {
+            font-size: 12px;
+        }
+        .banner-track {
+            gap: 30px;
+        }
+        .banner-subtitle {
+            font-size: 22px;
+        }
     }
 </style>
 
-<!-- ==================== HTML SECTION ==================== -->
+<!-- HTML SECTION - Füge dies an der gewünschten Stelle ein -->
 <section class="portfolio-banner-section">
     <div class="banner-header">
         <div class="banner-title">Portfolio</div>
@@ -1395,246 +1412,106 @@ fbq('track', 'PageView');
         <div class="banner-track-wrapper">
             <div class="banner-marquee">
                 <div class="banner-track">
-                    <!-- Videos -->
                     <div class="banner-item" onclick="openPortfolioVideo('BAzbtG-RSes')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/BAzbtG-RSes/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #1</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/BAzbtG-RSes/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #1</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('LyUCXFZZLOY')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/LyUCXFZZLOY/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/LyUCXFZZLOY/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioVideo('u_q-zwrr5Lw')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/u_q-zwrr5Lw/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #2</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/u_q-zwrr5Lw/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #2</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('di58G-BFXZc')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/di58G-BFXZc/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/di58G-BFXZc/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioVideo('O0V6oShBgc8')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/O0V6oShBgc8/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #3</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/O0V6oShBgc8/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #3</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('JTdnj9DSNAw')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/JTdnj9DSNAw/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/JTdnj9DSNAw/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioVideo('LguEiXPnA9g')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/LguEiXPnA9g/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #4</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/LguEiXPnA9g/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #4</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('WAp29WmgO10')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/WAp29WmgO10/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/WAp29WmgO10/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioVideo('SjmvZlMw9L4')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/SjmvZlMw9L4/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #5</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/SjmvZlMw9L4/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #5</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('LuEzQOFgmV0')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/LuEzQOFgmV0/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/LuEzQOFgmV0/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
-                    <!-- Duplicate for seamless loop -->
+                    <!-- Duplicate für seamless loop -->
                     <div class="banner-item" onclick="openPortfolioVideo('BAzbtG-RSes')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/BAzbtG-RSes/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #1</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/BAzbtG-RSes/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #1</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('LyUCXFZZLOY')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/LyUCXFZZLOY/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/LyUCXFZZLOY/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioVideo('u_q-zwrr5Lw')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/u_q-zwrr5Lw/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #2</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/u_q-zwrr5Lw/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #2</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('di58G-BFXZc')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/di58G-BFXZc/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/di58G-BFXZc/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioVideo('O0V6oShBgc8')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/O0V6oShBgc8/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #3</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/O0V6oShBgc8/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #3</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('JTdnj9DSNAw')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/JTdnj9DSNAw/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/JTdnj9DSNAw/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioVideo('LguEiXPnA9g')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/LguEiXPnA9g/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #4</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/LguEiXPnA9g/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #4</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('WAp29WmgO10')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/WAp29WmgO10/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/WAp29WmgO10/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioVideo('SjmvZlMw9L4')">
-                        <div class="banner-thumb">
-                            <img src="https://img.youtube.com/vi/SjmvZlMw9L4/mqdefault.jpg" alt="Video">
-                        </div>
-                        <div>
-                            <div class="banner-label">Projekt #5</div>
-                            <div class="banner-sublabel">16:9 Video</div>
-                        </div>
+                        <div class="banner-thumb"><img src="https://img.youtube.com/vi/SjmvZlMw9L4/mqdefault.jpg" alt="Video"></div>
+                        <div><div class="banner-label">Projekt #5</div><div class="banner-sublabel">16:9 Video</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
-
                     <div class="banner-item" onclick="openPortfolioShorts('LuEzQOFgmV0')">
-                        <div class="banner-thumb short">
-                            <img src="https://img.youtube.com/vi/LuEzQOFgmV0/mqdefault.jpg" alt="Short">
-                        </div>
-                        <div>
-                            <div class="banner-label">Kurzvideo</div>
-                            <div class="banner-sublabel">9:16</div>
-                        </div>
+                        <div class="banner-thumb short"><img src="https://img.youtube.com/vi/LuEzQOFgmV0/mqdefault.jpg" alt="Short"></div>
+                        <div><div class="banner-label">Kurzvideo</div><div class="banner-sublabel">9:16</div></div>
                     </div>
-
                     <div class="banner-divider"></div>
                 </div>
             </div>
@@ -1651,7 +1528,7 @@ fbq('track', 'PageView');
     </div>
 </section>
 
-<!-- Portfolio Video Lightbox (platziere dies vor </body>) -->
+<!-- LIGHTBOXES - Füge dies vor </body> ein -->
 <div id="portfolioVideoLightbox" class="portfolio-lightbox" onclick="closePortfolioLightbox(event)">
     <button class="portfolio-lightbox-close" onclick="closePortfolioLightbox(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1664,7 +1541,6 @@ fbq('track', 'PageView');
     </div>
 </div>
 
-<!-- Portfolio Shorts Lightbox -->
 <div id="portfolioShortsLightbox" class="portfolio-lightbox" onclick="closePortfolioShortsLightbox(event)">
     <button class="portfolio-lightbox-back" onclick="closePortfolioShortsLightbox(event)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1677,63 +1553,50 @@ fbq('track', 'PageView');
     </div>
 </div>
 
-<!-- ==================== JAVASCRIPT ==================== -->
-<!-- Füge diesen Code in deinen <script> Bereich ein oder vor </body> -->
+<!-- JAVASCRIPT - Füge dies vor </body> ein -->
 <script>
-    function openPortfolioVideo(videoId) {
-        const lightbox = document.getElementById('portfolioVideoLightbox');
-        const iframe = document.getElementById('portfolioVideoFrame');
-        iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+function openPortfolioVideo(videoId) {
+    var lightbox = document.getElementById('portfolioVideoLightbox');
+    var iframe = document.getElementById('portfolioVideoFrame');
+    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePortfolioLightbox(event) {
+    if (event) event.stopPropagation();
+    var lightbox = document.getElementById('portfolioVideoLightbox');
+    var iframe = document.getElementById('portfolioVideoFrame');
+    iframe.src = '';
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function openPortfolioShorts(videoId) {
+    var lightbox = document.getElementById('portfolioShortsLightbox');
+    var iframe = document.getElementById('portfolioShortsFrame');
+    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&loop=1&playlist=' + videoId + '&rel=0&modestbranding=1&playsinline=1&controls=1';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePortfolioShortsLightbox(event) {
+    if (event) event.stopPropagation();
+    var lightbox = document.getElementById('portfolioShortsLightbox');
+    var iframe = document.getElementById('portfolioShortsFrame');
+    iframe.src = '';
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closePortfolioLightbox();
+        closePortfolioShortsLightbox();
     }
-
-    function closePortfolioLightbox(event) {
-        if (event) event.stopPropagation();
-        const lightbox = document.getElementById('portfolioVideoLightbox');
-        const iframe = document.getElementById('portfolioVideoFrame');
-        iframe.src = '';
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    function openPortfolioShorts(videoId) {
-        const lightbox = document.getElementById('portfolioShortsLightbox');
-        const iframe = document.getElementById('portfolioShortsFrame');
-        iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&loop=1&playlist=' + videoId + '&rel=0&modestbranding=1&playsinline=1&controls=1';
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closePortfolioShortsLightbox(event) {
-        if (event) event.stopPropagation();
-        const lightbox = document.getElementById('portfolioShortsLightbox');
-        const iframe = document.getElementById('portfolioShortsFrame');
-        iframe.src = '';
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closePortfolioLightbox();
-            closePortfolioShortsLightbox();
-        }
-    });
-</script>
-<!-- ==================== END PORTFOLIO BANNER SECTION ==================== -->
-          
-
-
-
-
-
-
-
-
-
-
-    
+});
+</script>     
+        </div></section>
 
 
         <!-- DEUTSCHLANDWEIT SECTION -->
@@ -1833,8 +1696,8 @@ fbq('track', 'PageView');
 
 
                         <p class="text-light-dim text-lg mb-10 leading-relaxed text-center md:text-left">
-                            Egal wo dein Unternehmen sitzt – für das
-                            <span class="text-light font-bold">1 Monat Content, 1 Drehtag Paket</span>.
+                            Egal wo dein Unternehmen sitzt – kompletter DACH raum für das
+                            <span class="text-light font-bold">1 Monat Content, 1 Drehtag Paket - Ausland auch möglich auf Anfrage</span>.
                         </p>
 
 
@@ -3059,4 +2922,4 @@ fbq('track', 'PageView');
 
 
 
-</section></div></body></html>
+</body></html>
