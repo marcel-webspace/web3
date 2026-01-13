@@ -57,9 +57,192 @@
         .lightbox.active { display: flex; }
         .lightbox-content { width: 100%; max-width: 1200px; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; box-shadow: 0 0 80px rgba(245, 158, 11, 0.3); }
         .lightbox-content iframe { width: 100%; height: 100%; border: none; }
+
+        /* Shorts Lightbox Styles */
+        .shorts-lightbox-content {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 9 / 16;
+            max-height: 85vh;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 80px rgba(245, 158, 11, 0.3);
+            background: #000;
+        }
+        .shorts-lightbox-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            padding: 12px 24px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #f8fafc;
+            font-size: 14px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+        .back-btn:hover {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+            transform: translateX(-5px);
+        }
+        .back-btn svg {
+            stroke: #f59e0b;
+        }
+
+        @media (max-width: 768px) {
+            .shorts-lightbox-content {
+                max-width: 90vw;
+                max-height: 80vh;
+            }
+            .back-btn {
+                top: 20px;
+                left: 20px;
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+        }
         .close-btn { position: absolute; top: 30px; right: 30px; width: 50px; height: 50px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
         .close-btn:hover { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; transform: rotate(90deg); }
         .close-btn svg { width: 24px; height: 24px; stroke: #f8fafc; }
+
+        /* Shorts Slider Styles */
+        .shorts-slider-wrapper {
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .shorts-slider {
+            display: flex;
+            gap: 20px;
+            animation: scroll-left 60s linear infinite;
+            width: max-content;
+        }
+
+        .shorts-slider:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .short-video-container {
+            position: relative;
+            width: 180px;
+            height: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #000;
+            border: 1px solid #334155;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .short-video-container:hover {
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.2);
+            transform: scale(1.05);
+        }
+
+        .short-video-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .short-video-container:hover img {
+            filter: brightness(0.7);
+        }
+
+        .short-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+            transition: all 0.3s ease;
+            z-index: 10;
+            opacity: 0;
+        }
+
+        .short-video-container:hover .short-play-button {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .short-play-button svg {
+            width: 20px;
+            height: 20px;
+            fill: #0f172a;
+            margin-left: 3px;
+        }
+
+        .shorts-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #f59e0b;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(245, 158, 11, 0.3), transparent);
+            margin: 60px 0;
+        }
+
+        @media (max-width: 768px) {
+            .short-video-container {
+                width: 140px;
+                height: 249px;
+            }
+            .short-play-button {
+                width: 40px;
+                height: 40px;
+            }
+            .short-play-button svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
     </style>
 </head>
 <body class="antialiased bg-base-900 text-light">
@@ -92,50 +275,306 @@
                 <p class="text-xl text-light-dim max-w-2xl mx-auto">Eine Auswahl meiner Schnitt-Arbeiten für verschiedene Kunden und Projekte.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="rm-video-container animate-fade-in-up delay-1" onclick="openLightbox('BAzbtG-RSes')">
-                    <span class="video-badge">Projekt #1</span>
-                    <img src="https://img.youtube.com/vi/BAzbtG-RSes/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                    <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <!-- Kurzvideos Section -->
+            <section class="mb-16 animate-fade-in-up delay-1">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-light mb-3">Kurzvideos</h2>
+                    <p class="text-light-dim max-w-xl mx-auto">Kurzvideos die ich geschnitten habe für diverse Projekte</p>
                 </div>
-                <div class="rm-video-container animate-fade-in-up delay-2" onclick="openLightbox('u_q-zwrr5Lw')">
-                    <span class="video-badge">Projekt #2</span>
-                    <img src="https://img.youtube.com/vi/u_q-zwrr5Lw/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                    <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="rm-video-container animate-fade-in-up delay-3" onclick="openLightbox('O0V6oShBgc8')">
-                    <span class="video-badge">Projekt #3</span>
-                    <img src="https://img.youtube.com/vi/O0V6oShBgc8/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                    <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="rm-video-container animate-fade-in-up delay-4" onclick="openLightbox('LguEiXPnA9g')">
-                    <span class="video-badge">Projekt #4</span>
-                    <img src="https://img.youtube.com/vi/LguEiXPnA9g/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                    <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="rm-video-container animate-fade-in-up delay-5" onclick="openLightbox('SjmvZlMw9L4')">
-                    <span class="video-badge">Projekt #5</span>
-                    <img src="https://img.youtube.com/vi/SjmvZlMw9L4/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                    <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="rm-video-container animate-fade-in-up delay-6" onclick="openLightbox('c3UQ56dmh48')">
-                    <span class="video-badge">Projekt #6</span>
-                    <img src="https://img.youtube.com/vi/c3UQ56dmh48/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                    <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="rm-video-container animate-fade-in-up delay-7" onclick="openLightbox('iYMu2thQkeU')">
-                    <span class="video-badge">Projekt #7</span>
-                    <img src="https://img.youtube.com/vi/iYMu2thQkeU/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                    <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="rm-video-container animate-fade-in-up delay-8" onclick="openLightbox('lTOY2RQvhDc')">
-                    <span class="video-badge">Projekt #8</span>
-                    <img src="https://img.youtube.com/vi/lTOY2RQvhDc/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
-                    <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-            </div>
 
-            <div class="mt-20 text-center animate-fade-in-up" style="animation-delay: 1s; opacity: 0;">
+                <div class="shorts-slider-wrapper">
+                    <div class="shorts-slider" id="shortsSlider">
+                        <!-- First set of shorts -->
+                        <div class="short-video-container" onclick="openShortsLightbox('LyUCXFZZLOY')">
+                            <img src="https://img.youtube.com/vi/LyUCXFZZLOY/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/LyUCXFZZLOY/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('di58G-BFXZc')">
+                            <img src="https://img.youtube.com/vi/di58G-BFXZc/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/di58G-BFXZc/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('JTdnj9DSNAw')">
+                            <img src="https://img.youtube.com/vi/JTdnj9DSNAw/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/JTdnj9DSNAw/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('WAp29WmgO10')">
+                            <img src="https://img.youtube.com/vi/WAp29WmgO10/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/WAp29WmgO10/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('LuEzQOFgmV0')">
+                            <img src="https://img.youtube.com/vi/LuEzQOFgmV0/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/LuEzQOFgmV0/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('zWBKD_DmtGs')">
+                            <img src="https://img.youtube.com/vi/zWBKD_DmtGs/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/zWBKD_DmtGs/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('NkgnIIFcR28')">
+                            <img src="https://img.youtube.com/vi/NkgnIIFcR28/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/NkgnIIFcR28/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('R_N8NkYBD-8')">
+                            <img src="https://img.youtube.com/vi/R_N8NkYBD-8/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/R_N8NkYBD-8/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('eB0vEDM9dtU')">
+                            <img src="https://img.youtube.com/vi/eB0vEDM9dtU/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/eB0vEDM9dtU/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('BlGXwgvcAlE')">
+                            <img src="https://img.youtube.com/vi/BlGXwgvcAlE/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/BlGXwgvcAlE/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('2734RxpxlPc')">
+                            <img src="https://img.youtube.com/vi/2734RxpxlPc/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/2734RxpxlPc/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('CLY7esyzePE')">
+                            <img src="https://img.youtube.com/vi/CLY7esyzePE/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/CLY7esyzePE/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('cBFKPwXBUF4')">
+                            <img src="https://img.youtube.com/vi/cBFKPwXBUF4/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/cBFKPwXBUF4/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('qD2r3Qs-jTQ')">
+                            <img src="https://img.youtube.com/vi/qD2r3Qs-jTQ/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/qD2r3Qs-jTQ/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('zIVufemZgis')">
+                            <img src="https://img.youtube.com/vi/zIVufemZgis/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/zIVufemZgis/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('pAdAzBwws8o')">
+                            <img src="https://img.youtube.com/vi/pAdAzBwws8o/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/pAdAzBwws8o/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('m5XoXGy5u-s')">
+                            <img src="https://img.youtube.com/vi/m5XoXGy5u-s/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/m5XoXGy5u-s/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('1sXD_fgpZWE')">
+                            <img src="https://img.youtube.com/vi/1sXD_fgpZWE/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/1sXD_fgpZWE/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('QFnYdRJ4nZY')">
+                            <img src="https://img.youtube.com/vi/QFnYdRJ4nZY/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/QFnYdRJ4nZY/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('GxxkkIk-51I')">
+                            <img src="https://img.youtube.com/vi/GxxkkIk-51I/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/GxxkkIk-51I/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('HEVp3sypi_s')">
+                            <img src="https://img.youtube.com/vi/HEVp3sypi_s/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/HEVp3sypi_s/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('yP9NXysNeio')">
+                            <img src="https://img.youtube.com/vi/yP9NXysNeio/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/yP9NXysNeio/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('MCYxhcEj5gk')">
+                            <img src="https://img.youtube.com/vi/MCYxhcEj5gk/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/MCYxhcEj5gk/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="short-video-container" onclick="openShortsLightbox('LyUCXFZZLOY')">
+                            <img src="https://img.youtube.com/vi/LyUCXFZZLOY/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/LyUCXFZZLOY/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('di58G-BFXZc')">
+                            <img src="https://img.youtube.com/vi/di58G-BFXZc/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/di58G-BFXZc/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('JTdnj9DSNAw')">
+                            <img src="https://img.youtube.com/vi/JTdnj9DSNAw/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/JTdnj9DSNAw/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('WAp29WmgO10')">
+                            <img src="https://img.youtube.com/vi/WAp29WmgO10/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/WAp29WmgO10/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('LuEzQOFgmV0')">
+                            <img src="https://img.youtube.com/vi/LuEzQOFgmV0/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/LuEzQOFgmV0/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('zWBKD_DmtGs')">
+                            <img src="https://img.youtube.com/vi/zWBKD_DmtGs/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/zWBKD_DmtGs/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('NkgnIIFcR28')">
+                            <img src="https://img.youtube.com/vi/NkgnIIFcR28/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/NkgnIIFcR28/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('R_N8NkYBD-8')">
+                            <img src="https://img.youtube.com/vi/R_N8NkYBD-8/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/R_N8NkYBD-8/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('eB0vEDM9dtU')">
+                            <img src="https://img.youtube.com/vi/eB0vEDM9dtU/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/eB0vEDM9dtU/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('BlGXwgvcAlE')">
+                            <img src="https://img.youtube.com/vi/BlGXwgvcAlE/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/BlGXwgvcAlE/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('2734RxpxlPc')">
+                            <img src="https://img.youtube.com/vi/2734RxpxlPc/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/2734RxpxlPc/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('CLY7esyzePE')">
+                            <img src="https://img.youtube.com/vi/CLY7esyzePE/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/CLY7esyzePE/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('cBFKPwXBUF4')">
+                            <img src="https://img.youtube.com/vi/cBFKPwXBUF4/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/cBFKPwXBUF4/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('qD2r3Qs-jTQ')">
+                            <img src="https://img.youtube.com/vi/qD2r3Qs-jTQ/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/qD2r3Qs-jTQ/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('zIVufemZgis')">
+                            <img src="https://img.youtube.com/vi/zIVufemZgis/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/zIVufemZgis/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('pAdAzBwws8o')">
+                            <img src="https://img.youtube.com/vi/pAdAzBwws8o/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/pAdAzBwws8o/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('m5XoXGy5u-s')">
+                            <img src="https://img.youtube.com/vi/m5XoXGy5u-s/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/m5XoXGy5u-s/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('1sXD_fgpZWE')">
+                            <img src="https://img.youtube.com/vi/1sXD_fgpZWE/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/1sXD_fgpZWE/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('QFnYdRJ4nZY')">
+                            <img src="https://img.youtube.com/vi/QFnYdRJ4nZY/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/QFnYdRJ4nZY/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('GxxkkIk-51I')">
+                            <img src="https://img.youtube.com/vi/GxxkkIk-51I/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/GxxkkIk-51I/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('HEVp3sypi_s')">
+                            <img src="https://img.youtube.com/vi/HEVp3sypi_s/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/HEVp3sypi_s/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('yP9NXysNeio')">
+                            <img src="https://img.youtube.com/vi/yP9NXysNeio/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/yP9NXysNeio/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                        <div class="short-video-container" onclick="openShortsLightbox('MCYxhcEj5gk')">
+                            <img src="https://img.youtube.com/vi/MCYxhcEj5gk/maxresdefault.jpg" alt="Short Video" loading="lazy" onerror="this.src='https://img.youtube.com/vi/MCYxhcEj5gk/hqdefault.jpg'">
+                            <div class="short-play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                            <span class="shorts-badge">Short</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Längere Videos Section -->
+            <section class="animate-fade-in-up delay-2">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-light mb-3">Längere Videos</h2>
+                    <p class="text-light-dim max-w-xl mx-auto">Längere Videos in 16:9 Format für verschiedene Kunden und Projekte</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="rm-video-container animate-fade-in-up delay-3" onclick="openLightbox('BAzbtG-RSes')">
+                        <span class="video-badge">Projekt #1</span>
+                        <img src="https://img.youtube.com/vi/BAzbtG-RSes/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                        <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
+                    <div class="rm-video-container animate-fade-in-up delay-4" onclick="openLightbox('u_q-zwrr5Lw')">
+                        <span class="video-badge">Projekt #2</span>
+                        <img src="https://img.youtube.com/vi/u_q-zwrr5Lw/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                        <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
+                    <div class="rm-video-container animate-fade-in-up delay-5" onclick="openLightbox('O0V6oShBgc8')">
+                        <span class="video-badge">Projekt #3</span>
+                        <img src="https://img.youtube.com/vi/O0V6oShBgc8/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                        <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
+                    <div class="rm-video-container animate-fade-in-up delay-6" onclick="openLightbox('LguEiXPnA9g')">
+                        <span class="video-badge">Projekt #4</span>
+                        <img src="https://img.youtube.com/vi/LguEiXPnA9g/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                        <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
+                    <div class="rm-video-container animate-fade-in-up delay-7" onclick="openLightbox('SjmvZlMw9L4')">
+                        <span class="video-badge">Projekt #5</span>
+                        <img src="https://img.youtube.com/vi/SjmvZlMw9L4/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                        <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
+                    <div class="rm-video-container animate-fade-in-up delay-8" onclick="openLightbox('c3UQ56dmh48')">
+                        <span class="video-badge">Projekt #6</span>
+                        <img src="https://img.youtube.com/vi/c3UQ56dmh48/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                        <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
+                    <div class="rm-video-container animate-fade-in-up" style="animation-delay: 0.9s; opacity: 0;" onclick="openLightbox('iYMu2thQkeU')">
+                        <span class="video-badge">Projekt #7</span>
+                        <img src="https://img.youtube.com/vi/iYMu2thQkeU/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                        <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
+                    <div class="rm-video-container animate-fade-in-up" style="animation-delay: 1s; opacity: 0;" onclick="openLightbox('lTOY2RQvhDc')">
+                        <span class="video-badge">Projekt #8</span>
+                        <img src="https://img.youtube.com/vi/lTOY2RQvhDc/maxresdefault.jpg" alt="Video Thumbnail" loading="lazy">
+                        <div class="play-button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="mt-20 text-center animate-fade-in-up" style="animation-delay: 1.2s; opacity: 0;">
                 <div class="bg-base-800/50 border border-base-700 rounded-2xl p-8 md:p-12 max-w-3xl mx-auto backdrop-blur-sm">
                     <h2 class="text-2xl md:text-3xl font-bold text-light mb-4">Gefällt dir, was du siehst?</h2>
                     <p class="text-light-dim mb-8">Lass uns über dein Projekt sprechen und gemeinsam Content erstellen, der wirklich performt.</p>
@@ -143,7 +582,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                         Schreib mir auf WhatsApp
                     </a>
-                    <p class="text-light-dim mt-6">Oder <a href="mailto:mail@marcel-reinwarth.de" class="text-accent hover:text-accent-light transition-colors underline">klicke hier und schreib mir eine E-Mail</a></p>
+                    <p class="text-light-dim mt-6">Oder <a href="/cdn-cgi/l/email-protection#29444840456944485b4a4c45045b4c40475e485b5d41074d4c" class="text-accent hover:text-accent-light transition-colors underline">klicke hier und schreib mir eine E-Mail</a></p>
                 </div>
             </div>
         </div>
@@ -155,6 +594,7 @@
         </div>
     </footer>
 
+    <!-- Lightbox for regular videos (16:9) -->
     <div id="videoLightbox" class="lightbox" onclick="closeLightbox(event)">
         <button class="close-btn" onclick="closeLightbox(event)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -164,7 +604,22 @@
         </div>
     </div>
 
+    <!-- Lightbox for shorts (9:16) -->
+    <div id="shortsLightbox" class="lightbox" onclick="closeShortsLightbox(event)">
+        <button class="back-btn" onclick="closeShortsLightbox(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7l-7 7 7 7"/></svg>
+            Zurück zur Seite
+        </button>
+        <div class="shorts-lightbox-content" onclick="event.stopPropagation()">
+            <iframe id="shortsFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
+        // Regular video lightbox (16:9)
         function openLightbox(videoId) {
             var lightbox = document.getElementById('videoLightbox');
             var iframe = document.getElementById('videoFrame');
@@ -172,6 +627,7 @@
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+
         function closeLightbox(event) {
             if (event) event.stopPropagation();
             var lightbox = document.getElementById('videoLightbox');
@@ -180,9 +636,33 @@
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
         }
+
+        // Close lightbox with Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeShortsLightbox();
+            }
         });
+
+        // Shorts lightbox (9:16)
+        function openShortsLightbox(videoId) {
+            var lightbox = document.getElementById('shortsLightbox');
+            var iframe = document.getElementById('shortsFrame');
+            // Verwende den YouTube Shorts Embed mit loop Parameter für bessere Wiedergabe
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&loop=1&playlist=' + videoId + '&rel=0&modestbranding=1&playsinline=1&controls=1&showinfo=0';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeShortsLightbox(event) {
+            if (event) event.stopPropagation();
+            var lightbox = document.getElementById('shortsLightbox');
+            var iframe = document.getElementById('shortsFrame');
+            iframe.src = '';
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     </script>
 </body>
 </html>
