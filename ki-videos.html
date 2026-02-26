@@ -1,487 +1,376 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KI-Erklärvideos | Reinwarth Media</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>KI-Erklärvideos | Reinwarth Media</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    
-    <!-- Meta Tags -->
-    <meta name="description" content="KI-Erklärvideos & Animationen - Professionelle Erklärfilme mit KI-Tools, schnell produziert und kostengünstig. Reinwarth Media.">
-    <meta property="og:title" content="KI-Erklärvideos | Reinwarth Media">
-    <meta property="og:description" content="Moderne KI-Erklärfilme kombiniert mit Motion Design. Schnell produziert und visuell beeindruckend.">
-    <meta property="og:type" content="website">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDV88J2YZ9"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-GDV88J2YZ9');
-    </script>
+<!-- Meta Tags -->
+<meta name="description" content="KI-Erklärvideos & Animationen - Professionelle Erklärfilme mit KI-Tools, schnell produziert und kostengünstig. Reinwarth Media.">
+<meta property="og:title" content="KI-Erklärvideos | Reinwarth Media">
+<meta property="og:description" content="Moderne KI-Erklärfilme kombiniert mit Motion Design. Schnell produziert und visuell beeindruckend.">
+<meta property="og:type" content="website">
 
-    <!-- TAILWIND -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        base: {
-                            DEFAULT: '#0f172a',
-                            900: '#0f172a',
-                            800: '#1e293b',
-                            700: '#334155',
-                        },
-                        light: {
-                            DEFAULT: '#f8fafc',
-                            dim: '#94a3b8',
-                        },
-                        accent: {
-                            DEFAULT: '#f59e0b',
-                            hover: '#d97706',
-                            glow: '#f59e0b',
-                            light: '#fcd34d',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GDV88J2YZ9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GDV88J2YZ9');
+</script>
 
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --a:#f59e0b;--al:#fbbf24;--ad:#d97706;
+  --glow:rgba(245,158,11,.12);
+  --bg:#161b2b;--bg2:#1e2438;--bg3:#1a2035;
+  --t1:#f9fafc;--t2:#9ca3b8;--t3:#636b82;
+  --brd:rgba(245,158,11,.15);--bs:rgba(255,255,255,.07);--bc:rgba(255,255,255,.09);
+  --ok:#34d399;--r:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");pointer-events:none;z-index:9998}
+img{display:block;max-width:100%}
+a{text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
+/* ═══ NAV ═══ */
+.nv{position:sticky;top:0;z-index:50;background:rgba(22,27,43,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--bs);padding:12px 0}
+.nv-in{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--t1);text-decoration:none}
+.logo i{font-style:italic;color:var(--a)}
+.nv-back{color:var(--t2);font-size:.82rem;font-weight:600;transition:color .3s}
+.nv-back:hover{color:var(--a)}
 
-        /* Ambient Background */
-        .ambient-light {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 0; background: #0f172a; overflow: hidden;
-        }
-        .ambient-light::before {
-            content: ''; position: absolute; width: 90vw; height: 90vh; border-radius: 50%; filter: blur(100px);
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0) 60%);
-            top: -30%; left: -20%; animation: subtle-drift 15s infinite ease-in-out;
-        }
-        @keyframes subtle-drift {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, 20px); }
-        }
+/* ═══ SECTION HELPERS ═══ */
+.sl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;text-transform:uppercase;letter-spacing:.16em;color:var(--a);margin-bottom:12px;font-weight:700}
+.sl::before{content:'';width:20px;height:2px;background:var(--a)}
+.sh{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;line-height:1.12;letter-spacing:-.02em;margin-bottom:32px}
+.sh em{font-style:italic;color:var(--a)}
 
-        /* Video Container */
-        .rm-video-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 60px rgba(245, 158, 11, 0.15);
-            background-color: #000;
-            border: 2px solid #334155;
-            cursor: pointer;
-        }
-        .rm-video-container:hover {
-            border-color: rgba(245, 158, 11, 0.5);
-        }
+/* ═══ HERO ═══ */
+.hero{padding:32px 0 28px;position:relative;overflow:hidden}
+.hero-orb{position:absolute;width:350px;height:350px;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.3;background:radial-gradient(circle,rgba(245,158,11,.2),transparent 70%);top:-100px;right:-80px}
+.hero h1{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:14px;text-align:center}
+.hero h1 em{font-style:italic;color:var(--a)}
 
-        /* Timeline Animation */
-        .timeline-line {
-            position: absolute;
-            left: 24px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: #334155;
-        }
-        
-        .timeline-progress {
-            position: absolute;
-            left: 24px;
-            top: 0;
-            width: 3px;
-            height: 0%;
-            background: linear-gradient(to bottom, #f59e0b, #fcd34d);
-            transition: height 0.1s linear;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
-        }
+/* ═══ VIDEO ═══ */
+.vid{margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid var(--bc);box-shadow:0 20px 60px rgba(0,0,0,.4);background:var(--bg3);max-width:860px}
+.vid-bg{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;cursor:pointer}
+.vid-bg img{width:100%;height:100%;object-fit:cover;opacity:.8;transition:opacity .3s}
+.vid-bg:hover img{opacity:.6}
+.vid-bg iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vf{position:absolute;inset:10px;border:1px solid rgba(255,255,255,.1);border-radius:2px;pointer-events:none}
+.vf-c{position:absolute;width:10px;height:10px;border-color:var(--a);border-style:solid;border-width:0}
+.vf-tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}
+.vf-tr{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px}
+.vf-bl{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px}
+.vf-br{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px}
+.rec-i{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:5px;font-size:.6rem;font-weight:700;color:#ef4444;letter-spacing:.1em;text-transform:uppercase}
+.rec-i::before{content:'';width:6px;height:6px;background:#ef4444;border-radius:50%;animation:bl 1s infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
+.tc{position:absolute;bottom:14px;right:14px;font-family:'Courier New',monospace;font-size:.6rem;color:rgba(255,255,255,.35)}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:var(--a);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 0 0 0 rgba(245,158,11,.4);animation:pp 2.5s ease-in-out infinite;font-family:inherit}
+@keyframes pp{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.4)}50%{box-shadow:0 0 0 14px rgba(245,158,11,0)}}
+.play-btn svg{width:20px;height:20px;fill:var(--bg);margin-left:2px}
+.vid-bar{padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.vid-bar span{font-size:.75rem;color:var(--t2);font-weight:500}
+.vid-badge{background:var(--glow);color:var(--a);padding:3px 10px;border-radius:100px;font-size:.68rem;font-weight:700}
 
-        @media (min-width: 768px) {
-            .timeline-line, .timeline-progress {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
+/* ═══ PROCESS / TIMELINE ═══ */
+.proc{padding:48px 0}
+.proc-timeline{position:relative;display:flex;flex-direction:column;gap:12px}
 
-        /* Step Cards */
-        .step-card {
-            opacity: 0.4;
-            transform: translateY(10px);
-            transition: all 0.5s ease;
-        }
-        .step-card.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .step-card.active .step-icon {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
-        }
-        .step-card.active .step-number {
-            color: #f59e0b;
-        }
+/* Timeline line */
+.proc-timeline::before{
+  content:'';position:absolute;left:19px;top:0;bottom:0;width:2px;background:var(--bc);
+}
+.proc-timeline::after{
+  content:'';position:absolute;left:19px;top:0;width:2px;height:0;
+  background:linear-gradient(to bottom,var(--ad),var(--a),var(--al));
+  box-shadow:0 0 12px var(--glow);
+  transition:height .15s linear;
+  z-index:1;
+}
 
-        .step-icon {
-            transition: all 0.4s ease;
-            background: #1e293b;
-        }
+.ps{display:flex;align-items:flex-start;gap:14px;padding:18px;background:var(--bg3);border:1px solid var(--bc);border-radius:var(--r);position:relative;opacity:.4;transform:translateY(8px);transition:all .5s ease}
+.ps.active{opacity:1;transform:translateY(0)}
+.ps.active .ps-d{border-color:var(--a);background:var(--glow);box-shadow:0 0 16px var(--glow)}
+.ps.active .ps-num{color:var(--a)}
+.ps-d{width:38px;height:38px;background:var(--bg);border:2px solid var(--bc);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .4s ease;position:relative;z-index:2}
+.ps-d svg{width:18px;height:18px;stroke:var(--t1);fill:none;stroke-width:2}
+.ps-body{flex:1}
+.ps-top{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.ps-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;color:var(--t3);transition:color .4s;line-height:1}
+.ps h4{font-size:.95rem;font-weight:700}
+.ps p{font-size:.82rem;color:var(--t2);line-height:1.5}
 
-        .step-dot {
-            width: 16px;
-            height: 16px;
-            background: #334155;
-            border-radius: 50%;
-            position: absolute;
-            left: 24px;
-            transform: translateX(-50%);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        .step-card.active .step-dot {
-            background: #f59e0b;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.7);
-            transform: translateX(-50%) scale(1.2);
-        }
+/* ═══ CTA ═══ */
+.fcta{padding:56px 0;text-align:center;position:relative;overflow:hidden}
+.fcta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(245,158,11,.12),transparent 60%);pointer-events:none}
+.fcta h2{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;line-height:1.12;margin-bottom:14px;position:relative}
+.fcta h2 em{font-style:italic;color:var(--a)}
+.fcta p{font-size:.9rem;color:var(--t2);margin-bottom:24px;position:relative;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6}
+.fcta-btns{display:flex;flex-direction:column;gap:10px;max-width:360px;margin:0 auto;position:relative}
 
-        @media (min-width: 768px) {
-            .step-dot {
-                left: 50%;
-            }
-        }
+/* Buttons */
+.bp{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 24px;background:var(--a);color:var(--bg);border-radius:var(--r);font-size:.95rem;font-weight:800;text-decoration:none;border:none;cursor:pointer;font-family:inherit;position:relative;overflow:hidden;transition:all .3s}
+.bp::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);animation:sh 3s infinite}
+@keyframes sh{0%{left:-100%}100%{left:150%}}
+.bp-wa{background:#25D366;color:#fff}
+.bp-wa::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
+.bs{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 24px;background:transparent;color:var(--t1);border:1px solid var(--bc);border-radius:var(--r);font-size:.95rem;font-weight:600;text-decoration:none;font-family:inherit;transition:all .3s}
+.bs:hover{border-color:var(--a);color:var(--a)}
 
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            box-shadow: 0 0 30px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-        }
-        .whatsapp-btn:hover {
-            box-shadow: 0 0 50px rgba(37, 211, 102, 0.6);
-            transform: translateY(-3px) scale(1.02);
-        }
+/* ═══ FOOTER ═══ */
+.ft{padding:28px 0;border-top:1px solid var(--bs)}
+.ft-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.ft-c{font-size:.72rem;color:var(--t3)}
+.ft-l{display:flex;gap:16px}
+.ft-l a{font-size:.72rem;color:var(--t3);text-decoration:none;transition:color .3s}
+.ft-l a:hover{color:var(--t1)}
+.ft-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--t1)}
+.ft-logo i{font-style:italic;color:var(--a)}
 
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, #f59e0b, #fcd34d, #f59e0b);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 3s ease infinite;
-        }
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 200% center; }
-        }
+/* ═══ REVEAL ═══ */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
 
-        /* Pulse Animation for Icons */
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.6); }
-        }
+/* ═══ CONTACT INFO ═══ */
+.contact-alt{font-size:.82rem;color:var(--t2);margin-top:16px;position:relative}
+.contact-alt a{color:var(--a);font-weight:600;transition:color .3s}
+.contact-alt a:hover{color:var(--al)}
 
-        /* Fade In Animation */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-    </style>
+/* ═══ DESKTOP ═══ */
+@media(min-width:768px){
+  .wrap{padding:0 32px}
+  .hero{padding:56px 0 40px}
+  .hero h1{font-size:3.2rem}
+  .sh{font-size:2.4rem}
+  .proc-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .proc-timeline::before,.proc-timeline::after{display:none}
+  .ps{flex-direction:column;text-align:center;align-items:center}
+  .ps-top{flex-direction:column;gap:4px}
+  .fcta h2{font-size:2.6rem}
+  .fcta-btns{flex-direction:row;justify-content:center;max-width:none;gap:12px}
+  .bp,.bs{width:auto;padding:15px 28px}
+  .play-btn{width:72px;height:72px}
+  .play-btn svg{width:24px;height:24px}
+}
+</style>
 </head>
 <body>
-    <!-- Ambient Background -->
-    <div class="ambient-light"></div>
 
-    <!-- Main Content -->
-    <div class="relative z-10">
-        <!-- Navigation -->
-        <nav class="fixed top-0 left-0 right-0 z-50 bg-base-900/95 backdrop-blur-md border-b border-base-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-20">
-                    <a href="index.html" class="flex items-center group select-none py-2 cursor-pointer">
-                        <div class="flex items-baseline leading-none">
-                            <span class="text-2xl font-semibold tracking-tight text-light">Reinwarth</span>
-                            <span class="text-2xl font-semibold tracking-tight text-accent ml-1">Media</span>
-                        </div>
-                    </a>
-                    <div class="hidden md:flex items-center gap-6">
-                        <a href="index.html" class="text-sm font-medium text-light/80 hover:text-accent transition-colors">← Zurück zur Startseite</a>
-                    </div>
-                    <a href="index.html" class="md:hidden text-sm font-medium text-light/80 hover:text-accent transition-colors">← Zurück</a>
-                </div>
-            </div>
-        </nav>
+<!-- Nav -->
+<nav class="nv">
+  <div class="wrap nv-in">
+    <a href="index.html" class="logo">Reinwarth <i>Media</i></a>
+    <a href="index.html" class="nv-back">← Zurück zur Startseite</a>
+  </div>
+</nav>
 
-        <!-- Hero Section with Video -->
-        <section class="pt-28 pb-8 md:pt-36 md:pb-12">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <!-- Headline -->
-                <div class="text-center mb-8 animate-fade-in-up">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold">
-                        <span class="gradient-text">KI-Erklärvideos</span>
-                        <span class="text-light"> beauftragen?</span>
-                    </h1>
-                </div>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-orb"></div>
+  <div class="wrap">
+    <h1 class="rv vis"><em>KI-Erklärvideos</em> beauftragen?</h1>
 
-                <!-- Video Player -->
-                <div class="mb-16 animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="rm-video-container group" onclick="loadVideo(this, 'K-0B83hwrxM')">
-                        <img src="https://img.youtube.com/vi/K-0B83hwrxM/maxresdefault.jpg" 
-                             alt="KI-Erklärvideo Beispiel" 
-                             class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-20 h-20 md:w-24 md:h-24 bg-accent rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(245,158,11,0.5)] group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" class="text-base-900 ml-1">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process Timeline Section -->
-        <section class="py-12 md:py-16">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <span class="text-accent font-medium text-sm uppercase tracking-wider">So läuft's ab</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-light mt-2">Dein Video in 4 Schritten</h2>
-                </div>
-
-                <!-- Timeline Container -->
-                <div class="relative" id="timeline-container">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-progress" id="timeline-progress"></div>
-
-                    <div class="space-y-12 md:space-y-20">
-                        <!-- Step 1 -->
-                        <div class="step-card relative" data-step="1">
-                            <div class="step-dot" style="top: 32px;"></div>
-                            <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
-                                <div class="md:text-right md:pr-8 pl-14 md:pl-0 mb-4 md:mb-0">
-                                    <span class="step-number text-5xl md:text-7xl font-bold text-base-700 transition-all">01</span>
-                                </div>
-                                <div class="pl-14 md:pl-8">
-                                    <div class="step-icon w-14 h-14 rounded-xl flex items-center justify-center mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-light">
-                                            <circle cx="11" cy="11" r="8"></circle>
-                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-light mb-2">Dein Projekt verstehen</h3>
-                                    <p class="text-light-dim text-sm leading-relaxed">
-                                        Ich schau mir deine Website an und verstehe, was du anbietest – oder du schickst mir einfach Beispiele.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 2 -->
-                        <div class="step-card relative" data-step="2">
-                            <div class="step-dot" style="top: 32px;"></div>
-                            <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
-                                <div class="md:text-right md:pr-8 pl-14 md:pl-0 mb-4 md:mb-0 md:order-1">
-                                    <div class="step-icon w-14 h-14 rounded-xl flex items-center justify-center mb-3 md:ml-auto">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-light">
-                                            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
-                                            <path d="M8.5 8.5v.01"></path>
-                                            <path d="M16 16v.01"></path>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-light mb-2">KI-Produktion</h3>
-                                    <p class="text-light-dim text-sm leading-relaxed">
-                                        Ich erstelle mit KI-Tools animierte Videos und eine deutsche Stimme – alles passend zu deiner Marke.
-                                    </p>
-                                </div>
-                                <div class="pl-14 md:pl-0 md:pr-8 md:order-0">
-                                    <span class="step-number text-5xl md:text-7xl font-bold text-base-700 transition-all md:text-left">02</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div class="step-card relative" data-step="3">
-                            <div class="step-dot" style="top: 32px;"></div>
-                            <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
-                                <div class="md:text-right md:pr-8 pl-14 md:pl-0 mb-4 md:mb-0">
-                                    <span class="step-number text-5xl md:text-7xl font-bold text-base-700 transition-all">03</span>
-                                </div>
-                                <div class="pl-14 md:pl-8">
-                                    <div class="step-icon w-14 h-14 rounded-xl flex items-center justify-center mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-light">
-                                            <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-light mb-2">Schnitt & Feinschliff</h3>
-                                    <p class="text-light-dim text-sm leading-relaxed">
-                                        Ich füge alles zusammen – mit Untertiteln, Übergängen und dem letzten Schliff.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 4 -->
-                        <div class="step-card relative" data-step="4">
-                            <div class="step-dot" style="top: 32px;"></div>
-                            <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
-                                <div class="md:text-right md:pr-8 pl-14 md:pl-0 mb-4 md:mb-0 md:order-1">
-                                    <div class="step-icon w-14 h-14 rounded-xl flex items-center justify-center mb-3 md:ml-auto">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-light">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-light mb-2">Fertig in 1-3 Tagen</h3>
-                                    <p class="text-light-dim text-sm leading-relaxed">
-                                        Preiswerter und schneller als üblich – dank KI-Lösung. Bis zu 3 Korrekturschleifen inklusive.
-                                    </p>
-                                </div>
-                                <div class="pl-14 md:pl-0 md:pr-8 md:order-0">
-                                    <span class="step-number text-5xl md:text-7xl font-bold text-base-700 transition-all md:text-left">04</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-16 md:py-24">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-light mb-6">
-                    Interesse an einem <span class="text-accent">KI-Erklärvideo</span>?
-                </h2>
-                <p class="text-lg text-light-dim mb-10">
-                    Schreib mir auf WhatsApp und wir besprechen dein Projekt. Je nachdem wie viele Videos du brauchst, mach ich dir ein individuelles Angebot.
-                </p>
-                
-                <!-- WhatsApp Button -->
-                <a href="https://wa.me/4915679614591?text=Hey%20Marcel,%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20KI-Erkl%C3%A4rvideo!" 
-                   target="_blank"
-                   class="whatsapp-btn inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-white font-bold text-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    WhatsApp kontaktieren
-                </a>
-
-                <p class="text-light-dim text-sm mt-6">
-                    Oder schreib mir eine E-Mail: 
-                    <a href="mailto:mail@marcel-reinwarth.de" class="text-accent hover:text-accent-light transition-colors">mail@marcel-reinwarth.de</a>
-                </p>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-8 border-t border-base-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <a href="index.html" class="flex items-baseline">
-                        <span class="text-xl font-semibold text-light">Reinwarth</span>
-                        <span class="text-xl font-semibold text-accent ml-1">Media</span>
-                    </a>
-                    <div class="flex items-center gap-6 text-sm text-light-dim">
-                        <a href="impressum.html" class="hover:text-light transition-colors">Impressum</a>
-                        <a href="datenschutz.html" class="hover:text-light transition-colors">Datenschutz</a>
-                    </div>
-                    <p class="text-sm text-light-dim">© 2025 Reinwarth Media</p>
-                </div>
-            </div>
-        </footer>
+    <!-- Video Player -->
+    <div class="vid rv vis" style="transition-delay:.1s">
+      <div class="vid-bg" id="vp" onclick="playV()">
+        <img src="https://img.youtube.com/vi/K-0B83hwrxM/maxresdefault.jpg" alt="KI-Erklärvideo Beispiel" id="vt">
+        <div class="vf">
+          <span class="vf-c vf-tl"></span><span class="vf-c vf-tr"></span>
+          <span class="vf-c vf-bl"></span><span class="vf-c vf-br"></span>
+        </div>
+        <div class="rec-i">REC</div>
+        <div class="tc" id="tc">00:00:00:00</div>
+        <button class="play-btn" aria-label="Abspielen">
+          <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"></polygon></svg>
+        </button>
+      </div>
+      <div class="vid-bar">
+        <span>KI-Erklärvideo Beispiel</span>
+        <span class="vid-badge">Showreel</span>
+      </div>
     </div>
+  </div>
+</section>
 
-    <script>
-        // Load YouTube Video
-        function loadVideo(container, videoId) {
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-            iframe.setAttribute('allowfullscreen', '');
-            iframe.className = 'absolute top-0 left-0 w-full h-full rounded-2xl';
-            container.innerHTML = '';
-            container.appendChild(iframe);
-        }
+<!-- ═══ PROCESS ═══ -->
+<section class="proc">
+  <div class="wrap">
+    <div class="sl rv">So läuft's ab</div>
+    <h2 class="sh rv">Dein Video in <em>4 Schritten</em></h2>
+    <div class="proc-timeline" id="timeline">
 
-        // Timeline Scroll Animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const timelineContainer = document.getElementById('timeline-container');
-            const timelineProgress = document.getElementById('timeline-progress');
-            const stepCards = document.querySelectorAll('.step-card');
-            
-            function updateTimeline() {
-                if (!timelineContainer) return;
-                
-                const containerRect = timelineContainer.getBoundingClientRect();
-                const containerTop = containerRect.top;
-                const containerHeight = containerRect.height;
-                const windowHeight = window.innerHeight;
-                
-                // Calculate progress based on scroll position
-                const scrollStart = windowHeight * 0.6;
-                const scrollProgress = Math.max(0, Math.min(1, (scrollStart - containerTop) / containerHeight));
-                
-                // Update progress line
-                timelineProgress.style.height = (scrollProgress * 100) + '%';
-                
-                // Update step cards
-                stepCards.forEach((card, index) => {
-                    const cardRect = card.getBoundingClientRect();
-                    const cardCenter = cardRect.top + cardRect.height / 2;
-                    const triggerPoint = windowHeight * 0.65;
-                    
-                    if (cardCenter < triggerPoint) {
-                        card.classList.add('active');
-                    } else {
-                        card.classList.remove('active');
-                    }
-                });
-            }
-            
-            // Initial check
-            updateTimeline();
-            
-            // Update on scroll
-            window.addEventListener('scroll', updateTimeline, { passive: true });
-            window.addEventListener('resize', updateTimeline, { passive: true });
-        });
-    </script>
+      <!-- Step 1 -->
+      <div class="ps rv" data-step="1">
+        <div class="ps-d">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <div class="ps-body">
+          <div class="ps-top">
+            <span class="ps-num">01</span>
+            <h4>Dein Projekt verstehen</h4>
+          </div>
+          <p>Ich schau mir deine Website an und verstehe, was du anbietest – oder du schickst mir einfach Beispiele.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="ps rv" data-step="2">
+        <div class="ps-d">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path><path d="M8.5 8.5v.01"></path><path d="M16 16v.01"></path></svg>
+        </div>
+        <div class="ps-body">
+          <div class="ps-top">
+            <span class="ps-num">02</span>
+            <h4>KI-Produktion</h4>
+          </div>
+          <p>Ich erstelle mit KI-Tools animierte Videos und eine deutsche Stimme – alles passend zu deiner Marke.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="ps rv" data-step="3">
+        <div class="ps-d">
+          <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+        </div>
+        <div class="ps-body">
+          <div class="ps-top">
+            <span class="ps-num">03</span>
+            <h4>Schnitt & Feinschliff</h4>
+          </div>
+          <p>Ich füge alles zusammen – mit Untertiteln, Übergängen und dem letzten Schliff.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="ps rv" data-step="4">
+        <div class="ps-d">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <div class="ps-body">
+          <div class="ps-top">
+            <span class="ps-num">04</span>
+            <h4>Fertig in 1-3 Tagen</h4>
+          </div>
+          <p>Preiswerter und schneller als üblich – dank KI-Lösung. Bis zu 3 Korrekturschleifen inklusive.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="fcta">
+  <div class="wrap">
+    <h2 class="rv">Interesse an einem <em>KI-Erklärvideo</em>?</h2>
+    <p class="rv">Schreib mir auf WhatsApp und wir besprechen dein Projekt. Je nachdem wie viele Videos du brauchst, mach ich dir ein individuelles Angebot.</p>
+    <div class="fcta-btns rv">
+      <a href="https://wa.me/4915679614591?text=Hey%20Marcel,%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20KI-Erkl%C3%A4rvideo!" target="_blank" class="bp bp-wa">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp kontaktieren
+      </a>
+    </div>
+    <p class="contact-alt rv">
+      Oder schreib mir eine E-Mail: 
+      <a href="mailto:mail@marcel-reinwarth.de">mail@marcel-reinwarth.de</a>
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="ft">
+  <div class="wrap ft-in">
+    <a href="index.html" class="ft-logo">Reinwarth <i>Media</i></a>
+    <div class="ft-l">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+    <div class="ft-c">© 2025 Reinwarth Media</div>
+  </div>
+</footer>
+
+<script>
+// Video
+function playV(){
+  document.getElementById('vp').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/K-0B83hwrxM?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3&color=white" allow="autoplay;encrypted-media;fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';
+}
+
+// Timecode
+const tc=document.getElementById('tc');let fr=0;
+setInterval(()=>{fr++;const f=fr%25,s=Math.floor(fr/25)%60,m=Math.floor(fr/1500)%60,h=Math.floor(fr/90000)%24;tc.textContent=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}:${String(f).padStart(2,'0')}`},40);
+
+// Reveal
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Timeline scroll animation (mobile only — vertical layout)
+function updateTimeline(){
+  const steps=document.querySelectorAll('.ps');
+  const timeline=document.getElementById('timeline');
+  if(!timeline)return;
+  const isMobile=window.innerWidth<768;
+
+  steps.forEach((card)=>{
+    const rect=card.getBoundingClientRect();
+    const trigger=window.innerHeight*0.65;
+    if(rect.top+rect.height/2<trigger){card.classList.add('active')}else if(isMobile){card.classList.remove('active')}
+  });
+
+  if(isMobile){
+    const tRect=timeline.getBoundingClientRect();
+    const scrollStart=window.innerHeight*0.6;
+    const progress=Math.max(0,Math.min(1,(scrollStart-tRect.top)/tRect.height));
+    timeline.style.setProperty('--prog',progress*100+'%');
+    // Update the ::after height via a CSS trick
+    const afterEl=timeline;
+    afterEl.style.cssText=`--prog:${progress*100}%`;
+  }
+}
+
+// Use a style injection for the dynamic timeline progress
+const styleSheet=document.createElement('style');
+document.head.appendChild(styleSheet);
+
+function updateTimelineStyle(){
+  const timeline=document.getElementById('timeline');
+  if(!timeline||window.innerWidth>=768)return;
+  const tRect=timeline.getBoundingClientRect();
+  const scrollStart=window.innerHeight*0.6;
+  const progress=Math.max(0,Math.min(1,(scrollStart-tRect.top)/tRect.height));
+  styleSheet.textContent=`.proc-timeline::after{height:${progress*100}%!important}`;
+}
+
+window.addEventListener('scroll',()=>{updateTimeline();updateTimelineStyle()},{passive:true});
+window.addEventListener('resize',()=>{updateTimeline();updateTimelineStyle()},{passive:true});
+
+// Activate all on desktop immediately after reveal
+setTimeout(()=>{
+  if(window.innerWidth>=768){
+    document.querySelectorAll('.ps').forEach(s=>s.classList.add('active'));
+  }
+  updateTimeline();
+  updateTimelineStyle();
+},100);
+</script>
+
 </body>
 </html>
