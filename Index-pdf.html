@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
+<html lang="de"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Reinwarth Media | Videoproduktion für Unternehmer</title>
@@ -16,6 +15,8 @@
   --t1:#f9fafc;--t2:#9ca3b8;--t3:#636b82;
   --brd:rgba(245,158,11,.15);--bs:rgba(255,255,255,.07);--bc:rgba(255,255,255,.09);
   --ok:#34d399;--r:12px;
+  --grad-gold:linear-gradient(135deg, #d97706, #f59e0b, #fbbf24, #f59e0b, #d97706);
+  --grad-subtle:linear-gradient(135deg, rgba(245,158,11,.06), rgba(251,191,36,.03), rgba(245,158,11,.06));
 }
 html{scroll-behavior:smooth}
 body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -67,17 +68,20 @@ img{display:block;max-width:100%}
 /* HERO */
 .hero{padding:32px 0 28px;position:relative;overflow:hidden}
 .hero-orb{position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(80px);pointer-events:none;opacity:.35;background:radial-gradient(circle,rgba(245,158,11,.2),transparent 70%);top:-80px;right:-60px}
+.hero-orb2{position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(100px);pointer-events:none;opacity:.15;background:radial-gradient(circle,rgba(251,191,36,.25),transparent 70%);bottom:10%;left:-40px}
 .hero h1{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:14px}
-.hero h1 em{font-style:italic;color:var(--a)}
+.hero h1 em{font-style:italic;background:var(--grad-gold);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:grad-shift 4s ease infinite}
+@keyframes grad-shift{0%,100%{background-position:0% center}50%{background-position:100% center}}
 .h-sub{font-size:.92rem;color:var(--t2);line-height:1.65;margin-bottom:24px}
 .h-sub strong{color:var(--t1);font-weight:600}
 .h-btns{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
 .h-stats{display:flex;justify-content:space-between;padding-top:24px;border-top:1px solid var(--bs)}
-.h-stat b{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:var(--a);display:block;line-height:1}
+.h-stat b{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;background:var(--grad-gold);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1}
 .h-stat span{font-size:.7rem;color:var(--t3);margin-top:3px;display:block;font-weight:500}
 
 /* VIDEO */
-.vid{margin:28px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--bc);box-shadow:0 20px 60px rgba(0,0,0,.4);background:var(--bg3)}
+.vid{margin:28px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--bc);box-shadow:0 20px 60px rgba(0,0,0,.4);background:var(--bg3);position:relative}
+.vid::before{content:'';position:absolute;inset:-1px;border-radius:17px;padding:1px;background:linear-gradient(135deg,rgba(245,158,11,.2),transparent 40%,transparent 60%,rgba(245,158,11,.1));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:1}
 .vid-bg{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
 .vid-bg img{width:100%;height:100%;object-fit:cover;opacity:.8}
 .vid-bg iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -107,14 +111,17 @@ img{display:block;max-width:100%}
 
 /* SECTION */
 .sl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;text-transform:uppercase;letter-spacing:.16em;color:var(--a);margin-bottom:12px;font-weight:700}
-.sl::before{content:'';width:20px;height:2px;background:var(--a)}
+.sl::before{content:'';width:20px;height:2px;background:var(--grad-gold)}
 .sh{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;line-height:1.12;letter-spacing:-.02em;margin-bottom:32px}
-.sh em{font-style:italic;color:var(--a)}
+.sh em{font-style:italic;background:var(--grad-gold);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* PAIN */
 .pain{padding:48px 0;background:var(--bg2)}
 .pain-g{display:flex;flex-direction:column;gap:10px}
-.pc{background:var(--bg3);border:1px solid var(--bc);border-radius:var(--r);padding:20px;display:flex;align-items:flex-start;gap:14px}
+.pc{background:var(--bg3);border:1px solid var(--bc);border-radius:var(--r);padding:20px;display:flex;align-items:flex-start;gap:14px;position:relative;transition:all .4s}
+.pc::before{content:'';position:absolute;inset:-1px;border-radius:calc(var(--r) + 1px);padding:1px;background:linear-gradient(135deg,rgba(245,158,11,0),rgba(245,158,11,0));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;transition:all .4s}
+.pc:hover::before{background:linear-gradient(135deg,rgba(245,158,11,.3),rgba(251,191,36,.1),rgba(245,158,11,.15))}
+.pc:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
 .pc-i{font-size:1.4rem;flex-shrink:0;margin-top:2px}
 .pc h3{font-size:.92rem;font-weight:700;margin-bottom:4px}
 .pc p{font-size:.82rem;color:var(--t2);line-height:1.5}
@@ -128,9 +135,9 @@ img{display:block;max-width:100%}
 .pf-thumb img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:all .5s}
 .pf-card:hover .pf-thumb img{opacity:1;transform:scale(1.04)}
 .pf-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(22,27,43,.92) 0%,rgba(22,27,43,.3) 40%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
-.pf-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:rgba(245,158,11,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:all .4s;backdrop-filter:blur(4px)}
-.pf-card:hover .pf-play{opacity:1}
-.pf-play svg{width:18px;height:18px;fill:var(--bg);margin-left:2px}
+.pf-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:var(--a);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:1;transition:all .4s;backdrop-filter:blur(4px);box-shadow:0 0 0 0 rgba(245,158,11,.4);animation:pp 2.5s ease-in-out infinite;cursor:pointer}
+.pf-card:hover .pf-play{transform:translate(-50%,-50%) scale(1.08)}
+.pf-play svg{width:20px;height:20px;fill:var(--bg);margin-left:2px}
 .pf-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.25);padding:3px 10px;border-radius:100px;font-size:.62rem;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;width:fit-content;backdrop-filter:blur(8px)}
 .pf-card h3{font-size:.95rem;font-weight:700;color:var(--t1);margin-bottom:3px}
 .pf-card p{font-size:.76rem;color:var(--t2);line-height:1.4}
@@ -146,7 +153,7 @@ img{display:block;max-width:100%}
 .lm{padding:48px 0;position:relative}
 .lm-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.15);color:var(--ok);padding:5px 12px;border-radius:100px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
 .lm-h{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;line-height:1.14;margin-bottom:12px}
-.lm-h em{font-style:italic;color:var(--a)}
+.lm-h em{font-style:italic;background:var(--grad-gold);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .lm-desc{font-size:.88rem;color:var(--t2);line-height:1.6;margin-bottom:20px}
 .lm-bens{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
 .lm-ben{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--t2);font-weight:500}
@@ -157,17 +164,27 @@ img{display:block;max-width:100%}
 .pdf-ico svg{width:13px;height:13px}
 .pdf-link span{font-size:.72rem;font-weight:600;color:var(--t1)}
 .pdf-b{background:#ef4444;color:#fff;font-size:.52rem;font-weight:800;padding:2px 6px;border-radius:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* FORM STYLES - Enhanced */
 .lm-form{display:flex;flex-direction:column;gap:10px}
 .lm-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.inp{width:100%;padding:13px 16px;background:var(--bg2);border:1px solid var(--bc);border-radius:var(--r);color:var(--t1);font-family:inherit;font-size:.88rem;font-weight:500;transition:all .3s;outline:none;-webkit-appearance:none}
-.inp:focus{border-color:var(--a);box-shadow:0 0 0 3px var(--glow)}
-.inp::placeholder{color:var(--t3)}
+.inp-wrap{position:relative;border-radius:var(--r)}
+.inp-wrap::before{content:'';position:absolute;inset:-1px;border-radius:calc(var(--r) + 1px);padding:1px;background:linear-gradient(135deg,rgba(245,158,11,0),rgba(245,158,11,0));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;transition:all .5s;z-index:1}
+.inp-wrap:focus-within::before{background:linear-gradient(135deg,var(--ad),var(--a),var(--al),var(--a),var(--ad));background-size:300% 300%;animation:border-glow 3s ease infinite}
+@keyframes border-glow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.inp{width:100%;padding:13px 16px;background:var(--bg2);border:1px solid var(--bc);border-radius:var(--r);color:var(--t1);font-family:inherit;font-size:.88rem;font-weight:500;transition:all .3s;outline:none;-webkit-appearance:none;position:relative}
+.inp:focus{border-color:transparent;box-shadow:0 0 20px rgba(245,158,11,.08)}
+.inp::placeholder{color:var(--t3);transition:all .3s}
+.inp:focus::placeholder{opacity:.4;transform:translateX(4px)}
 .ch-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ch-btn{padding:11px;border:1px solid var(--bc);border-radius:var(--r);background:var(--bg2);color:var(--t2);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:6px}
-.ch-btn:hover,.ch-btn.active{border-color:var(--a);color:var(--a);background:var(--glow)}
+.ch-btn{padding:11px;border:1px solid var(--bc);border-radius:var(--r);background:var(--bg2);color:var(--t2);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:6px;position:relative;overflow:hidden}
+.ch-btn::before{content:'';position:absolute;inset:-1px;border-radius:calc(var(--r) + 1px);padding:1px;background:linear-gradient(135deg,rgba(245,158,11,0),rgba(245,158,11,0));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;transition:all .4s}
+.ch-btn:hover::before,.ch-btn.active::before{background:var(--grad-gold)}
+.ch-btn:hover,.ch-btn.active{border-color:transparent;color:var(--a);background:var(--glow)}
 .ch-btn svg{width:14px;height:14px}
 .sub-btn{width:100%;padding:15px;background:var(--a);color:var(--bg);border:none;border-radius:var(--r);font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
 .sub-btn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);animation:sh 3s infinite}
+.sub-btn:hover{box-shadow:0 4px 24px rgba(245,158,11,.3);transform:translateY(-1px)}
 .lm-ck{display:flex;align-items:flex-start;gap:8px;font-size:.72rem;color:var(--t3);cursor:pointer;line-height:1.4}
 .lm-ck input{width:16px;height:16px;accent-color:var(--a);flex-shrink:0;margin-top:1px;cursor:pointer}
 .lm-ck a{color:var(--a);text-decoration:underline}
@@ -177,23 +194,29 @@ img{display:block;max-width:100%}
 /* SOLUTION */
 .sol{padding:48px 0;background:var(--bg2)}
 .sol-g{display:flex;flex-direction:column;gap:14px}
-.sc{background:var(--bg3);border:1px solid var(--bc);border-radius:16px;padding:24px 20px;position:relative;overflow:hidden}
+.sc{background:var(--bg3);border:1px solid var(--bc);border-radius:16px;padding:24px 20px;position:relative;overflow:hidden;cursor:pointer;transition:all .4s}
+.sc::before{content:'';position:absolute;inset:-1px;border-radius:17px;padding:1px;background:linear-gradient(135deg,rgba(245,158,11,0),rgba(245,158,11,0));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;transition:all .5s;z-index:1}
+.sc:hover::before{background:linear-gradient(135deg,rgba(245,158,11,.35),rgba(251,191,36,.15),rgba(245,158,11,.2))}
+.sc:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.25)}
 .sc.feat{border-color:var(--a)}
-.sc.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ad),var(--a),var(--ad))}
+.sc.feat::before{background:var(--grad-gold);opacity:.4}
+.sc.feat:hover::before{opacity:.7}
 .sc-pop{position:absolute;top:14px;right:14px;background:var(--a);color:var(--bg);font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px}
 .sc h3{font-size:1.05rem;font-weight:700;margin-bottom:6px}
 .sc>p{font-size:.84rem;color:var(--t2);line-height:1.55;margin-bottom:16px}
 .sf{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--t2);font-weight:500;padding:6px 0}
 .sf .ck{width:16px;height:16px;background:var(--glow);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sf .ck svg{width:10px;height:10px;fill:var(--a)}
-.pkg{background:var(--bg3);border:1px solid var(--bc);border-radius:16px;padding:20px;margin-top:14px}
+.pkg{background:var(--bg3);border:1px solid var(--bc);border-radius:16px;padding:20px;margin-top:14px;position:relative}
+.pkg::before{content:'';position:absolute;inset:-1px;border-radius:17px;padding:1px;background:linear-gradient(135deg,rgba(245,158,11,.08),transparent 50%,rgba(245,158,11,.05));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .pkg-title{font-size:.92rem;font-weight:700;margin-bottom:6px}
 .pkg-desc{font-size:.8rem;color:var(--t2);line-height:1.5;margin-bottom:16px}
 .pkg-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-.pkg-t{background:var(--bg2);border:1px solid var(--bs);border-radius:10px;padding:14px 8px;text-align:center}
-.pkg-t.hi{border-color:var(--a)}
+.pkg-t{background:var(--bg2);border:1px solid var(--bs);border-radius:10px;padding:14px 8px;text-align:center;transition:all .3s;cursor:pointer}
+.pkg-t:hover{border-color:var(--brd);transform:translateY(-2px)}
+.pkg-t.hi{border-color:var(--a);box-shadow:0 0 20px rgba(245,158,11,.08)}
 .pkg-t-badge{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--a);display:block;margin-bottom:4px}
-.pkg-t b{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--a);display:block;line-height:1;margin-bottom:2px}
+.pkg-t b{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;background:var(--grad-gold);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;margin-bottom:2px}
 .pkg-t span{font-size:.65rem;color:var(--t3);display:block}
 .pkg-note{font-size:.75rem;color:var(--t3);text-align:center;font-style:italic}
 .ub{background:var(--bg3);border:1px solid var(--bc);border-radius:16px;padding:20px;margin-top:14px}
@@ -204,7 +227,10 @@ img{display:block;max-width:100%}
 /* PROCESS */
 .proc{padding:48px 0}
 .proc-g{display:flex;flex-direction:column;gap:12px}
-.ps{display:flex;align-items:flex-start;gap:14px;padding:18px;background:var(--bg3);border:1px solid var(--bc);border-radius:var(--r)}
+.ps{display:flex;align-items:flex-start;gap:14px;padding:18px;background:var(--bg3);border:1px solid var(--bc);border-radius:var(--r);position:relative;transition:all .4s}
+.ps::before{content:'';position:absolute;inset:-1px;border-radius:calc(var(--r) + 1px);padding:1px;background:linear-gradient(135deg,rgba(245,158,11,0),rgba(245,158,11,0));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;transition:all .4s}
+.ps:hover::before{background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(251,191,36,.08),rgba(245,158,11,.12))}
+.ps:hover{transform:translateY(-2px)}
 .ps-d{width:38px;height:38px;background:var(--bg);border:2px solid var(--a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;box-shadow:0 0 12px var(--glow)}
 .ps h4{font-size:.9rem;font-weight:700;margin-bottom:3px}
 .ps p{font-size:.8rem;color:var(--t2);line-height:1.45}
@@ -212,18 +238,18 @@ img{display:block;max-width:100%}
 /* TESTIMONIAL */
 .testi{padding:48px 0;background:var(--bg2)}
 .tc-card{background:var(--bg3);border:1px solid var(--brd);border-radius:16px;padding:24px 20px;position:relative;overflow:hidden}
-.tc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ad),var(--a),var(--ad))}
+.tc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);background-size:200% 100%;animation:gs 4s ease infinite}
 .tc-txt{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.5;margin-bottom:18px;position:relative}
 .tc-a{display:flex;align-items:center;gap:12px}
-.tc-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--ad),var(--a));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;color:var(--bg);flex-shrink:0}
+.tc-av{width:40px;height:40px;border-radius:50%;background:var(--grad-gold);background-size:200% 200%;animation:grad-shift 4s ease infinite;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;color:var(--bg);flex-shrink:0}
 .tc-nm{font-weight:700;font-size:.9rem}
 .tc-rl{font-size:.76rem;color:var(--t3)}
 
 /* FAQ */
 .faq{padding:48px 0}
 .faq-g{display:flex;flex-direction:column;gap:8px}
-.fq{background:var(--bg3);border:1px solid var(--bc);border-radius:var(--r);overflow:hidden}
-.fq.act{border-color:var(--brd)}
+.fq{background:var(--bg3);border:1px solid var(--bc);border-radius:var(--r);overflow:hidden;transition:all .3s}
+.fq.act{border-color:var(--brd);box-shadow:0 0 20px rgba(245,158,11,.05)}
 .fq-q{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-weight:600;font-size:.88rem;gap:12px;-webkit-tap-highlight-color:transparent}
 .fq-t{width:22px;height:22px;border-radius:50%;background:var(--glow);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;color:var(--a);transition:all .3s}
 .fq.act .fq-t{transform:rotate(45deg);background:var(--a);color:var(--bg)}
@@ -235,7 +261,7 @@ img{display:block;max-width:100%}
 .fcta{padding:56px 0;text-align:center;position:relative;overflow:hidden}
 .fcta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(245,158,11,.12),transparent 60%);pointer-events:none}
 .fcta h2{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;line-height:1.12;margin-bottom:14px;position:relative}
-.fcta h2 em{font-style:italic;color:var(--a)}
+.fcta h2 em{font-style:italic;background:var(--grad-gold);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:grad-shift 4s ease infinite}
 .fcta p{font-size:.9rem;color:var(--t2);margin-bottom:24px;position:relative}
 .fcta-btns{display:flex;flex-direction:column;gap:10px;max-width:360px;margin:0 auto;position:relative}
 
@@ -256,6 +282,9 @@ img{display:block;max-width:100%}
 /* REVEAL */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .rv.vis{opacity:1;transform:translateY(0)}
+
+/* WATERMARK TEXT */
+.wm{position:absolute;font-family:'Playfair Display',serif;font-weight:800;color:rgba(245,158,11,.025);pointer-events:none;user-select:none;white-space:nowrap;z-index:0}
 
 /* DESKTOP */
 @media(min-width:768px){
@@ -281,25 +310,27 @@ img{display:block;max-width:100%}
   .fcta-btns{flex-direction:row;justify-content:center;max-width:none}
   .play-btn{width:72px;height:72px}
   .play-btn svg{width:24px;height:24px}
+  .pf-play{width:64px;height:64px}
+  .pf-play svg{width:22px;height:22px}
   .hb{display:none}
   .nv-links{display:flex}
   .mob-menu,.mob-overlay{display:none}
 }
 </style>
 </head>
-<body>
+<body class="">
 
 <!-- Topbar -->
-<div class="tb"><span>🎬 Kostenlose Content-Strategie sichern — <a href="#strategie">Jetzt anfragen</a></span></div>
+<div class="tb"><span class="">🎬 Kostenlose Content-Strategie sichern — <a href="#strategie">Jetzt anfragen</a></span></div>
 
 <!-- Nav -->
 <nav class="nv">
   <div class="wrap nv-in">
-    <a href="Reinwarth_Media_Website.html" class="logo">Reinwarth <span>Media</span></a>
+    <a href="Reinwarth_Media_Website.html" class="logo">Reinwarth <span class="">Media</span></a>
     <div class="nv-links">
       <a href="portfolio.html" class="nv-link">Portfolio</a>
       <a href="werbeanzeigen.html" class="nv-link">Ads</a>
-      <a href="ki-erklaervideos.html" class="nv-link">KI Erklärvideos</a>
+      <a href="ki-videos.html" class="nv-link">KI Erklärvideos</a>
       <a href="videoschnitt.html" class="nv-link">Videoschnitt</a>
       <a href="#strategie" class="nv-btn">Strategie sichern →</a>
     </div>
@@ -315,7 +346,7 @@ img{display:block;max-width:100%}
   <div class="mob-label">Seiten</div>
   <a href="portfolio.html" class="mob-link"><div class="mob-link-icon">🎥</div>Portfolio</a>
   <a href="werbeanzeigen.html" class="mob-link"><div class="mob-link-icon">📢</div>Ads</a>
-  <a href="ki-erklaervideos.html" class="mob-link"><div class="mob-link-icon">🤖</div>KI Erklärvideos</a>
+  <a href="ki-videos.html" class="mob-link"><div class="mob-link-icon">🤖</div>KI Erklärvideos</a>
   <a href="videoschnitt.html" class="mob-link"><div class="mob-link-icon">✂️</div>Videoschnitt</a>
   <div class="mob-label">Rechtliches</div>
   <a href="https://reinwarth-media.de/impressum.html" class="mob-link"><div class="mob-link-icon">📄</div>Impressum</a>
@@ -327,11 +358,14 @@ img{display:block;max-width:100%}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+  <span class="wm" style="font-size:8rem;top:20%;left:-5%;transform:rotate(-8deg);opacity:.015">SICHTBARKEIT</span>
+  <span class="wm" style="font-size:6rem;bottom:5%;right:-3%;transform:rotate(5deg);opacity:.012">CONTENT</span>
   <div class="wrap">
     <div class="hero-g">
-      <div>
-        <h1 class="rv vis">Dein Gesicht.<br>Deine <em>Marke.</em></h1>
-        <p class="h-sub rv vis"><strong>Deine Zielgruppe kennt dich, bevor sie anruft.</strong> Professionelle Videos, ein Drehtag, ein Monat Content.</p>
+      <div class="">
+        <h1 class="rv vis">Dein Handwerk<br><em>verdient eine Bühne.</em></h1>
+        <p class="h-sub rv vis"><strong>Ein Drehtag, ein Monat Content. Für Instagram, TikTok & Youtube Shorts.</strong> </p>
         <div class="h-btns rv vis">
           <a href="#strategie" class="bp">🎯 Kostenlose Strategie</a>
           <a href="https://wa.me/+4915679614591?text=Hey%20Marcel%2C%20ich%20interessiere%20mich%20für%20eine%20Zusammenarbeit." class="bs" target="_blank">💬 WhatsApp</a>
@@ -339,17 +373,17 @@ img{display:block;max-width:100%}
         <div class="h-stats rv vis">
           <div class="h-stat"><b>50M+</b><span>Aufrufe</span></div>
           <div class="h-stat"><b>500K</b><span>YouTube Abos</span></div>
-          <div class="h-stat"><b>1 Tag</b><span>= 1 Monat Content</span></div>
+          <div class="h-stat"><b class="">1 Tag</b><span class="">= 1 Monat Content</span></div>
         </div>
       </div>
       <div class="rv vis">
         <div class="vid">
           <div class="vid-bg" id="vp">
-            <img src="https://img.youtube.com/vi/nIWvaw7YF_U/maxresdefault.jpg" alt="Trailer" id="vt">
+            <img src="https://img.youtube.com/vi/nIWvaw7YF_U/maxresdefault.jpg" alt="Trailer" id="vt" class="">
             <div class="vf"><span class="vf-c vf-tl"></span><span class="vf-c vf-tr"></span><span class="vf-c vf-bl"></span><span class="vf-c vf-br"></span></div>
             <div class="rec-i">REC</div>
             <div class="tc" id="tc">00:00:00:00</div>
-            <button class="play-btn" onclick="playV()" aria-label="Abspielen"><svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"></polygon></svg></button>
+            <button class="play-btn" onclick="playV()" aria-label="Abspielen"><svg viewBox="0 0 24 24" class=""><polygon points="8,5 20,12 8,19"></polygon></svg></button>
           </div>
           <div class="vid-bar"><span>Schaue dir dieses Video an </span><span class="vid-badge">1 Minute </span></div>
         </div>
@@ -359,21 +393,22 @@ img{display:block;max-width:100%}
 </section>
 
 <!-- Logos -->
-<section class="logos">
+<section class="logos -translate-x-2">
   <div class="logos-row">
-    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" alt="mr. online marketing">
-    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" alt="getmemories">
-    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&q=80" alt="Talkbound">
-    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" alt="Petermann">
-    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" alt="Projekt Freiheit">
+    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" alt="mr. online marketing" class="">
+    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" alt="getmemories" class="">
+    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png?w=800&q=80" alt="Talkbound" class="translate-x-1 scale-150">
+    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" alt="Petermann" class="translate-x-4 scale-150">
+    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" alt="Projekt Freiheit" class="translate-x-4 scale-75">
   </div>
 </section>
 
 <!-- PAIN -->
-<section class="pain">
-  <div class="wrap">
+<section class="pain" style="position:relative;overflow:hidden">
+  <span class="wm" style="font-size:10rem;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-3deg)">PROBLEM</span>
+  <div class="wrap" style="position:relative;z-index:1">
     <div class="sl rv">Das Problem</div>
-    <h2 class="sh rv">Dein Wettbewerber postet. Du bist <em>unsichtbar.</em></h2>
+    <h2 class="sh rv">Dein Wettbewerber postet. Du bist <em class="">unsichtbar.</em></h2>
     <div class="pain-g">
       <div class="pc rv"><span class="pc-i">👻</span><div><h3>Keine Sichtbarkeit</h3><p>Neukunden suchen online. Wer dort nicht auftaucht, existiert nicht.</p></div></div>
       <div class="pc rv"><span class="pc-i">⏳</span><div><h3>Keine Zeit</h3><p>Zwischen Baustelle, Büro und Kunden — null Zeit für Content.</p></div></div>
@@ -384,6 +419,7 @@ img{display:block;max-width:100%}
 
 <!-- PORTFOLIO PREVIEW -->
 <section class="pf" id="portfolio">
+  <span class="wm" style="font-size:9rem;top:30%;right:-8%;transform:rotate(6deg)">PORTFOLIO</span>
   <div class="wrap">
     <div class="sl rv">Portfolio</div>
     <h2 class="sh rv">Ergebnisse, die für sich <em>sprechen.</em></h2>
@@ -396,15 +432,15 @@ img{display:block;max-width:100%}
             <h3>David Petermann</h3>
             <p>KFZ-Gutachter · Personenmarke Aufbau</p>
             <div class="pf-stats">
-              <span class="pf-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Top Projekt</span>
-              <span class="pf-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 1.000.000+ Aufrufe</span>
+              <span class="pf-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Top Projekt</span>
+              <span class="pf-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 1.000.000+ Aufrufe</span>
             </div>
           </div>
           <div class="pf-play"><svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"></polygon></svg></div>
         </div>
       </div>
     </div>
-    <a href="portfolio.html" class="pf-cta rv">Alle Projekte ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="portfolio.html" class="pf-cta rv">Alle Projekte ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
   </div>
 </section>
 
@@ -430,23 +466,23 @@ img{display:block;max-width:100%}
       <div class="rv">
         <form class="lm-form" id="sForm" onsubmit="handleSubmit(event)">
           <div class="lm-row">
-            <input type="text" class="inp" placeholder="Vorname *" required id="lm-n" name="VORNAME">
-            <input type="text" class="inp" placeholder="Firma *" required id="lm-c" name="FIRMA">
+            <div class="inp-wrap"><input type="text" class="inp" placeholder="Vorname *" required="" id="lm-n" name="VORNAME"></div>
+            <div class="inp-wrap"><input type="text" class="inp" placeholder="Firma *" required="" id="lm-c" name="FIRMA"></div>
           </div>
-          <input type="text" class="inp" placeholder="Branche (z.B. Dachdecker…)" id="lm-b" name="BRANCHE">
-          <input type="email" class="inp" placeholder="Deine E-Mail *" required id="lm-email" name="EMAIL">
+          <div class="inp-wrap"><input type="text" class="inp" placeholder="Branche (z.B. Dachdecker…)" id="lm-b" name="BRANCHE"></div>
+          <div class="inp-wrap"><input type="email" class="inp" placeholder="Deine E-Mail *" required="" id="lm-email" name="EMAIL"></div>
           <p style="font-size:.76rem;color:var(--t3);font-weight:600">Strategie erhalten per:</p>
           <div class="ch-row">
             <button type="button" class="ch-btn active" onclick="selCh(this,'wa')" id="ch-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>WhatsApp</button>
             <button type="button" class="ch-btn" onclick="selCh(this,'em')" id="ch-em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>E-Mail</button>
           </div>
-          <input type="text" class="inp" placeholder="WhatsApp-Nummer *" required id="lm-k" name="WHATSAPP1">
-          <label class="lm-ck"><input type="checkbox" id="lm-nl" checked><span>Newsletter mit Video-Tipps erhalten</span></label>
-          <label class="lm-ck"><input type="checkbox" id="lm-dsgvo" required><span>Ich stimme der <a href="https://reinwarth-media.de/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu. *</span></label>
-          <input type="text" name="email_address_check" value="" style="display:none">
+          <div class="inp-wrap"><input type="text" class="inp" placeholder="WhatsApp-Nummer *" required="" id="lm-k" name="WHATSAPP1"></div>
+          <label class="lm-ck"><input type="checkbox" id="lm-nl" checked="" required=""><span>Newsletter mit Video-Tipps erhalten *</span></label>
+          <label class="lm-ck"><input type="checkbox" id="lm-dsgvo" required=""><span>Ich stimme der <a href="https://reinwarth-media.de/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu. *</span></label>
+          <input type="text" name="email_address_check" value="" style="display: none;">
           <input type="hidden" name="locale" value="de">
           <button type="submit" class="sub-btn" id="lm-btn">🎬 Strategie anfordern</button>
-          <div class="lm-trust"><svg viewBox="0 0 24 24" fill="#34d399"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg>100% Kostenlos die ersten 5 Videoideen mit Strategie ohne bindlichkeit</div>
+          <div class="lm-trust"><svg viewBox="0 0 24 24" fill="#34d399"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg>100% Kostenlos die ersten 5 Videoideen mit Strategie ohne Verbindlichkeit</div>
         </form>
       </div>
     </div>
@@ -454,34 +490,35 @@ img{display:block;max-width:100%}
 </section>
 
 <!-- SOLUTION -->
-<section class="sol">
-  <div class="wrap">
+<section class="sol" style="position:relative;overflow:hidden">
+  <span class="wm" style="font-size:11rem;top:40%;left:-5%;transform:rotate(-4deg)">LÖSUNG</span>
+  <div class="wrap" style="position:relative;z-index:1">
     <div class="sl rv">Die Lösung</div>
     <h2 class="sh rv"><em>1 Drehtag.</em> 15+ Videos. Fertig.</h2>
     <div class="sol-g">
-      <div class="sc feat rv">
+      <a href="#strategie" class="sc feat rv" style="text-decoration:none;color:inherit">
         <div class="sc-pop">STARTER</div>
         <h3>Drehtag-Paket</h3>
         <p>Ich komme zu dir. In 2–6h Content für den ganzen Monat.</p>
         <div class="sf"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><span>15+ Videos — Reels, TikTok, Shorts, LinkedIn</span></div>
         <div class="sf"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><span>Schnitt, Untertitel, Hooks inkl.</span></div>
         <div class="sf"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><span>Fertig in 7 Tagen - Hochladen erst bei Freigabe</span></div>
-      </div>
-      <div class="sc rv">
+      </a>
+      <a href="#strategie" class="sc rv" style="text-decoration:none;color:inherit">
         <h3>Komplett-Service</h3>
         <p>Strategie, Dreh, Schnitt, Posting — alles aus einer Hand.</p>
         <div class="sf"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><span>Content-Strategie &amp; Themenplanung</span></div>
         <div class="sf"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><span>Monatlicher Drehtag + Postproduktion</span></div>
         <div class="sf"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><span>Posting &amp; Upload Management auf Instagram,Tiktok,YouTube</span></div>
-      </div>
+      </a>
     </div>
     <div class="pkg rv">
       <div class="pkg-title">📦 Skalierbare Pakete</div>
       <div class="pkg-desc">15 Videos sind der Einstieg. Skalierbar auf tägliches Posting mit Vorproduktion.</div>
       <div class="pkg-row">
-        <div class="pkg-t"><span class="pkg-t-badge">Starter</span><b>15</b><span>Videos/Monat</span></div>
-        <div class="pkg-t hi"><span class="pkg-t-badge">Wachstum</span><b>30</b><span>Videos/Monat</span></div>
-        <div class="pkg-t"><span class="pkg-t-badge">Täglich</span><b>90</b><span>Videos/Quartal</span></div>
+        <div class="pkg-t" onclick="location.href='#strategie'"><span class="pkg-t-badge">Starter</span><b>15</b><span>Videos/Monat</span></div>
+        <div class="pkg-t hi" onclick="location.href='#strategie'"><span class="pkg-t-badge">Wachstum</span><b>30</b><span>Videos/Monat</span></div>
+        <div class="pkg-t" onclick="location.href='#strategie'"><span class="pkg-t-badge">Langfristig</span><b>90</b><span>Videos/Quartal</span></div>
       </div>
       <div class="pkg-note">Fair bepreist. Im Gespräch finden wir, was passt.</div>
     </div>
@@ -500,7 +537,7 @@ img{display:block;max-width:100%}
     <h2 class="sh rv">In <em>4 Schritten</em> zur Sichtbarkeit.</h2>
     <div class="proc-g">
       <div class="ps rv"><div class="ps-d">🧩</div><div><h4>Quiz</h4><p>Beantworte wenige Fragen – dauert nur 1 Minute.</p></div></div>
-      <div class="ps rv"><div class="ps-d">📞</div><div><h4>Kontakt</h4><p>Ich melde mich innerhalb von 24 Stunden.</p></div></div>
+      <div class="ps rv"><div class="ps-d">📞</div><div><h4>Kontakt</h4><p>Ich melde mich schnellstmöglich bei dir.</p></div></div>
       <div class="ps rv"><div class="ps-d">🎬</div><div><h4>Planung</h4><p>Drehtermin flexibel vereinbaren – auch an Wochenenden oder Feiertagen.</p></div></div>
       <div class="ps rv"><div class="ps-d">🚀</div><div><h4>Fertig</h4><p>Ihre Videos in 7 Werktagen – veröffentlichungsbereit.</p></div></div>
     </div>
@@ -549,7 +586,7 @@ img{display:block;max-width:100%}
     <div class="ft-l">
       <a href="portfolio.html">Portfolio</a>
       <a href="werbeanzeigen.html">Ads</a>
-      <a href="ki-erklaervideos.html">KI Erklärvideos</a>
+      <a href="ki-videos.html">KI Erklärvideos</a>
       <a href="videoschnitt.html">Videoschnitt</a>
       <a href="https://reinwarth-media.de/impressum.html">Impressum</a>
       <a href="https://reinwarth-media.de/datenschutz.html">Datenschutz</a>
@@ -573,16 +610,17 @@ function toggleMenu(){
 }
 
 // Video Hero
-function playV(){document.getElementById('vp').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/nIWvaw7YF_U?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3&color=white" allow="autoplay;encrypted-media;fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>'}
+function playV(){document.getElementById('vp').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/nIWvaw7YF_U?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3&color=white&playsinline=1&hl=de" allow="autoplay;encrypted-media;fullscreen" allowfullscreen credentialless style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>'}
 
 // Video Portfolio
 function playVideo(card){
   const thumb=card.querySelector('.pf-thumb');
   const iframe=document.createElement('iframe');
-  iframe.src='https://www.youtube-nocookie.com/embed/boqVkInzq00?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1';
+  iframe.src='https://www.youtube-nocookie.com/embed/boqVkInzq00?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&playsinline=1&hl=de';
   iframe.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:inherit;';
   iframe.allow='autoplay; encrypted-media';
   iframe.allowFullscreen=true;
+  iframe.setAttribute('credentialless','');
   thumb.style.position='relative';
   thumb.innerHTML='';
   thumb.appendChild(iframe);
@@ -604,7 +642,7 @@ window.addEventListener('scroll',()=>document.getElementById('stk').classList.to
 
 // Channel
 let sCh='wa';const wf=document.getElementById('lm-k');
-function selCh(b,ch){document.querySelectorAll('.ch-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');sCh=ch;if(ch==='em'){wf.style.display='none';wf.required=false;wf.value=''}else{wf.style.display='';wf.required=true}}
+function selCh(b,ch){document.querySelectorAll('.ch-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');sCh=ch;if(ch==='em'){wf.closest('.inp-wrap').style.display='none';wf.required=false;wf.value=''}else{wf.closest('.inp-wrap').style.display='';wf.required=true}}
 
 // Brevo
 const BV='https://89422bbf.sibforms.com/serve/MUIFAGu6i-NGnDizjNrDcVVw5BIa7ItTb8nuHTfVGALVKRYzYo1UUoaDuCMgDdzXnuoIHzPz0Ftlvcfsm6OAg3NrPUk9HrZ5kf9UmUI7L_0PJkLTJYgL4othIqYqrachx2uUS4UCZedyqTow5MsYEygx4G-q0WiBGPLM_VIuRuiIeUNdt9bCgDHfBrgPRmEo1_Xw1Wbv6LdJHYMlqg==';
@@ -618,8 +656,8 @@ function handleSubmit(e){
   function done(){
     btn.textContent='✓ Gesendet!';btn.style.background='#34d399';btn.style.opacity='1';
     const ch=sCh==='wa'?`📱 Per WhatsApp an: <strong>${wa}</strong>`:`📧 Per E-Mail an: <strong>${email}</strong>`;
-    setTimeout(()=>{document.getElementById('sForm').innerHTML=`<div style="text-align:center;padding:20px 0"><div style="font-size:2.2rem;margin-bottom:10px">🎉</div><h3 style="font-size:1.1rem;margin-bottom:8px;font-family:'Playfair Display',serif">Perfekt, ${n}!</h3><p style="color:var(--t2);font-size:.86rem;line-height:1.5;margin-bottom:8px">Strategie für <strong style="color:var(--t1)">${c}</strong>${b?' ('+b+')':''} kommt in 24h.</p><p style="font-size:.8rem;color:var(--t2);margin-bottom:6px">${ch}</p>${nl?'<p style="color:var(--ok);font-size:.72rem;margin-bottom:4px">✓ Newsletter-Anmeldung — bestätige die E-Mail im Postfach.</p><p style="color:var(--t3);font-size:.68rem;margin-bottom:14px">📩 Nicht da? Schau im Spam-Ordner nach.</p>':''}<a href="https://wa.me/+4915679614591?text=Hey%20Marcel%2C%20Strategie%20angefordert!%20Firma:%20${encodeURIComponent(c)}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:11px 20px;border-radius:100px;font-weight:700;font-size:.82rem;text-decoration:none">💬 Auf WhatsApp beschleunigen</a></div>`},900)}
+    setTimeout(()=>{document.getElementById('sForm').innerHTML=`<div style="text-align:center;padding:20px 0"><div style="font-size:2.2rem;margin-bottom:10px">🎉</div><h3 style="font-size:1.1rem;margin-bottom:8px;font-family:'Playfair Display',serif">Perfekt, ${n}!</h3><p style="color:var(--t2);font-size:.86rem;line-height:1.5;margin-bottom:8px">Deine Strategie für <strong style="color:var(--t1)">${c}</strong>${b?' ('+b+')':''} kommt schnellstmöglich.</p><p style="font-size:.8rem;color:var(--t2);margin-bottom:6px">${ch}</p>${nl?'<p style="color:var(--ok);font-size:.72rem;margin-bottom:4px">✓ Newsletter-Anmeldung — bestätige die E-Mail im Postfach.</p><p style="color:var(--t3);font-size:.68rem;margin-bottom:14px">📩 Nicht da? Schau im Spam-Ordner nach.</p>':''}<a href="https://wa.me/+4915679614591?text=Hey%20Marcel%2C%20ich%20habe%20noch%20Fragen!%20Firma:%20${encodeURIComponent(c)}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);color:var(--a);padding:11px 20px;border-radius:100px;font-weight:700;font-size:.82rem;text-decoration:none;transition:all .3s">💬 Noch Fragen? Klicke hier</a></div>`},900)}
 }
 </script>
-</body>
-</html>
+
+</body></html>
