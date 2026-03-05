@@ -2859,13 +2859,295 @@
     .rm-vcard { width: 115px; height: 204px; }
     .rm-slider-track { gap: 14px; }
   }
+<style>
+  .rm-slider-section {
+    position: relative;
+    padding: 32px 0 40px;
+    overflow: hidden;
+  }
+
+  .rm-slider-mask {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+
+  .rm-slider-track {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    animation: rmSlide 60s linear infinite;
+  }
+  .rm-slider-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes rmSlide {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── Card ── */
+  .rm-vcard {
+    flex-shrink: 0;
+    width: 100px;
+    height: 178px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background: #111827;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(.25,.8,.25,1), box-shadow 0.35s ease;
+  }
+  .rm-vcard:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 20px rgba(232,160,32,0.2), 0 6px 24px rgba(0,0,0,0.5);
+  }
+
+  /* Thumbnail with Ken Burns animation */
+  .rm-vcard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.82);
+    transition: filter 0.35s ease;
+    animation: rmKenBurns 8s ease-in-out infinite alternate;
+  }
+  .rm-vcard:nth-child(even) img {
+    animation-delay: -4s;
+    animation-direction: alternate-reverse;
+  }
+  .rm-vcard:nth-child(3n) img {
+    animation-delay: -2s;
+    animation-duration: 10s;
+  }
+  .rm-vcard:hover img {
+    filter: brightness(1);
+    animation-play-state: paused;
+  }
+
+  @keyframes rmKenBurns {
+    0%   { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.12) translateY(-4%); }
+  }
+
+  /* Play icon */
+  .rm-vcard .rm-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.15);
+    transition: background 0.3s ease;
+    pointer-events: none;
+  }
+  .rm-vcard:hover .rm-play {
+    background: rgba(0,0,0,0.3);
+  }
+  .rm-play svg {
+    width: 28px;
+    height: 28px;
+    opacity: 0.85;
+    filter: drop-shadow(0 1px 6px rgba(0,0,0,0.5));
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .rm-vcard:hover .rm-play svg {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  /* Accent border on hover */
+  .rm-vcard::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    border: 1.5px solid transparent;
+    transition: border-color 0.3s ease;
+    pointer-events: none;
+  }
+  .rm-vcard:hover::after {
+    border-color: #e8a020;
+  }
+
+  /* ── Fullscreen Overlay ── */
+  .rm-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .rm-overlay.rm-active {
+    display: flex;
+  }
+
+  .rm-overlay-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+  }
+  .rm-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(232,160,32,0.9);
+    color: #0b1120;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s ease;
+    text-decoration: none;
+  }
+  .rm-back-btn:hover {
+    background: #e8a020;
+  }
+  .rm-back-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .rm-overlay-close {
+    margin-left: auto;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease;
+  }
+  .rm-overlay-close:hover {
+    background: rgba(255,255,255,0.3);
+  }
+
+  .rm-overlay-player {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 9/16;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .rm-overlay-player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Mobile: full width */
+  @media (max-width: 480px) {
+    .rm-slider-section { padding: 24px 0 32px; }
+    .rm-vcard { width: 85px; height: 151px; border-radius: 8px; }
+    .rm-slider-track { gap: 8px; animation-duration: 50s; }
+    .rm-play svg { width: 22px; height: 22px; }
+    .rm-overlay-player {
+      max-width: 100vw;
+      border-radius: 0;
+      height: 100vh;
+      max-height: 100dvh;
+    }
+    .rm-overlay-top { padding: 10px 12px; }
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
+    .rm-vcard { width: 95px; height: 169px; }
+  }
+  @media (min-width: 769px) {
+    .rm-vcard { width: 115px; height: 204px; }
+    .rm-slider-track { gap: 14px; }
+  }
 </style>
 
 <section class="rm-slider-section">
   <div class="rm-slider-mask">
-    <div class="rm-slider-track" id="rmSliderTrack"><div class="rm-vcard" data-id="qxU60TlXqZk"><img src="https://img.youtube.com/vi/qxU60TlXqZk/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="kW958WfAnaQ"><img src="https://img.youtube.com/vi/kW958WfAnaQ/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="Nf9Sm70A_rI"><img src="https://img.youtube.com/vi/Nf9Sm70A_rI/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="zViE9alLtW0"><img src="https://img.youtube.com/vi/zViE9alLtW0/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="HSMGTKfjk1w"><img src="https://img.youtube.com/vi/HSMGTKfjk1w/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="cBFKPwXBUF4"><img src="https://img.youtube.com/vi/cBFKPwXBUF4/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="CLY7esyzePE"><img src="https://img.youtube.com/vi/CLY7esyzePE/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="2734RxpxlPc"><img src="https://img.youtube.com/vi/2734RxpxlPc/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="NkgnIIFcR28"><img src="https://img.youtube.com/vi/NkgnIIFcR28/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="QynHhpQO7dw"><img src="https://img.youtube.com/vi/QynHhpQO7dw/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="VRWKqQh6Qbo"><img src="https://img.youtube.com/vi/VRWKqQh6Qbo/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="tFZJaw-PnEg"><img src="https://img.youtube.com/vi/tFZJaw-PnEg/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="qxU60TlXqZk"><img src="https://img.youtube.com/vi/qxU60TlXqZk/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="kW958WfAnaQ"><img src="https://img.youtube.com/vi/kW958WfAnaQ/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="Nf9Sm70A_rI"><img src="https://img.youtube.com/vi/Nf9Sm70A_rI/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="zViE9alLtW0"><img src="https://img.youtube.com/vi/zViE9alLtW0/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="HSMGTKfjk1w"><img src="https://img.youtube.com/vi/HSMGTKfjk1w/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="cBFKPwXBUF4"><img src="https://img.youtube.com/vi/cBFKPwXBUF4/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="CLY7esyzePE"><img src="https://img.youtube.com/vi/CLY7esyzePE/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="2734RxpxlPc"><img src="https://img.youtube.com/vi/2734RxpxlPc/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="NkgnIIFcR28"><img src="https://img.youtube.com/vi/NkgnIIFcR28/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="QynHhpQO7dw"><img src="https://img.youtube.com/vi/QynHhpQO7dw/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="VRWKqQh6Qbo"><img src="https://img.youtube.com/vi/VRWKqQh6Qbo/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="tFZJaw-PnEg"><img src="https://img.youtube.com/vi/tFZJaw-PnEg/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="qxU60TlXqZk"><img src="https://img.youtube.com/vi/qxU60TlXqZk/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="kW958WfAnaQ"><img src="https://img.youtube.com/vi/kW958WfAnaQ/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="Nf9Sm70A_rI"><img src="https://img.youtube.com/vi/Nf9Sm70A_rI/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="zViE9alLtW0"><img src="https://img.youtube.com/vi/zViE9alLtW0/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="HSMGTKfjk1w"><img src="https://img.youtube.com/vi/HSMGTKfjk1w/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="cBFKPwXBUF4"><img src="https://img.youtube.com/vi/cBFKPwXBUF4/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="CLY7esyzePE"><img src="https://img.youtube.com/vi/CLY7esyzePE/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="2734RxpxlPc"><img src="https://img.youtube.com/vi/2734RxpxlPc/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="NkgnIIFcR28"><img src="https://img.youtube.com/vi/NkgnIIFcR28/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="QynHhpQO7dw"><img src="https://img.youtube.com/vi/QynHhpQO7dw/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="VRWKqQh6Qbo"><img src="https://img.youtube.com/vi/VRWKqQh6Qbo/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="tFZJaw-PnEg"><img src="https://img.youtube.com/vi/tFZJaw-PnEg/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="qxU60TlXqZk"><img src="https://img.youtube.com/vi/qxU60TlXqZk/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="kW958WfAnaQ"><img src="https://img.youtube.com/vi/kW958WfAnaQ/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="Nf9Sm70A_rI"><img src="https://img.youtube.com/vi/Nf9Sm70A_rI/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="zViE9alLtW0"><img src="https://img.youtube.com/vi/zViE9alLtW0/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="HSMGTKfjk1w"><img src="https://img.youtube.com/vi/HSMGTKfjk1w/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="cBFKPwXBUF4"><img src="https://img.youtube.com/vi/cBFKPwXBUF4/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="CLY7esyzePE"><img src="https://img.youtube.com/vi/CLY7esyzePE/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="2734RxpxlPc"><img src="https://img.youtube.com/vi/2734RxpxlPc/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="NkgnIIFcR28"><img src="https://img.youtube.com/vi/NkgnIIFcR28/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="QynHhpQO7dw"><img src="https://img.youtube.com/vi/QynHhpQO7dw/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="VRWKqQh6Qbo"><img src="https://img.youtube.com/vi/VRWKqQh6Qbo/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div><div class="rm-vcard" data-id="tFZJaw-PnEg"><img src="https://img.youtube.com/vi/tFZJaw-PnEg/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"></circle><path d="M20 16l12 8-12 8V16z" fill="#0b1120"></path></svg></span></div></div>
+    <div class="rm-slider-track" id="rmSliderTrack"></div>
   </div>
 </section>
+
+<!-- Fullscreen Video Overlay -->
+<div class="rm-overlay" id="rmOverlay">
+  <div class="rm-overlay-top">
+    <a href="/" class="rm-back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+      Startseite
+    </a>
+    <button class="rm-overlay-close" id="rmClose" aria-label="Schließen">✕</button>
+  </div>
+  <div class="rm-overlay-player" id="rmPlayer"></div>
+</div>
+
+<script>
+  (function(){
+  var ids=[
+    'qxU60TlXqZk','kW958WfAnaQ','Nf9Sm70A_rI','zViE9alLtW0',
+    'HSMGTKfjk1w','cBFKPwXBUF4','CLY7esyzePE','2734RxpxlPc',
+    'NkgnIIFcR28','QynHhpQO7dw','VRWKqQh6Qbo','tFZJaw-PnEg'
+  ];
+
+  var track=document.getElementById('rmSliderTrack');
+  var overlay=document.getElementById('rmOverlay');
+  var player=document.getElementById('rmPlayer');
+  var closeBtn=document.getElementById('rmClose');
+
+  function mkCard(id){
+    var d=document.createElement('div');
+    d.className='rm-vcard';
+    d.setAttribute('data-id',id);
+    d.innerHTML='<img src="https://img.youtube.com/vi/'+id+'/hqdefault.jpg" alt="Social Media Video Beispiel — Reinwarth Media Videoproduktion" loading="lazy"/><span class="rm-play"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(232,160,32,0.92)"/><path d="M20 16l12 8-12 8V16z" fill="#0b1120"/></svg></span>';
+    d.addEventListener('click',function(){ openVideo(id); });
+    return d;
+  }
+
+  // 2 copies for seamless loop
+  for(var i=0;i<2;i++) ids.forEach(function(id){ track.appendChild(mkCard(id)); });
+
+  function openVideo(id){
+    player.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Social Media Video Projekt — Reinwarth Media"></iframe>';
+    overlay.classList.add('rm-active');
+    document.body.style.overflow='hidden';
+  }
+
+  function closeVideo(){
+    overlay.classList.remove('rm-active');
+    player.innerHTML='';
+    document.body.style.overflow='';
+  }
+
+  closeBtn.addEventListener('click', closeVideo);
+  overlay.addEventListener('click', function(e){
+    if(e.target===overlay) closeVideo();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') closeVideo();
+  });
+})();
+</script>
 
 <!-- Fullscreen Video Overlay -->
 <div class="rm-overlay" id="rmOverlay">
