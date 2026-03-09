@@ -115,7 +115,10 @@
       --grad-gold: linear-gradient(135deg, #d97706, #f59e0b, #fbbf24, #f59e0b, #d97706);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
 
     body {
       font-family: 'Outfit', system-ui, sans-serif;
@@ -124,6 +127,8 @@
       line-height: 1.55;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      width: 100%;
+      max-width: 100vw;
     }
 
     body::after {
@@ -334,7 +339,6 @@
       position: relative;
       overflow: hidden;
       transition: all .4s cubic-bezier(.16,1,.3,1);
-      /* Start blurred & invisible */
       opacity: 0;
       filter: blur(12px);
       transform: translateY(12px);
@@ -431,12 +435,13 @@
     .vid-badge { background: var(--glow); color: var(--a); padding: 3px 10px; border-radius: 100px; font-size: .68rem; font-weight: 700; }
 
     /* ═══════════════════════════════════
-       LOGOS
+       LOGOS — FIXED FOR MOBILE
        ═══════════════════════════════════ */
-    .logos { padding: 40px 20px; display: flex; justify-content: center; align-items: center; }
+    .logos { padding: 40px 20px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
     .logos-row {
       display: flex; align-items: center; justify-content: center;
       gap: clamp(16px,4vw,60px); width: 100%; max-width: 1200px;
+      flex-wrap: wrap;
     }
     .logos-row img {
       height: clamp(20px,3.5vw,45px); width: auto; object-fit: contain;
@@ -444,10 +449,20 @@
       flex-shrink: 1; max-width: 18%;
     }
     .logos-row img:hover { filter: brightness(0) invert(0.85); }
-    @media(max-width:480px) {
-      .logos { padding: 24px 12px; }
-      .logos-row { gap: 10px; }
-      .logos-row img { height: auto; max-height: 22px; max-width: 17%; }
+    @media(max-width:600px) {
+      .logos { padding: 20px 16px; }
+      .logos-row {
+        gap: 8px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+      }
+      .logos-row img {
+        height: auto;
+        max-height: 16px;
+        max-width: 13%;
+        flex-shrink: 1;
+        transform: none !important;
+      }
     }
 
     /* ═══════════════════════════════════
@@ -915,7 +930,7 @@
     /* ═══════════════════════════════════
        SEO CONTENT
        ═══════════════════════════════════ */
-    .seo-content { padding: 48px 0; background: var(--bg2); border-top: 1px solid var(--bs); }
+    .seo-content { padding: 48px 0; background: var(--bg2); border-top: 1px solid var(--bs); overflow: hidden; }
     .seo-content h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
     .seo-content h2 em { font-style: italic; background: var(--grad-gold); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .seo-cols { columns: 1; gap: 32px; font-size: .86rem; color: var(--t2); line-height: 1.7; }
@@ -957,7 +972,7 @@
     .rv { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
     .rv.vis { opacity: 1; transform: translateY(0); }
 
-    /* WATERMARK */
+    /* WATERMARK — contained to prevent overflow */
     .wm {
       position: absolute; font-family: 'Playfair Display', serif;
       font-weight: 800; color: rgba(245,158,11,.025);
@@ -999,7 +1014,6 @@
     .rm-vcard img {
       width: 100%; height: 100%; object-fit: cover;
       transition: transform .8s cubic-bezier(.25,1,.5,1);
-      /* NO GRAYSCALE — full color */
     }
     .rm-vcard:hover img { transform: scale(1.08); }
     .rm-play {
@@ -1200,6 +1214,80 @@
     }
 
     /* ═══════════════════════════════════
+       MOBILE-SPECIFIC FIXES
+       ═══════════════════════════════════ */
+    @media(max-width:767px) {
+      /* Hero: text first, then video with spacing */
+      .hero { padding: 28px 0 24px; }
+      .hero-g {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 28px;
+      }
+
+      .hero h1 { font-size: 1.85rem; }
+
+      /* Quiz button smaller on mobile */
+      .quiz-trigger {
+        padding: 13px 24px;
+        font-size: .9rem;
+      }
+
+      /* Watermarks: hide or shrink to prevent overflow */
+      .wm {
+        display: none !important;
+      }
+
+      /* Prevent any section from causing horizontal overflow */
+      section {
+        overflow-x: hidden;
+      }
+
+      /* Footer links wrap nicely */
+      .ft-in {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .ft-l {
+        gap: 12px;
+      }
+
+      /* Solution scale: 3 columns on mobile too, but smaller */
+      .sol-scale__row {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 100%;
+        gap: .6rem;
+      }
+      .sol-scale__tier {
+        padding: 1.2rem .6rem;
+      }
+      .sol-scale__num {
+        font-size: 2rem;
+      }
+      .sol-scale__unit {
+        font-size: .68rem;
+      }
+
+      /* Topbar text smaller */
+      .tb {
+        font-size: .72rem;
+        padding: 8px 12px;
+      }
+    }
+
+    /* Extra small phones */
+    @media(max-width:374px) {
+      .wrap { padding: 0 14px; }
+      .hero h1 { font-size: 1.6rem; }
+      .sh { font-size: 1.4rem; }
+      .logos-row img {
+        max-height: 14px;
+        max-width: 12%;
+      }
+    }
+
+    /* ═══════════════════════════════════
        DESKTOP RESPONSIVE
        ═══════════════════════════════════ */
     @media(min-width:768px) {
@@ -1275,7 +1363,7 @@
 
         <!-- VIDEO (LEFT) -->
         <div class="rv vis">
-          <div class="vid -translate-y-4">
+          <div class="vid">
             <div class="vid-bg" id="vp">
               <img src="https://img.youtube.com/vi/nIWvaw7YF_U/maxresdefault.jpg" alt="Reinwarth Media Showreel" class="" id="vt">
               <div class="vf">
@@ -1285,8 +1373,6 @@
               <div class="rec-i">REC</div>
               <div class="tc" id="tc">00:00:00:00</div>
               <button class="play-btn" onclick="VideoManager.playHero()" aria-label="Abspielen">
-               
-            
                 <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"></polygon></svg>
               </button>
             </div>
@@ -1310,7 +1396,6 @@
           <!-- GLASS QUIZ BUTTON -->
           <button class="quiz-trigger" id="quizTrigger" onclick="QuizFunnel.open()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-
             </svg>
             🧩 Spiele das Quiz jetzt!
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
@@ -1372,8 +1457,8 @@
     <div class="logos-row">
       <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0485cdbb-abc3-41eb-ada2-92ad080d2268_320w.png?w=800&q=80" alt="Mr. Online Marketing">
       <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4031d5-fcf5-49e8-8924-f6e2d36df8b5_320w.png" alt="GetMemories">
-      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png" alt="Talkbound" style="transform:scale(1.5)">
-      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" alt="David Petermann" style="transform:scale(1.5)">
+      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be60d7e8-7bd0-43ad-80aa-51ae9988ef63_320w.png" alt="Talkbound">
+      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59d8cb60-de8a-4fd4-8b27-2339a0582409_3840w.png?w=800&q=80" alt="David Petermann">
       <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2a01d1e5-dcd6-4a30-bb9c-a95bb89ea172_320w.png?w=800&q=80" alt="Projekt Freiheit">
       <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1a8d9bf8-e07b-4ee7-a65f-66f5602e6d8c_320w.png" alt="AK Drive">
       <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/85743daa-b977-4972-bdaa-407f0311f54e_320w.png" alt="Fahrschule 1. Liga">
@@ -1754,7 +1839,6 @@
       activeIframes: [],
 
       stopAll() {
-        // Remove all active iframes
         this.activeIframes.forEach(info => {
           if (info.container && info.originalHTML) {
             info.container.innerHTML = info.originalHTML;
@@ -1762,7 +1846,6 @@
         });
         this.activeIframes = [];
 
-        // Also stop overlay
         const overlay = document.getElementById('rmOverlay');
         const player = document.getElementById('rmPlayer');
         if (overlay.classList.contains('rm-active')) {
@@ -1775,7 +1858,6 @@
       playHero() {
         this.stopAll();
         const container = document.getElementById('vp');
-        // Save original HTML is not needed for hero since it replaces
         container.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/nIWvaw7YF_U?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&playsinline=1&hl=de" allow="autoplay;encrypted-media;fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0" title="Reinwarth Media Showreel"></iframe>';
       },
 
@@ -1805,7 +1887,6 @@
       }
     };
 
-    // Slider card clicks
     document.querySelectorAll('.rm-vcard').forEach(card => {
       card.addEventListener('click', () => {
         const videoId = card.getAttribute('data-id');
@@ -1813,7 +1894,6 @@
       });
     });
 
-    // Overlay close
     document.getElementById('rmClose').addEventListener('click', () => VideoManager.closeOverlay());
     document.getElementById('rmOverlay').addEventListener('click', e => {
       if (e.target === document.getElementById('rmOverlay')) VideoManager.closeOverlay();
@@ -1837,18 +1917,14 @@
 
       select(page, value) {
         this.data['step' + page] = value;
-        // Visual feedback
         const cards = document.querySelectorAll('#qp' + page + ' .quiz-card');
         cards.forEach(c => c.classList.remove('selected'));
         event.currentTarget.classList.add('selected');
-        // Auto-advance after short delay
         setTimeout(() => this.goTo(page + 1), 400);
       },
 
       goTo(page) {
-        // Hide all pages
         document.querySelectorAll('.quiz-page').forEach(p => p.classList.remove('active'));
-        // Update dots
         for (let i = 1; i <= 3; i++) {
           const dot = document.getElementById('qd' + i);
           dot.className = 'quiz-dot';
@@ -1865,13 +1941,9 @@
       },
 
       goContact() {
-        if (!this.data.budget_type) {
-          // Need to select one
-          return;
-        }
+        if (!this.data.budget_type) return;
         document.querySelectorAll('.quiz-page').forEach(p => p.classList.remove('active'));
         document.getElementById('qpContact').classList.add('active');
-        // Update dots
         for (let i = 1; i <= 3; i++) {
           document.getElementById('qd' + i).className = 'quiz-dot done';
         }
@@ -1887,7 +1959,6 @@
           return;
         }
 
-        // Disable button
         const btn = event.currentTarget;
         btn.textContent = '⏳ Wird gesendet...';
         btn.style.opacity = '.7';
@@ -1902,7 +1973,6 @@
           'angebot_erst': 'Möchte erstmal ein Angebot'
         };
 
-        // ─── CALLMEBOT WHATSAPP API ───
         const PHONE = '4915679614591';
         const APIKEY = '1297217';
 
@@ -1914,21 +1984,17 @@
           '3️⃣ *Budget:* ' + (labels[this.data.budget_type] || '-') + '\n\n' +
           '📅 ' + new Date().toLocaleString('de-DE');
 
-        // Send WhatsApp message via CallMeBot — fully automatic
         const apiUrl = 'https://api.callmebot.com/whatsapp.php?phone=' +
           PHONE + '&text=' + encodeURIComponent(msg) + '&apikey=' + APIKEY;
 
         fetch(apiUrl, { mode: 'no-cors' }).catch(() => {});
 
-        // Show success immediately
         document.querySelectorAll('.quiz-page').forEach(p => p.classList.remove('active'));
         document.getElementById('qpSuccess').classList.add('active');
         document.querySelectorAll('.quiz-dot').forEach(d => d.className = 'quiz-dot done');
 
-        // Auto-close after 4 seconds
         setTimeout(() => {
           this.close();
-          // Reset quiz for next use
           this.currentPage = 1;
           this.data = { step1: '', step2: '', budget_type: '', budget_amount: '' };
           document.querySelectorAll('.quiz-page').forEach(p => p.classList.remove('active'));
@@ -1946,7 +2012,6 @@
       }
     };
 
-    // Close quiz on overlay click
     document.getElementById('quizOverlay').addEventListener('click', e => {
       if (e.target === document.getElementById('quizOverlay')) QuizFunnel.close();
     });
@@ -2024,14 +2089,12 @@
 
       btn.textContent = '⏳ Wird gesendet...'; btn.style.opacity = '.7'; btn.disabled = true;
 
-      // Brevo
       const fd = new FormData();
       fd.append('EMAIL', email); fd.append('VORNAME', n); fd.append('FIRMA', c);
       fd.append('BRANCHE', b); fd.append('WHATSAPP1', wa);
       fd.append('OPT_IN', nl ? '1' : ''); fd.append('email_address_check', ''); fd.append('locale', 'de');
       fetch(BV, { method: 'POST', body: fd, mode: 'no-cors' }).then(() => done()).catch(() => done());
 
-      // CallMeBot WhatsApp Benachrichtigung
       const waMsg = '📋 *Neuer Strategie-Lead!*\n\n' +
         '👤 *Name:* ' + n + '\n' +
         '🏢 *Firma:* ' + c + '\n' +
